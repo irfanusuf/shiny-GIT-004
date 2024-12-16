@@ -13,7 +13,7 @@ const getData = async () => {
 
     displayData(hits);
 
-    console.log(data);
+    console.log(hits);
   } catch (error) {
     console.error(error);
   }
@@ -25,18 +25,32 @@ function displayData(data) {
 
   data.forEach((element) => {
     const title = document.createElement("h2");
-    title.innerText = element.label;
+    title.innerText = element.recipe.label;
     title.classList.add("h2");
+    targetDiv.appendChild(title)
+
+
 
     const image = document.createElement("img");
-    image.src = element.image;
-    image.alt = element.title;
+    image.src = element.recipe.image;
+    image.alt = element.recipe.title;
     image.classList.add("image-fluid");
+    targetDiv.appendChild(image)
 
-    element.ingredients.forEach((ingredient) => {
-      // const unorderedList = document.createElement
-      console.log(ingredient);
+
+    const ingredientList = document.createElement("ul");
+    ingredientList.classList.add("ingredient-list");
+
+
+
+    element.recipe.ingredients.forEach((ingredient) => {
+      const ingredientItem = document.createElement("li");
+      ingredientItem.innerText = ingredient.text
+      ingredientList.appendChild(ingredientItem);
     });
+
+    targetDiv.appendChild(ingredientList);
+
   });
 }
 
