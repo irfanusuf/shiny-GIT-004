@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const uri = "mongodb://localhost:27017/myNewDb";
+// const uri = "mongodb://localhost:27017/myNewDb";  
 
 const connectDb = async () => {
   try {
     const uri =
-      "mongodb+srv://irfanusuf33:robolox@robolox.xnj0z.mongodb.net/myNewDb?retryWrites=true&w=majority&appName=robolox";
+     "mongodb+srv://irfanusuf33:robolox@robolox.xnj0z.mongodb.net/myNewDb?retryWrites=true&w=majority&appName=robolox";
     const connect = await mongoose.connect(uri);
 
     if (connect) {
