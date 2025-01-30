@@ -1,0 +1,54 @@
+﻿<style>
+    .myLogin {
+        border: 1px solid grey;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 10px 10px rgba(128, 128, 128, 0.251);
+    }
+</style>
+
+<div class="mt-5 pt-5 w-50 mx-auto myLogin">
+    <h1 class="py-3 text-center">Register</h1>
+
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="usernameInput" class="form-label">Username</label>
+            <input type="text" class="form-control" id="usernameInput" name="User.Username">
+        </div>
+
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="emailInput" name="User.Email" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="User.Password" autocomplete="off" >
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="termsCheck" name="User.Terms" >
+            <label class="form-check-label" for="termsCheck">I agree to the terms and conditions</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+   @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>@ViewBag.ErrorMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (ViewBag.SuccesMessage != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@ViewBag.SuccesMessage </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+</div>
