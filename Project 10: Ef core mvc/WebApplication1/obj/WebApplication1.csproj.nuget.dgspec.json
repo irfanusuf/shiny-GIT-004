@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/WebApplication1.csproj": {}
+    "/home/irfan_usuf/coding /ef core mvc/WebApplication1/WebApplication1.csproj": {}
   },
   "projects": {
-    "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/WebApplication1.csproj": {
+    "/home/irfan_usuf/coding /ef core mvc/WebApplication1/WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/WebApplication1.csproj",
+        "projectUniqueName": "/home/irfan_usuf/coding /ef core mvc/WebApplication1/WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/WebApplication1.csproj",
+        "projectPath": "/home/irfan_usuf/coding /ef core mvc/WebApplication1/WebApplication1.csproj",
         "packagesPath": "/home/irfan_usuf/.nuget/packages/",
-        "outputPath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/obj/",
+        "outputPath": "/home/irfan_usuf/coding /ef core mvc/WebApplication1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/irfan_usuf/.nuget/NuGet/NuGet.Config"
@@ -42,13 +42,19 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
-            "MongoDB.Driver": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.0, )"
+              "version": "[9.0.1, )"
             },
-            "System.IdentityModel.Tokens.Jwt": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.3.0, )"
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.1, )"
             }
           },
           "imports": [

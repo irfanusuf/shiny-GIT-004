@@ -848,11 +848,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/irfan_usuf/coding /snow ball -razorpages/WebApplication1/WebApplication1.csproj",
+      "projectUniqueName": "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "/home/irfan_usuf/coding /snow ball -razorpages/WebApplication1/WebApplication1.csproj",
+      "projectPath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/WebApplication1.csproj",
       "packagesPath": "/home/irfan_usuf/.nuget/packages/",
-      "outputPath": "/home/irfan_usuf/coding /snow ball -razorpages/WebApplication1/obj/",
+      "outputPath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 9 : snow ball -razorpages/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/irfan_usuf/.nuget/NuGet/NuGet.Config"
