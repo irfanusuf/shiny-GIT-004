@@ -3,6 +3,9 @@ Download nugget packages by right clicking on dependencies
 dotnet add package Microsoft.EntityFrameworkCore --version 9.0.1
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 9.0.1
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 9.0.1
+
+
+
 dotnet add package BCrypt.Net-Next --version 4.0.3
 
 Microsoft.AspNetCore.Identity.EntityFrameworkCore

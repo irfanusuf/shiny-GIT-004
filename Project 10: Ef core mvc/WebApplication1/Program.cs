@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Structs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<SqlDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("main")));
+
+
+
+LoadEnvStruct loadEnv  = new();    //
 
 var app = builder.Build();
 

@@ -38,14 +38,11 @@ namespace WebApplication1.Controllers
 
 
 
-
-
         [HttpPost]
         public async Task<ActionResult> Register(User user)
         {
             try
             {
-
                 // var finduser = await _dbContext.Users.FindAsync(user.Email);    this method works with {PK}
                 var findUser = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
                 if (findUser != null)
@@ -76,6 +73,9 @@ namespace WebApplication1.Controllers
                 return View();
             }
         }
+
+
+
 
 
         [HttpPost]
