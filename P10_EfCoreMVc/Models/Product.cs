@@ -10,4 +10,6 @@ public class Product
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 
+        public User? Seller {get ; set;}
+
 }

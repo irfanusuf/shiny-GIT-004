@@ -9,6 +9,8 @@ namespace WebApplication1.Services;
 public class EmailService : IMailService
 {
 
+ 
+
     private readonly string _smtpHost;
     private readonly int _smtpPort;
     private readonly string _smtpUsername;

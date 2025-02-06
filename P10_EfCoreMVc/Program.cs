@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Controllers;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Services;
@@ -21,6 +22,8 @@ builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 
 
+
+
 LoadEnvStruct loadEnv  = new();    //
 
 var app = builder.Build();
@@ -36,6 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 
 app.UseAuthorization();
 

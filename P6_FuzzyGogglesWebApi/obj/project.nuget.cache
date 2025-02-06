@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gZcI7/F50mg2psxt8I84497qXfCgNlqQq47g/AhdO22t5yxVMUokf0HoxDoU6FK7/Nz5j2QHz+ohGqxhmuv/CA==",
+  "dgSpecHash": "LHbnhMmhHDSnHOyrOMEItrbgb2WU2TySYYEZemAbYJty+PTRB9Z/2jXHdmXErKTJeWGn/oijk1VU/xNsb29ncQ==",
   "success": true,
-  "projectFilePath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 6 : Fuzzy Goggles WebApi/WebApplication1.csproj",
+  "projectFilePath": "/home/irfan_usuf/coding/GIT04/P6_FuzzyGogglesWebApi/WebApplication1.csproj",
   "expectedPackageFiles": [
     "/home/irfan_usuf/.nuget/packages/bcrypt.net/0.1.0/bcrypt.net.0.1.0.nupkg.sha512",
     "/home/irfan_usuf/.nuget/packages/cloudinarydotnet/1.27.1/cloudinarydotnet.1.27.1.nupkg.sha512",

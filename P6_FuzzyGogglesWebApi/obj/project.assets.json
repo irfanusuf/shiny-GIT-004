@@ -4346,11 +4346,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/irfan_usuf/coding /shiny-GIT-004/Project 6 : Fuzzy Goggles WebApi/WebApplication1.csproj",
+      "projectUniqueName": "/home/irfan_usuf/coding/GIT04/P6_FuzzyGogglesWebApi/WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 6 : Fuzzy Goggles WebApi/WebApplication1.csproj",
+      "projectPath": "/home/irfan_usuf/coding/GIT04/P6_FuzzyGogglesWebApi/WebApplication1.csproj",
       "packagesPath": "/home/irfan_usuf/.nuget/packages/",
-      "outputPath": "/home/irfan_usuf/coding /shiny-GIT-004/Project 6 : Fuzzy Goggles WebApi/obj/",
+      "outputPath": "/home/irfan_usuf/coding/GIT04/P6_FuzzyGogglesWebApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/irfan_usuf/.nuget/NuGet/NuGet.Config"

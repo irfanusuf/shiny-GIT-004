@@ -14,8 +14,11 @@ namespace WebApplication1.Controllers
             _dbContext = dbContext;
         }
 
+     
         public string ErrorMessage = "";
         public string SuccessMessage = "";
+
+
 
 
         [HttpGet]
