@@ -23,9 +23,6 @@ builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 
 
-
-LoadEnvStruct loadEnv  = new();    //
-
 var app = builder.Build();
 
 
