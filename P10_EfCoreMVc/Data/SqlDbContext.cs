@@ -1,6 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using WebApplication1.Models.JunctionModels;
 
 namespace WebApplication1.Data
 {
@@ -15,7 +16,8 @@ namespace WebApplication1.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Cart> Cart { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartProduct> CartProducts { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,24 +26,44 @@ namespace WebApplication1.Data
 
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.Buyer)    // order has one buyer
-                .WithMany(u => u.Orders)   // user can have many orders
+                .WithMany(b => b.Orders)   // buyer can have many orders
                 .HasForeignKey(o => o.BuyerId);    //order has BuyerId as a foreign key 
 
 
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Seller)       // product has one seller
                 .WithMany(s => s.Products)    // seller has many products
-                .HasForeignKey(p => p.SellerId);  // product has SellerId  as foreign key
+                .HasForeignKey(p => p.SellerId) // product has SellerId  as foreign key
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Address>()
                 .HasOne(a => a.Buyer)    // address belongs to one buyer
                 .WithMany(b => b.Addresses)   // buyer has many addresses
-                .HasForeignKey(a => a.AddressId);   // addres has addres Id as foreign key
+                .HasForeignKey(a => a.BuyerId) // addres has buyer  Id as foreign key
+                .OnDelete(DeleteBehavior.NoAction);
 
-             modelBuilder.Entity<Cart>()
-                .HasOne(c => c.Buyer)    // cart belongs to one buyer
-                .WithOne(b => b.Cart)   // buyer has only one cart
-                .HasForeignKey<Cart>(c => c.BuyerId);   // cart has Buyer Id as foreign key
+            modelBuilder.Entity<Cart>()
+               .HasOne(c => c.Buyer)    // cart belongs to one buyer
+               .WithOne(b => b.Cart)   // buyer has only one cart
+               .HasForeignKey<Cart>(c => c.BuyerId)  // cart has Buyer Id as foreign key
+               .OnDelete(DeleteBehavior.NoAction);
+
+
+            //    many to many relationShip 
+
+            modelBuilder.Entity<CartProduct>()
+                .HasKey(cp => cp.CartProductId); 
+
+            modelBuilder.Entity<CartProduct>()
+                .HasOne(cp => cp.Cart)     
+                .WithMany(c => c.Products)     // cart have many products
+                .HasForeignKey(cp => cp.CartId);
+
+            modelBuilder.Entity<CartProduct>()
+                .HasOne(cp => cp.Product)
+                .WithMany(p => p.Carts)         //product belongs to many carts
+                .HasForeignKey(cp => cp.ProductId);
+
         }
     }
 }

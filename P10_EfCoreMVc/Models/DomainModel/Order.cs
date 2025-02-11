@@ -7,12 +7,12 @@ namespace WebApplication1.Models
     public class Order
     {
         [Key]
-        public Guid OrderId { get; set; }
+        public Guid OrderId { get; set; }  = Guid.NewGuid();
 
         public required string OrderStatus { get; set; }
         public required decimal OrderPrice { get; set; }
 
-      // we took BuyerId as fk because an order can have single user 
+      // we took BuyerId as fk because an order belongs to single user 
         public required Guid BuyerId { get; set; }
 
         [ForeignKey("BuyerId")]    // information passed to efCore

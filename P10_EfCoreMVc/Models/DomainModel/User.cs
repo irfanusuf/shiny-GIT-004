@@ -8,7 +8,7 @@ namespace WebApplication1.Models
     public class User
     {
         [Key]
-        public Guid UserId { get; set; }
+        public Guid UserId { get; set; }  = Guid.NewGuid();
         public required string Username { get; set; }
         [EmailAddress]
         public required string Email { get; set; }
@@ -17,7 +17,8 @@ namespace WebApplication1.Models
         public string? ProfilePictureUrl { get; set; } 
         
 
-        public Cart? Cart { get; set; }      //Cart object belongs to user ///// one to one relation  
+        // One-to-one relationship with Cart
+        public Cart? Cart { get; set; }
 
         // we took collection of Orders, Products and Addresses because user can have many orders , products for selling and 
 
@@ -28,9 +29,6 @@ namespace WebApplication1.Models
         public ICollection<Address> Addresses { get; set; } = [];
 
         // Instead of Icollections We can also use list which handles dynamic data well 
-
-
-
 
         public DateTime DateCreated { get; set; }  = DateTime.UtcNow;
         public DateTime? DateModified { get; set; }

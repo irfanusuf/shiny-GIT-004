@@ -22,9 +22,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Index()
         {
            
-            var orders = await _context.Orders
-                .Include(o => o.User) 
-                .ToListAsync();
+            var orders = await _context.Orders.ToListAsync();
 
             return View(orders);
         }
@@ -34,9 +32,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Details(Guid id)
         {
 
-            var order = await _context.Orders
-                .Include(o => o.User) 
-                .FirstOrDefaultAsync(o => o.OrderId == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == id);
 
             if (order == null)
             {
