@@ -9,8 +9,6 @@ namespace WebApplication1.Services;
 public class EmailService : IMailService
 {
 
- 
-
     private readonly string _smtpHost;
     private readonly int _smtpPort;
     private readonly string _smtpUsername;
@@ -32,7 +30,7 @@ public class EmailService : IMailService
         _smtpPassword = Environment.GetEnvironmentVariable("SMTP_PASSWORD")
             ?? throw new InvalidOperationException("SMTP_PASSWORD is not configured.");
     }
-
+    
     public async Task SendEmailAsync(string to, string subject, string body, bool isHtml = true)
     {
         using var client = new SmtpClient(_smtpHost, _smtpPort)

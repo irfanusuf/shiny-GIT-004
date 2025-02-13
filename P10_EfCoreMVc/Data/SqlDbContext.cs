@@ -7,10 +7,7 @@ namespace WebApplication1.Data
 {
     public class SqlDbContext : DbContext
     {
-        public SqlDbContext(DbContextOptions<SqlDbContext> options)
-            : base(options)
-        {
-        }
+        public SqlDbContext(DbContextOptions<SqlDbContext> options): base(options){ }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -27,7 +24,8 @@ namespace WebApplication1.Data
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.Buyer)    // order has one buyer
                 .WithMany(b => b.Orders)   // buyer can have many orders
-                .HasForeignKey(o => o.BuyerId);    //order has BuyerId as a foreign key 
+                .HasForeignKey(o => o.BuyerId)   //order has BuyerId as a foreign key 
+                .OnDelete(DeleteBehavior.NoAction);
 
 
             modelBuilder.Entity<Product>()
@@ -42,6 +40,7 @@ namespace WebApplication1.Data
                 .HasForeignKey(a => a.BuyerId) // addres has buyer  Id as foreign key
                 .OnDelete(DeleteBehavior.NoAction);
 
+
             modelBuilder.Entity<Cart>()
                .HasOne(c => c.Buyer)    // cart belongs to one buyer
                .WithOne(b => b.Cart)   // buyer has only one cart
@@ -53,6 +52,7 @@ namespace WebApplication1.Data
 
             modelBuilder.Entity<CartProduct>()
                 .HasKey(cp => cp.CartProductId); 
+
 
             modelBuilder.Entity<CartProduct>()
                 .HasOne(cp => cp.Cart)     

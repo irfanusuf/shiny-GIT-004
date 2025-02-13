@@ -42,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/User/AdminDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9BZG1pbkRhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/User/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9EYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/User/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/User/SellerDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9TZWxsZXJEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/_ViewImports.cshtml]

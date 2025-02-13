@@ -37,8 +37,7 @@ namespace WebApplication1.Pages
 
             if(user != null ){
 
-                    username = user.Username;
-                    profilePic = user.ProfilePictureUrl; 
+                 user.Username = "kjsdfkj";  
             }
 
 

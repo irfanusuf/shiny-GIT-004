@@ -60,19 +60,13 @@ namespace WebApplication1.Pages
                     token,
                     new CookieOptions
                     {
-
                         HttpOnly = true,
                         Secure = true,
                         SameSite = SameSiteMode.Strict,
                         Expires = DateTimeOffset.UtcNow.AddHours(1)
-
                     }
-
                 );
-
-
                 return RedirectToPage("/UserProfile");
-
             }
             catch (Exception error)
             {
