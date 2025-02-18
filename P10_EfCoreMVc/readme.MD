@@ -22,7 +22,7 @@
 
 # Commands for Efcore sql migrations for vscode if using dotnet tool
 
-        dotnet ef migrations add migration
+        dotnet ef migrations add "message"
         dotnet ef database update
 
 

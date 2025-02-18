@@ -32,7 +32,7 @@ public class TokenService : ITokenService   // inheritance
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Name, username)
             ]),
-            Expires = DateTime.UtcNow.AddHours(1),
+            Expires = DateTime.UtcNow.AddHours(24),
 
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };

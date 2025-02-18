@@ -24,18 +24,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #218838;
-        }
+     
         .message {
             margin-top: 15px;
             padding: 10px;
@@ -54,8 +43,8 @@
     </style>
 
 
-    <div class="container">
-        <h2>Register</h2>
+<div class="container-sm py-5" style="min-height: 90vh;">
+        <h2>Register with Spruce</h2>
 
   
         @if (ViewData["ErrorMessage"] != null)
@@ -81,7 +70,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="Password" required>
             </div>
-            <button type="submit" class="btn">Register</button>
+            <button  type="submit" class="btn btn-primary   ">Register</button>
         </form>
     </div>
 

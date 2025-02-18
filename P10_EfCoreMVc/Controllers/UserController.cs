@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
+using WebApplication1.Models.ViewModel;
 using WebApplication1.Types;
+
 
 namespace WebApplication1.Controllers
 {
@@ -17,9 +19,6 @@ namespace WebApplication1.Controllers
             this.tokenService = tokenService;
         }
 
-        // public string ErrorMessage = "";
-        // public string SuccessMessage = "";
-
         [HttpGet]
         public IActionResult Register()
         {
@@ -32,94 +31,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Dashboard()
-        {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login");
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);
-            var user = dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
-
-            return View(user);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> AdminDashboard()
-        {
-
-            try
-            {
-                var token = Request.Cookies["AuthToken"];
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-
-                var userId = tokenService.VerifyTokenAndGetId(token);
-
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
-
-                if (user.Role == Role.Admin)
-                {
-                    return View(user);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-
-
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> SellerDashboard()
-        {
-
-            try
-            {
-                var token = Request.Cookies["AuthToken"];
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-
-                var userId = tokenService.VerifyTokenAndGetId(token);
-
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
-
-                if (user.Role == Role.Seller)
-                {
-                    return View(user);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-
-
-        }
-
-
+    
         [HttpPost]
         public async Task<ActionResult> Register(User user)
         {
@@ -201,7 +113,7 @@ namespace WebApplication1.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Dashboard");
+                    return RedirectToAction("BuyerDashboard");
                 }
 
 
@@ -214,11 +126,148 @@ namespace WebApplication1.Controllers
         }
 
 
-        [HttpGet]
 
-        public async Task<IActionResult> ChangeRoleToSeller()
+        // authorizing the dashborads so that respective users can acces it 
+
+        [HttpGet]
+        public async Task<IActionResult> BuyerDashboard()
+        {
+            try
+            {
+                var token = Request.Cookies["AuthToken"];
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("login");
+                }
+
+                var userId = tokenService.VerifyTokenAndGetId(token);
+
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+
+                if (user.Role == Role.Buyer)
+                {
+                    var viewModel = new NavbarModel { UserRole = user.Role };
+                    return View(viewModel);
+                }
+                else
+                {
+                    return RedirectToAction("login");
+                }
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AdminDashboard()
         {
 
+            try
+            {
+                var token = Request.Cookies["AuthToken"];
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("login");
+                }
+
+                var userId = tokenService.VerifyTokenAndGetId(token);
+
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+
+                if (user.Role == Role.Admin)
+                {
+                    return View(    );
+                }
+                else
+                {
+                    return RedirectToAction("login");
+                }
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SellerDashboard()
+        {
+
+            try
+            {
+                var token = Request.Cookies["AuthToken"];
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("login");
+                }
+
+                var userId = tokenService.VerifyTokenAndGetId(token);
+
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+
+                if (user.Role == Role.Seller)
+                {
+                    var viewModel = new NavbarModel { UserRole = user.Role };
+
+                    return View(viewModel);
+                }
+                else
+                {
+                    return RedirectToAction("login");
+                }
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+
+
+        }
+
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> ChangeRoleToSeller()
+        {
+            var token = Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("login");
+            }
+
+            var userId = tokenService.VerifyTokenAndGetId(token);
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+
+            if (user == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            if (user.Role == Role.Buyer)
+            {
+                user.Role = Role.Seller;
+                await dbContext.SaveChangesAsync();
+                return RedirectToAction("SellerDashboard");
+            }
+
+           return RedirectToAction("login");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangeRoleToBuyer()
+        {
             var token = Request.Cookies["AuthToken"];
 
             if (string.IsNullOrEmpty(token))
@@ -229,17 +278,20 @@ namespace WebApplication1.Controllers
             var userId = tokenService.VerifyTokenAndGetId(token);
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
 
-            if (user.Role == Role.Buyer)
+            if (user == null)
             {
-
-                user.Role = Role.Seller;
-                dbContext.Users.Update(user);
-                return View(user);
+                return RedirectToAction("login");
             }
 
-            return View();
-        }
+            if (user.Role == Role.Seller)
+            {
+                user.Role = Role.Buyer;
+                await dbContext.SaveChangesAsync(); 
+                return RedirectToAction("BuyerDashboard");
+            }
 
+            return RedirectToAction("login");
+        }
 
 
         [HttpGet]
@@ -254,13 +306,6 @@ namespace WebApplication1.Controllers
         }
 
     }
-
-
-
-
-
-
-
 
 
 }

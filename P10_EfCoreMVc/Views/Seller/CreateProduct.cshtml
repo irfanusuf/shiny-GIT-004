@@ -1,0 +1,77 @@
+﻿@model WebApplication1.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+
+
+<div class="container py-5" style="margin-bottom: 20px;">
+
+    <h2 class="mb-4">Create Product</h2>
+    <form asp-action="CreateProduct" method="post" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+               
+                <div class="mb-3">
+                    <label asp-for="ProductTitle" class="form-label">Product Title</label>
+                    <input asp-for="ProductTitle" class="form-control" required />
+                    <span asp-validation-for="ProductTitle" class="text-danger"></span>
+                </div>
+
+              
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+              
+                <div class="mb-3">
+                    <label asp-for="ProductPicURl" class="form-label">Product Image URL</label>
+                    <input asp-for="ProductPicURl" class="form-control" type="url" required />
+                    <span asp-validation-for="ProductPicURl" class="text-danger"></span>
+                </div>
+
+            
+                <div class="mb-3">
+                    <label asp-for="Qty" class="form-label">Quantity</label>
+                    <input asp-for="Qty" class="form-control" type="number" min="1" required />
+                    <span asp-validation-for="Qty" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+         
+                <div class="mb-3">
+                    <label asp-for="Category" class="form-label">Category</label>
+                    <input asp-for="Category" class="form-control" required />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+             
+                <div class="mb-3">
+                    <label asp-for="SubCategory" class="form-label">Subcategory</label>
+                    <input asp-for="SubCategory" class="form-control" required />
+                    <span asp-validation-for="SubCategory" class="text-danger"></span>
+                </div>
+
+              
+                <div class="mb-3">
+                    <label asp-for="HashTags" class="form-label">Hashtags</label>
+                    <input asp-for="HashTags" class="form-control" placeholder="e.g. #electronics #new" required />
+                    <span asp-validation-for="HashTags" class="text-danger"></span>
+                </div>
+
+          
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Create Product</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* @section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+} *@

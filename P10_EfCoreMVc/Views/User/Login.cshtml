@@ -19,15 +19,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
     }
-    .btn {
-        background-color: #28a745;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 10px;
-    }
+
     .error {
         color: red;
         margin-bottom: 10px;
@@ -38,8 +30,12 @@
     }
 </style>
 
-<div class="container">
-    <h2>Login</h2>
+
+
+
+
+<div class="container-sm py-5" style="min-height: 90vh;">
+    <h2>Login to your Account</h2>
 
     @if (ViewData["ErrorMessage"] != null)
     {
@@ -59,6 +55,13 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="Password" required>
         </div>
-        <button type="submit" class="btn">Login</button>
+
+        <div>
+            <p>If alread</p>
+        </div>
+        <button class="btn btn-primary" type="submit" >Login</button>
     </form>
+
+
+    <h5 class="mt-5"> Further Design ideas Coming .......</h5>
 </div>

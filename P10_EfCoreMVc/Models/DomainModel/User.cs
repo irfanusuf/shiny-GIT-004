@@ -23,7 +23,6 @@ namespace WebApplication1.Models
 
         // we took collection of Orders, Products and Addresses because user can have many orders , products for selling and 
 
-      
         // one to many 
  
         public ICollection<Order> Orders { get; set; } = [];
