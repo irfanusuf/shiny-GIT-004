@@ -3,8 +3,9 @@
 *@
 @{
 }
+ 
+@model WebApplication1.Models.ViewModel.HybridViewModel
 
-@model IEnumerable<WebApplication1.Models.Product>
 
 <div class="container my-5 " style="margin-bottom: 60px; height: 90vh;">
     <h2 class="mb-4"> Your Listing</h2>
@@ -27,7 +28,7 @@
 
         <tbody>
 
-            @foreach (var product in Model)
+            @foreach (var product in Model.Products)
             {
                 <tr>
                     <td>@product.ProductTitle</td>

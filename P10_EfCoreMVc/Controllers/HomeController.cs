@@ -26,21 +26,24 @@ namespace WebApplication1.Controllers
             try
             {
                 var token = Request.Cookies["AuthToken"];
+                var viewModel = new HybridViewModel();
+
                 if (string.IsNullOrEmpty(token))
                 {
-                    return View();
+
+                    viewModel.Navbar.IsLoggedin = false;
+                    return View(viewModel);
                 }
 
                 var userId = tokenService.VerifyTokenAndGetId(token);
              
                 var user = await dbContext.Users.SingleOrDefaultAsync(u => u.UserId.ToString() == userId);
                 
-                var viewModel = new NavbarModel();
 
                 if (user != null)
                 {
-                    viewModel.UserRole = user.Role;
-                    viewModel.IsLoggedin = true;
+                    viewModel.Navbar.UserRole = user.Role;
+                    viewModel.Navbar.IsLoggedin = true;
                 }
 
                 return View(viewModel);

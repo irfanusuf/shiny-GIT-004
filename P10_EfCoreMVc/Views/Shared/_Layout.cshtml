@@ -1,7 +1,7 @@
-﻿@using WebApplication1.Models.ViewModel
+﻿
 @using WebApplication1.Types
 
-@model NavbarModel
+@model WebApplication1.Models.ViewModel.HybridViewModel
 
 
 
@@ -52,28 +52,27 @@
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                    <li><a class="nav-link" href="/"><img src="~/images/user.svg"></a></li>
-                    <li><a class="nav-link" href="/cart.html"><img src="~/images/cart.svg"></a></li>
+
+                 @if (Model?.Navbar.UserRole == Role.Seller && Model?.Navbar.IsLoggedin == true )
+                {
+                   <li><a class="nav-link" href="/user/SellerDashboard"><img src="~/images/user.svg"></a></li> 
+                }
+
+                   @if (Model?.Navbar.UserRole == Role.Buyer && Model?.Navbar.IsLoggedin == true )
+                {
+                   <li><a class="nav-link" href="/user/BuyerDashboard"><img src="~/images/user.svg"></a></li> 
+                }
+
+
+                @if ( Model?.Navbar.IsLoggedin == false )
+                {
+                   <li><a class="nav-link" href="/user/login"><img src="~/images/user.svg"></a></li> 
+                }   
+
+                    <li><a class="nav-link" href="/"><img src="~/images/cart.svg"></a></li>
                 </ul>
             </div>
 
-
-            <div class="ms-5">
-                @if (Model?.UserRole == Role.Seller && Model?.IsLoggedin == true )
-                {
-                    <a class="btn btn-secondary" href="/user/ChangeRoleToBuyer">Buyer's profile </a>
-                }
-                else if (Model?.UserRole == Role.Buyer && Model?.IsLoggedin == true)
-                {
-                    <a class="btn btn-secondary" href="/user/ChangeRoleToSeller">Seller's Dash  </a>
-                }
-                else if(Model?.IsLoggedin == true){
-                     <a class="btn btn-secondary" href="/user/logout">Logout</a>
-                }
-                else{
-                     <a class="btn btn-secondary" href="/user/login">Login</a>
-                }
-            </div>  
         </div>
     </nav>
 

@@ -13,25 +13,72 @@ namespace WebApplication1.Controllers
     {
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
+
+        private readonly HybridViewModel viewModel;
+
+
         public UserController(SqlDbContext dbContext, ITokenService tokenService)
         {
             this.dbContext = dbContext;
             this.tokenService = tokenService;
+            this.viewModel = new HybridViewModel
+            {
+                Navbar = new NavbarModel { IsLoggedin = false },
+                Products = []
+            };
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
-            return View();
+            var token = Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return View(viewModel);
+            }
+
+            var userId = tokenService.VerifyTokenAndGetId(token);
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
+            if (user.Role == Role.Seller)
+            {
+                return RedirectToAction("SellerDashboard");
+            }
+            else if (user.Role == Role.Buyer)
+            {
+                return RedirectToAction("BuyerDashboard");
+            }
+            else
+            {
+                return View(viewModel);
+            }
+
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public async Task <IActionResult> Login()
         {
-            return View();
+            var token = Request.Cookies["AuthToken"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return View(viewModel);
+            }
+            var userId = tokenService.VerifyTokenAndGetId(token);
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
+            if (user.Role == Role.Seller)
+            {
+                return RedirectToAction("SellerDashboard");
+            }
+            else if (user.Role == Role.Buyer)
+            {
+                return RedirectToAction("BuyerDashboard");
+            }
+            else
+            {
+                return View(viewModel);
+            }
         }
 
-    
+
         [HttpPost]
         public async Task<ActionResult> Register(User user)
         {
@@ -99,7 +146,7 @@ namespace WebApplication1.Controllers
 
                 ViewData["SuccessMessage"] = "Login successful!";
 
-                    var viewModel = new NavbarModel{IsLoggedin =  true};
+                var viewModel = new NavbarModel { IsLoggedin = true };
 
 
                 if (findUser.Role == Role.Admin)
@@ -149,7 +196,7 @@ namespace WebApplication1.Controllers
 
                 if (user.Role == Role.Admin)
                 {
-                    return View(    );
+                    return View();
                 }
                 else
                 {
@@ -183,7 +230,8 @@ namespace WebApplication1.Controllers
 
                 if (user.Role == Role.Buyer)
                 {
-                    var viewModel = new NavbarModel { UserRole = user.Role , IsLoggedin = true };
+                    viewModel.Navbar.UserRole = Role.Buyer;
+                    viewModel.Navbar.IsLoggedin = true;
                     return View(viewModel);
                 }
                 else
@@ -212,7 +260,11 @@ namespace WebApplication1.Controllers
                 var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
                 if (user.Role == Role.Seller)
                 {
-                    var viewModel = new NavbarModel { UserRole = user.Role , IsLoggedin = true};
+                    var viewModel = new HybridViewModel
+                    {
+                        Navbar = new NavbarModel { UserRole = Role.Seller, IsLoggedin = true },
+                        Products = []
+                    };
 
                     return View(viewModel);
                 }
@@ -251,7 +303,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("SellerDashboard");
             }
 
-           return RedirectToAction("login");
+            return RedirectToAction("login");
         }
 
         [HttpGet]
@@ -275,7 +327,7 @@ namespace WebApplication1.Controllers
             if (user.Role == Role.Seller)
             {
                 user.Role = Role.Buyer;
-                await dbContext.SaveChangesAsync(); 
+                await dbContext.SaveChangesAsync();
                 return RedirectToAction("BuyerDashboard");
             }
 
@@ -286,11 +338,8 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
-
-
-
             HttpContext.Response.Cookies.Delete("AuthToken");
-            return RedirectToAction("Login");
+            return RedirectToAction("index" , "home");
 
         }
 

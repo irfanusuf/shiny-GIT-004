@@ -12,10 +12,21 @@ namespace WebApplication1.Controllers
     {
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
+        private readonly HybridViewModel viewModel;
+
+
+
         public SellerController(SqlDbContext dbContext, ITokenService tokenService)
         {
             this.dbContext = dbContext;
             this.tokenService = tokenService;
+            this.viewModel = new HybridViewModel
+            {
+
+                Navbar = new NavbarModel { UserRole = Role.Seller, IsLoggedin = true },
+                Products = []
+
+            };
         }
 
         [HttpGet]
@@ -28,12 +39,6 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("login", "User");
             }
 
-            var viewModel = new NavbarModel
-            {
-                UserRole = Role.Seller,
-                IsLoggedin = true
-            };
-
             return View(viewModel);
         }
 
@@ -42,13 +47,16 @@ namespace WebApplication1.Controllers
         {
             var token = Request.Cookies["AuthToken"];
 
-             if (string.IsNullOrEmpty(token))
+            if (string.IsNullOrEmpty(token))
             {
                 return RedirectToAction("login", "User");
             }
             var userId = tokenService.VerifyTokenAndGetId(token);   // logged in userId
             var myProducts = await dbContext.Products.Where(p => p.SellerId.ToString() == userId).ToListAsync();   //filter products of only logged in user 
-            return View(myProducts);
+
+            viewModel.Products = myProducts;
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -56,7 +64,9 @@ namespace WebApplication1.Controllers
         {
 
             var myProducts = await dbContext.Products.Where(p => p.IsArchived == true).ToListAsync();   //filter products of only logged in user 
-            return View(myProducts);
+
+            viewModel.Products = myProducts;
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -64,7 +74,9 @@ namespace WebApplication1.Controllers
         {
 
             var myProducts = await dbContext.Products.Where(p => p.IsDeleted == true).ToListAsync();   //filter products of only logged in user 
-            return View(myProducts);
+
+            viewModel.Products = myProducts;
+            return View(viewModel);
         }
 
 
@@ -75,7 +87,8 @@ namespace WebApplication1.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View();
+                    return View(viewModel);
+                    // throw new Exception("meowowowowowo");
                 }
                 var token = Request.Cookies["AuthToken"];
 
@@ -98,8 +111,7 @@ namespace WebApplication1.Controllers
             }
             catch (Exception error)
             {
-                Console.WriteLine(error.Message);
-                return RedirectToAction("Index", "Home");
+                throw new Exception(error.Message);
             }
         }
     }
