@@ -23,27 +23,24 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Index()
         {
 
-            // return View();
             try
             {
                 var token = Request.Cookies["AuthToken"];
                 if (string.IsNullOrEmpty(token))
                 {
-                    return RedirectToAction("Login" , "User");
+                    return View();
                 }
 
                 var userId = tokenService.VerifyTokenAndGetId(token);
-                if (string.IsNullOrEmpty(userId))
-                {    
-                    return RedirectToAction("Login", "User");
-                }
-
+             
                 var user = await dbContext.Users.SingleOrDefaultAsync(u => u.UserId.ToString() == userId);
+                
                 var viewModel = new NavbarModel();
 
                 if (user != null)
                 {
                     viewModel.UserRole = user.Role;
+                    viewModel.IsLoggedin = true;
                 }
 
                 return View(viewModel);

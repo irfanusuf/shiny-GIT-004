@@ -9,5 +9,7 @@ public class NavbarModel
 
     public Role UserRole { get; set; }
 
+    public  bool IsLoggedin {get ; set;} = false;
+
 
 }

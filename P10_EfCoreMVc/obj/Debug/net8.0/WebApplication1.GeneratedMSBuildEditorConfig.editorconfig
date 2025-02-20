@@ -38,6 +38,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VsbGVyL0NyZWF0ZVByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/Seller/DeletedProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VsbGVyL0RlbGV0ZWRQcm9kdWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/Seller/MyArchive.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VsbGVyL015QXJjaGl2ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/Seller/MyProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VsbGVyL015UHJvZHVjdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

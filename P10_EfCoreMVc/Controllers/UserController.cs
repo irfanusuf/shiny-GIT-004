@@ -78,7 +78,6 @@ namespace WebApplication1.Controllers
                 if (findUser == null || !BCrypt.Net.BCrypt.Verify(user.Password, findUser.Password))
                 {
 
-
                     ViewData["ErrorMessage"] = "Invalid email or password.";
                     return View();
                 }
@@ -100,11 +99,11 @@ namespace WebApplication1.Controllers
 
                 ViewData["SuccessMessage"] = "Login successful!";
 
+                    var viewModel = new NavbarModel{IsLoggedin =  true};
 
 
                 if (findUser.Role == Role.Admin)
                 {
-
                     return RedirectToAction("AdminDashboard");
                 }
                 else if (findUser.Role == Role.Seller)
@@ -127,40 +126,9 @@ namespace WebApplication1.Controllers
 
 
 
+
+
         // authorizing the dashborads so that respective users can acces it 
-
-        [HttpGet]
-        public async Task<IActionResult> BuyerDashboard()
-        {
-            try
-            {
-                var token = Request.Cookies["AuthToken"];
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-
-                var userId = tokenService.VerifyTokenAndGetId(token);
-
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
-
-                if (user.Role == Role.Buyer)
-                {
-                    var viewModel = new NavbarModel { UserRole = user.Role };
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-        }
 
         [HttpGet]
         public async Task<IActionResult> AdminDashboard()
@@ -198,9 +166,8 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SellerDashboard()
+        public async Task<IActionResult> BuyerDashboard()
         {
-
             try
             {
                 var token = Request.Cookies["AuthToken"];
@@ -214,10 +181,9 @@ namespace WebApplication1.Controllers
 
                 var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
 
-                if (user.Role == Role.Seller)
+                if (user.Role == Role.Buyer)
                 {
-                    var viewModel = new NavbarModel { UserRole = user.Role };
-
+                    var viewModel = new NavbarModel { UserRole = user.Role , IsLoggedin = true };
                     return View(viewModel);
                 }
                 else
@@ -230,13 +196,36 @@ namespace WebApplication1.Controllers
 
                 return View();
             }
-
-
         }
 
+        [HttpGet]
+        public async Task<IActionResult> SellerDashboard()
+        {
+            try
+            {
+                var token = Request.Cookies["AuthToken"];
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("login");
+                }
+                var userId = tokenService.VerifyTokenAndGetId(token);
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
+                if (user.Role == Role.Seller)
+                {
+                    var viewModel = new NavbarModel { UserRole = user.Role , IsLoggedin = true};
 
-
-
+                    return View(viewModel);
+                }
+                else
+                {
+                    return RedirectToAction("login");
+                }
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
 
         [HttpGet]
         public async Task<IActionResult> ChangeRoleToSeller()
@@ -306,6 +295,5 @@ namespace WebApplication1.Controllers
         }
 
     }
-
 
 }

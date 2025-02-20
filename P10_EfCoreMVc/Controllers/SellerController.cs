@@ -3,14 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
+using WebApplication1.Models.ViewModel;
 using WebApplication1.Types;
 
 namespace WebApplication1.Controllers
 {
     public class SellerController : Controller
     {
-
-
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
         public SellerController(SqlDbContext dbContext, ITokenService tokenService)
@@ -19,58 +18,88 @@ namespace WebApplication1.Controllers
             this.tokenService = tokenService;
         }
 
+        [HttpGet]
+        public IActionResult CreateProduct()
+        {
+            var token = Request.Cookies["AuthToken"];
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("login", "User");
+            }
+
+            var viewModel = new NavbarModel
+            {
+                UserRole = Role.Seller,
+                IsLoggedin = true
+            };
+
+            return View(viewModel);
+        }
 
         [HttpGet]
+        public async Task<IActionResult> MyProducts()
+        {
+            var token = Request.Cookies["AuthToken"];
 
-        public IActionResult CreateProduct(){
+             if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("login", "User");
+            }
+            var userId = tokenService.VerifyTokenAndGetId(token);   // logged in userId
+            var myProducts = await dbContext.Products.Where(p => p.SellerId.ToString() == userId).ToListAsync();   //filter products of only logged in user 
+            return View(myProducts);
+        }
 
-            return View();
+        [HttpGet]
+        public async Task<IActionResult> MyArchive()
+        {
+
+            var myProducts = await dbContext.Products.Where(p => p.IsArchived == true).ToListAsync();   //filter products of only logged in user 
+            return View(myProducts);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeletedProducts()
+        {
+
+            var myProducts = await dbContext.Products.Where(p => p.IsDeleted == true).ToListAsync();   //filter products of only logged in user 
+            return View(myProducts);
         }
 
 
-
-
-        [HttpPost("create-product")]
-
+        [HttpPost]
         public async Task<IActionResult> CreateProduct(Product product)
         {
-
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(product);
+                    return View();
                 }
-
                 var token = Request.Cookies["AuthToken"];
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    return RedirectToAction("login");
+                    return RedirectToAction("login", "User");
                 }
-
                 var userId = tokenService.VerifyTokenAndGetId(token);
 
                 var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
 
-                if (user == null || user.Role != Role.Seller)
+                if (user.Role == Role.Seller)
                 {
-                    return Unauthorized(); 
+                    product.SellerId = user.UserId;
+                    await dbContext.Products.AddAsync(product);
+                    await dbContext.SaveChangesAsync();
+                    return RedirectToAction("MyProducts");
                 }
-
-                product.SellerId = user.UserId;
-
-                await dbContext.Products.AddAsync(product);
-                await dbContext.SaveChangesAsync();
-
-                return RedirectToAction("SellerDashboard", "User");
-
-
+                return RedirectToAction("login", "User");
             }
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
-                return View();
+                return RedirectToAction("Index", "Home");
             }
         }
     }
