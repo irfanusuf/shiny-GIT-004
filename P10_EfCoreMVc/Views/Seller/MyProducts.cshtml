@@ -3,7 +3,7 @@
 *@
 @{
 }
- 
+
 @model WebApplication1.Models.ViewModel.HybridViewModel
 
 
@@ -38,10 +38,18 @@
                     <td>@product.Price $</td>
                     <td>@product.Qty</td>
                     <td>@product.HashTags</td>
+
+
                     <td>
 
-                        <a class="btn btn-primary btn-sm" style="padding: 5px 20px;"> Edit</a>
-                        <a class="btn btn-danger btn-sm" style="padding: 5px 20px;" href=$"/seller/archiveProduct/{@product.ProductId}"> Archive</a>
+                        <a class="btn btn-primary btn-sm" style="padding: 5px 20px;" href="/seller/edit/@product.ProductId"> Edit</a>
+
+                        
+                        <a asp-controller="Seller" asp-action="ArchiveProduct" asp-route-id="@product.ProductId"
+                            class="btn btn-danger btn-sm" style="padding: 5px 20px;">
+                            Archive
+                        </a>
+
 
                     </td>
 

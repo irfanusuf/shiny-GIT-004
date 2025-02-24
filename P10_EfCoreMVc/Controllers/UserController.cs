@@ -13,9 +13,7 @@ namespace WebApplication1.Controllers
     {
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
-
         private readonly HybridViewModel viewModel;
-
 
         public UserController(SqlDbContext dbContext, ITokenService tokenService)
         {
@@ -38,7 +36,7 @@ namespace WebApplication1.Controllers
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
-            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
             {
                 return RedirectToAction("SellerDashboard");
@@ -55,15 +53,17 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task <IActionResult> Login()
+        public async Task<IActionResult> Login()
         {
             var token = Request.Cookies["AuthToken"];
             if (string.IsNullOrEmpty(token))
             {
                 return View(viewModel);
             }
+
+
             var userId = tokenService.VerifyTokenAndGetId(token);
-            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
             {
                 return RedirectToAction("SellerDashboard");
@@ -78,39 +78,39 @@ namespace WebApplication1.Controllers
             }
         }
 
-
         [HttpPost]
         public async Task<ActionResult> Register(User user)
         {
             try
             {
                 // var finduser = await _dbContext.Users.FindAsync(user.Email);    this method works with {PK}
+
+                if (!ModelState.IsValid)
+                {
+                    ViewData["ErrorMessage"] = "All feilds are required!";
+                    return View(viewModel);
+                }
+
                 var findUser = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
                 if (findUser != null)
                 {
                     ViewData["ErrorMessage"] = "User already exists.";
-                    return View();
+                    return View(viewModel);
                 }
 
                 user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                if (ModelState.IsValid)
-                {
-                    await dbContext.Users.AddAsync(user);
-                    await dbContext.SaveChangesAsync();
-                    ViewData["SuccessMessage"] = "User created successfully!";
-                    return View();
-                }
-                else
-                {
-                    ViewData["ErrorMessage"] = "All feilds are required!";
-                    return View();
-                }
+
+                await dbContext.Users.AddAsync(user);
+                await dbContext.SaveChangesAsync();
+                ViewData["SuccessMessage"] = "User created successfully!";
+                return View(viewModel);
+
             }
-            catch (Exception ex)
+
+            catch (Exception)
             {
                 ViewData["ErrorMessage"] = "An error occurred: ";
-                Console.WriteLine(ex.Message);
                 return View();
             }
         }
@@ -120,19 +120,25 @@ namespace WebApplication1.Controllers
         {
             try
             {
+                //  if (!ModelState.IsValid)
+                // {
+                //     ViewData["ErrorMessage"] = "All feilds are required!";
+                //     return View(viewModel);
+                // }
+
+
                 var findUser = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
 
                 if (findUser == null || !BCrypt.Net.BCrypt.Verify(user.Password, findUser.Password))
                 {
 
                     ViewData["ErrorMessage"] = "Invalid email or password.";
-                    return View();
+                    return View(viewModel);
                 }
 
                 var token = tokenService.CreateToken(findUser.UserId.ToString(), findUser.Email, findUser.Username);
 
                 HttpContext.Response.Cookies.Append(
-
                    "AuthToken",
                    token,
                    new CookieOptions
@@ -143,10 +149,6 @@ namespace WebApplication1.Controllers
                        Expires = DateTimeOffset.UtcNow.AddHours(24)
                    }
                );
-
-                ViewData["SuccessMessage"] = "Login successful!";
-
-                var viewModel = new NavbarModel { IsLoggedin = true };
 
 
                 if (findUser.Role == Role.Admin)
@@ -171,12 +173,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-
-
-
-
         // authorizing the dashborads so that respective users can acces it 
-
         [HttpGet]
         public async Task<IActionResult> AdminDashboard()
         {
@@ -192,11 +189,13 @@ namespace WebApplication1.Controllers
 
                 var userId = tokenService.VerifyTokenAndGetId(token);
 
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
                 if (user.Role == Role.Admin)
                 {
-                    return View();
+                    viewModel.Navbar.UserRole = Role.Admin;
+                    viewModel.Navbar.IsLoggedin = true;
+                    return View(viewModel);
                 }
                 else
                 {
@@ -226,7 +225,7 @@ namespace WebApplication1.Controllers
 
                 var userId = tokenService.VerifyTokenAndGetId(token);
 
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
                 if (user.Role == Role.Buyer)
                 {
@@ -257,14 +256,11 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("login");
                 }
                 var userId = tokenService.VerifyTokenAndGetId(token);
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == Guid.Parse(userId));
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
                 if (user.Role == Role.Seller)
                 {
-                    var viewModel = new HybridViewModel
-                    {
-                        Navbar = new NavbarModel { UserRole = Role.Seller, IsLoggedin = true },
-                        Products = []
-                    };
+                    viewModel.Navbar.UserRole = Role.Seller;
+                    viewModel.Navbar.IsLoggedin = true;
 
                     return View(viewModel);
                 }
@@ -289,7 +285,7 @@ namespace WebApplication1.Controllers
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
-            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -317,7 +313,7 @@ namespace WebApplication1.Controllers
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
-            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId.ToString() == userId);
+            var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)
             {
@@ -334,15 +330,11 @@ namespace WebApplication1.Controllers
             return RedirectToAction("login");
         }
 
-
         [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Response.Cookies.Delete("AuthToken");
-            return RedirectToAction("index" , "home");
-
+            return RedirectToAction("index", "home");
         }
-
     }
-
 }

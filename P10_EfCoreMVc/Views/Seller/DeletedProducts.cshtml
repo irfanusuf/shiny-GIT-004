@@ -39,9 +39,9 @@
                     <td>@product.HashTags</td>
                     <td>
 
-                        <a class="btn btn-primary btn-sm" style="padding: 5px 20px;"> Edit</a>
-                        <a class="btn btn-danger btn-sm" style="padding: 5px 20px;"> Archive</a>
-
+                        <a asp-action="RestoreFromRecycle" asp-controller="Seller" asp-route-id ="@product.ProductId"  
+                        class="btn btn-primary btn-sm" style="padding: 5px 20px;"> Restore</a>
+                      
                     </td>
 
                 </tr>

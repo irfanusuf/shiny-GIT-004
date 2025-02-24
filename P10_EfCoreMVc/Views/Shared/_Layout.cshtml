@@ -63,6 +63,11 @@
                    <li><a class="nav-link" href="/user/BuyerDashboard"><img src="~/images/user.svg"></a></li> 
                 }
 
+                    @if (Model?.Navbar.UserRole == Role.Admin && Model?.Navbar.IsLoggedin == true )
+                {
+                   <li><a class="nav-link" href="/user/AdminDashboard"><img src="~/images/user.svg"></a></li> 
+                }
+
 
                 @if ( Model?.Navbar.IsLoggedin == false )
                 {

@@ -18,7 +18,7 @@ public class TokenService : ITokenService   // inheritance
     }
 
 
-    public string CreateToken(string userId, string email, string username )
+    public string CreateToken(string userId, string email, string username)
     {
         var tokenHandler = new JwtSecurityTokenHandler();   // intializing new instance of  JwtSecurityTokenHandler
 
@@ -42,7 +42,7 @@ public class TokenService : ITokenService   // inheritance
     }
 
 
-    public string VerifyTokenAndGetId(string token)
+    public Guid VerifyTokenAndGetId(string token)
     {
         try
         {
@@ -50,7 +50,7 @@ public class TokenService : ITokenService   // inheritance
 
             var key = Encoding.ASCII.GetBytes(_secretKey);
 
-        
+
             var validationParameters = new TokenValidationParameters   // 
             {
                 ValidateIssuer = false,
@@ -59,14 +59,14 @@ public class TokenService : ITokenService   // inheritance
                 IssuerSigningKey = new SymmetricSecurityKey(key)
             };
 
-            var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+            var validate = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
 
-           
-            var userIdClaim = principal.FindFirst(ClaimTypes.NameIdentifier);
-            
-            if (userIdClaim != null)
+
+            var userId = validate.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userId != null)
             {
-                return  userIdClaim.Value; 
+                return Guid.Parse(userId.Value);
             }
             else
             {
