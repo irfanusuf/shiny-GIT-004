@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication1.Models.DomainModel;
 using WebApplication1.Models.JunctionModels;
 
 namespace WebApplication1.Models;
@@ -19,12 +20,15 @@ public class Product
         public required string HashTags { get; set; }
         public bool IsArchived { get; set; } = false;
         public bool IsDeleted { get; set; } = false;
+        public int SeoScore {get; set;}
         public required Guid SellerId { get; set; }
 
         [ForeignKey("SellerId")]
         public User? Seller { get; set; }
 
+
         public ICollection<CartProduct> Carts { get; set; } = [];
+        public ICollection<Review> Reviews { get; set; } = [];
 
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;

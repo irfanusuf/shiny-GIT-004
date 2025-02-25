@@ -1,6 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using WebApplication1.Models.DomainModel;
 using WebApplication1.Types;
 
 
@@ -30,6 +31,8 @@ namespace WebApplication1.Models
         public ICollection<Product> Products { get; set; } = [];
           // many Addrese like for office or home for  proper business management
         public ICollection<Address> Addresses { get; set; } = [];
+
+        public ICollection<Review> Reviews { get; set; } = [];
 
         // Instead of Icollections We can also use list which handles dynamic data well 
 
