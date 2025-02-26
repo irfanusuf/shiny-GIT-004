@@ -26,10 +26,8 @@ public class Product
         [ForeignKey("SellerId")]
         public User? Seller { get; set; }
 
-
         public ICollection<CartProduct> Carts { get; set; } = [];
         public ICollection<Review> Reviews { get; set; } = [];
-
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
         public DateTime? DateModified { get; set; } = DateTime.UtcNow;

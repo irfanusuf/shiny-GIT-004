@@ -22,10 +22,8 @@ namespace WebApplication1.Controllers
             this.tokenService = tokenService;
             this.viewModel = new HybridViewModel
             {
-
                 Navbar = new NavbarModel { UserRole = Role.Seller, IsLoggedin = true },    // hardcoded values 
                 Products = []
-
             };
         }
 
@@ -105,8 +103,6 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-
-
         [HttpGet]
         public async Task<IActionResult> ArchiveProduct(Guid id)
         {
@@ -121,7 +117,6 @@ namespace WebApplication1.Controllers
             return RedirectToAction("MyProducts");
         }
 
-
         [HttpGet]
         public async Task<IActionResult> UnArchiveProduct(Guid id)
         {
@@ -135,7 +130,6 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("MyArchive");
         }
-
 
         [HttpGet]
         public async Task<IActionResult> SendToRecycle(Guid id )
@@ -167,8 +161,6 @@ namespace WebApplication1.Controllers
             return RedirectToAction("DeletedProducts");
 
         }
-
-
 
         [HttpPost]
         public async Task<IActionResult> CreateProduct(Product product)

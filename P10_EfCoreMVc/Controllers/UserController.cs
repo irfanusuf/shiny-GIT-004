@@ -45,6 +45,9 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("BuyerDashboard");
             }
+             else if(user.Role == Role.Admin){
+                return RedirectToAction("AdminDashboard");
+            }
             else
             {
                 return View(viewModel);
@@ -61,7 +64,6 @@ namespace WebApplication1.Controllers
                 return View(viewModel);
             }
 
-
             var userId = tokenService.VerifyTokenAndGetId(token);
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
@@ -72,7 +74,9 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("BuyerDashboard");
             }
-            else
+            else if(user.Role == Role.Admin){
+                return RedirectToAction("AdminDashboard");
+            }
             {
                 return View(viewModel);
             }

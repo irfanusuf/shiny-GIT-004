@@ -15,9 +15,12 @@ public class Review
 
     [ForeignKey("ProductId")]
     public required Guid ProductId { get; set; }
+    public Product? Product {get ; set;}
+
 
 
     [ForeignKey("UserId")]
     public required Guid UserId { get; set; }
 
+    public User? User {get; set;}
 }

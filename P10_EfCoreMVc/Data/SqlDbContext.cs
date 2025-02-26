@@ -1,20 +1,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using WebApplication1.Models.DomainModel;
 using WebApplication1.Models.JunctionModels;
 
 namespace WebApplication1.Data
 {
     public class SqlDbContext : DbContext
     {
-        public SqlDbContext(DbContextOptions<SqlDbContext> options): base(options){ }
+        public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartProduct> CartProducts { get; set; } 
+        public DbSet<Review> Reviews {get ; set;}
+        public DbSet<CartProduct> CartProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,14 +50,26 @@ namespace WebApplication1.Data
                .OnDelete(DeleteBehavior.NoAction);
 
 
+            modelBuilder.Entity<Review>()
+               .HasOne(r => r.User)       // review belongs to one user
+               .WithMany(u => u.Reviews)
+               .HasForeignKey(r => r.UserId);
+
+
+            modelBuilder.Entity<Review>()
+               .HasOne(r => r.Product)       // review belongs to one product
+               .WithMany(p => p.Reviews)
+               .HasForeignKey(r => r.ProductId);
+
+
             //    many to many relationShip 
 
             modelBuilder.Entity<CartProduct>()
-                .HasKey(cp => cp.CartProductId); 
+                .HasKey(cp => cp.CartProductId);
 
 
             modelBuilder.Entity<CartProduct>()
-                .HasOne(cp => cp.Cart)     
+                .HasOne(cp => cp.Cart)
                 .WithMany(c => c.Products)     // cart have many products
                 .HasForeignKey(cp => cp.CartId);
 

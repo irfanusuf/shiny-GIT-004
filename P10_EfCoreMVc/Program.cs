@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Controllers;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Services;
-using WebApplication1.Structs;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +16,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("main")));
 
 
 builder.Services.AddSingleton<ITokenService, TokenService>();
-builder.Services.AddSingleton<IMailService , EmailService>();
+builder.Services.AddSingleton<IMailService, EmailService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 
@@ -28,9 +27,13 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");  
+    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
+
 }
+
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

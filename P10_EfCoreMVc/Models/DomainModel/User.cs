@@ -17,6 +17,8 @@ namespace WebApplication1.Models
         public required string Password { get; set; }
         public required Role Role { get; set; } = Role.Buyer;
         public string? ProfilePictureUrl { get; set; } = "dummy Url";
+
+        // public bool IsSellerReqAccepted  {get; set;} = false;
         
 
         // One-to-one relationship with Cart
