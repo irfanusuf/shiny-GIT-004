@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/WebApplication1.csproj": {}
+    "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/WebApplication1.csproj": {}
   },
   "projects": {
-    "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/WebApplication1.csproj": {
+    "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/WebApplication1.csproj",
+        "projectUniqueName": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/WebApplication1.csproj",
-        "packagesPath": "/home/irfan_usuf/.nuget/packages/",
-        "outputPath": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/obj/",
+        "projectPath": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/WebApplication1.csproj",
+        "packagesPath": "/home/irfanusuf/.nuget/packages/",
+        "outputPath": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/irfan_usuf/.nuget/NuGet/NuGet.Config"
+          "/home/irfanusuf/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
