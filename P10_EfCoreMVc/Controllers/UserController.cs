@@ -148,8 +148,8 @@ namespace WebApplication1.Controllers
                    new CookieOptions
                    {
                        HttpOnly = true,
-                       Secure = true,
-                       SameSite = SameSiteMode.Strict,
+                       Secure = false,
+                       SameSite = SameSiteMode.Lax,
                        Expires = DateTimeOffset.UtcNow.AddHours(24)
                    }
                );
