@@ -28,46 +28,41 @@ namespace WebApplication1.Controllers
             };
         }
 
-
-
-        // GET: Product
+        [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
             var product = await dbContext.Products.FindAsync(id);
             var products = await dbContext.Products
             .Where(p => p.Category == product.Category && p.SubCategory == product.SubCategory)
             .ToListAsync();
-
             viewModel.Product = product;
             viewModel.Products = products;
-
             return View(viewModel);
         }
-
 
 
         [HttpGet]
         public async Task<ActionResult> AddToCart(Guid ProductId)
         {
-
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
+            try
             {
-                return RedirectToAction("login", "User");
-            }
+                var token = Request.Cookies["AuthToken"];
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("Login", "User");
+                }
+                var userId = tokenService.VerifyTokenAndGetId(token);
+                var product = await dbContext.Products.FindAsync(ProductId);
 
-            var userId = tokenService.VerifyTokenAndGetId(token);   // logged in userId
-            var product = await dbContext.Products.FindAsync(ProductId);
+                if (userId == product.SellerId)
+                {
+                    ViewBag.errorMessage = "Can't Buy our own Product!";
+                    return View("Error", viewModel);
+                }
 
-            if (userId == product.SellerId)
-            {
-                return RedirectToAction("index", "Home");
-            }
-            else
-            {
-
-                var cart = await dbContext.Carts.Include(c => c.Products).FirstOrDefaultAsync(c => c.BuyerId == userId);
+                var cart = await dbContext.Carts
+                .Include(c => c.Products)
+                .FirstOrDefaultAsync(c => c.BuyerId == userId);
 
                 if (cart == null)
                 {
@@ -80,32 +75,37 @@ namespace WebApplication1.Controllers
                     await dbContext.SaveChangesAsync();
                 }
 
-
-                var existingCartProduct = await dbContext.CartProducts.FirstOrDefaultAsync(cp => cp.CartId == cart.CartId && cp.ProductId == ProductId);
-
+                var existingCartProduct = await dbContext
+                .CartProducts.FirstOrDefaultAsync(cp => cp.CartId == cart.CartId && cp.ProductId == ProductId);
 
                 if (existingCartProduct == null)
                 {
-
                     var cartProduct = new CartProduct
                     {
                         CartId = cart.CartId,
-                        ProductId = ProductId
+                        ProductId = ProductId,
+                        Quantity = 1
                     };
 
                     await dbContext.CartProducts.AddAsync(cartProduct);
-
-                    // Update cart value
-                    cart.CartValue += product.Price;
+                    cart.CartValue += product.Price ;
+                    await dbContext.SaveChangesAsync();
                 }
 
-                await dbContext.SaveChangesAsync();
-
+                if (existingCartProduct != null && existingCartProduct.ProductId == ProductId)
+                {
+                    existingCartProduct.Quantity += 1;
+                    cart.CartValue += product.Price ;
+                    await dbContext.SaveChangesAsync();
+                }
 
                 return RedirectToAction("Cart", "Buyer");
             }
-
+            catch (Exception ex)
+            {
+                ViewBag.errorMessage = $"Server Error:  {ex.Message}" ;
+                return View("Error", viewModel);
+            }
         }
-
     }
 }

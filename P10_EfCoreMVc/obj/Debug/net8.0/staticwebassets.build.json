@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b0RirBzanLDuUY/zvUYS17+OzH/T6ayXlo97kpC3liw=",
+  "Hash": "e2bNv2BswG1q4iPJkirmte99M/TizWf71f4/hq3ApWg=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -10,55 +10,17 @@
     {
       "Name": "WebApplication1/wwwroot",
       "Source": "WebApplication1",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/Debug/net8.0/scopedcss/bundle/WebApplication1.styles.css",
-      "SourceId": "WebApplication1",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/Debug/net8.0/scopedcss/bundle/",
-      "BasePath": "_content/WebApplication1",
-      "RelativePath": "WebApplication1.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/Debug/net8.0/scopedcss/bundle/WebApplication1.styles.css"
-    },
-    {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/Debug/net8.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css",
-      "SourceId": "WebApplication1",
-      "SourceType": "Computed",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/Debug/net8.0/scopedcss/projectbundle/",
-      "BasePath": "_content/WebApplication1",
-      "RelativePath": "WebApplication1.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/obj/Debug/net8.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css"
-    },
-    {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/css/bootstrap.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/css/bootstrap.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "css/bootstrap.min.css",
       "AssetKind": "All",
@@ -74,10 +36,10 @@
       "OriginalItemSpec": "wwwroot/css/bootstrap.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/css/site.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/css/site.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -93,10 +55,10 @@
       "OriginalItemSpec": "wwwroot/css/site.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/css/style.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/css/style.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "css/style.css",
       "AssetKind": "All",
@@ -112,10 +74,10 @@
       "OriginalItemSpec": "wwwroot/css/style.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/css/tiny-slider.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/css/tiny-slider.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "css/tiny-slider.css",
       "AssetKind": "All",
@@ -131,10 +93,10 @@
       "OriginalItemSpec": "wwwroot/css/tiny-slider.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/favicon.ico",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/favicon.ico",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -150,10 +112,10 @@
       "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/favicon.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/favicon.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -169,10 +131,10 @@
       "OriginalItemSpec": "wwwroot/favicon.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/bag.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/bag.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/bag.svg",
       "AssetKind": "All",
@@ -188,10 +150,10 @@
       "OriginalItemSpec": "wwwroot/images/bag.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/bowl-2.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/bowl-2.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/bowl-2.png",
       "AssetKind": "All",
@@ -207,10 +169,10 @@
       "OriginalItemSpec": "wwwroot/images/bowl-2.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/bowl-3.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/bowl-3.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/bowl-3.png",
       "AssetKind": "All",
@@ -226,10 +188,10 @@
       "OriginalItemSpec": "wwwroot/images/bowl-3.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/cart.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/cart.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/cart.svg",
       "AssetKind": "All",
@@ -245,10 +207,10 @@
       "OriginalItemSpec": "wwwroot/images/cart.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/couch.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/couch.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/couch.png",
       "AssetKind": "All",
@@ -264,10 +226,10 @@
       "OriginalItemSpec": "wwwroot/images/couch.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/cross.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/cross.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/cross.svg",
       "AssetKind": "All",
@@ -283,10 +245,10 @@
       "OriginalItemSpec": "wwwroot/images/cross.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/dots-green.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/dots-green.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/dots-green.svg",
       "AssetKind": "All",
@@ -302,10 +264,10 @@
       "OriginalItemSpec": "wwwroot/images/dots-green.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/dots-light.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/dots-light.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/dots-light.svg",
       "AssetKind": "All",
@@ -321,10 +283,10 @@
       "OriginalItemSpec": "wwwroot/images/dots-light.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/dots-yellow.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/dots-yellow.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/dots-yellow.svg",
       "AssetKind": "All",
@@ -340,10 +302,10 @@
       "OriginalItemSpec": "wwwroot/images/dots-yellow.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/envelope-outline.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/envelope-outline.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/envelope-outline.svg",
       "AssetKind": "All",
@@ -359,10 +321,10 @@
       "OriginalItemSpec": "wwwroot/images/envelope-outline.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/img-grid-1.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/img-grid-1.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/img-grid-1.jpg",
       "AssetKind": "All",
@@ -378,10 +340,10 @@
       "OriginalItemSpec": "wwwroot/images/img-grid-1.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/img-grid-2.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/img-grid-2.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/img-grid-2.jpg",
       "AssetKind": "All",
@@ -397,10 +359,10 @@
       "OriginalItemSpec": "wwwroot/images/img-grid-2.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/img-grid-3.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/img-grid-3.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/img-grid-3.jpg",
       "AssetKind": "All",
@@ -416,10 +378,10 @@
       "OriginalItemSpec": "wwwroot/images/img-grid-3.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/person_1.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/person_1.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/person_1.jpg",
       "AssetKind": "All",
@@ -435,10 +397,10 @@
       "OriginalItemSpec": "wwwroot/images/person_1.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/person_2.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/person_2.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/person_2.jpg",
       "AssetKind": "All",
@@ -454,10 +416,10 @@
       "OriginalItemSpec": "wwwroot/images/person_2.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/person_3.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/person_3.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/person_3.jpg",
       "AssetKind": "All",
@@ -473,10 +435,10 @@
       "OriginalItemSpec": "wwwroot/images/person_3.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/person_4.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/person_4.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/person_4.jpg",
       "AssetKind": "All",
@@ -492,10 +454,10 @@
       "OriginalItemSpec": "wwwroot/images/person_4.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/person-1.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/person-1.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/person-1.jpg",
       "AssetKind": "All",
@@ -511,10 +473,10 @@
       "OriginalItemSpec": "wwwroot/images/person-1.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/person-1.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/person-1.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/person-1.png",
       "AssetKind": "All",
@@ -530,10 +492,10 @@
       "OriginalItemSpec": "wwwroot/images/person-1.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/post-1.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/post-1.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/post-1.jpg",
       "AssetKind": "All",
@@ -549,10 +511,10 @@
       "OriginalItemSpec": "wwwroot/images/post-1.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/post-2.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/post-2.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/post-2.jpg",
       "AssetKind": "All",
@@ -568,10 +530,10 @@
       "OriginalItemSpec": "wwwroot/images/post-2.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/post-3.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/post-3.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/post-3.jpg",
       "AssetKind": "All",
@@ -587,10 +549,10 @@
       "OriginalItemSpec": "wwwroot/images/post-3.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/product-1.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/product-1.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/product-1.png",
       "AssetKind": "All",
@@ -606,10 +568,10 @@
       "OriginalItemSpec": "wwwroot/images/product-1.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/product-2.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/product-2.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/product-2.png",
       "AssetKind": "All",
@@ -625,10 +587,10 @@
       "OriginalItemSpec": "wwwroot/images/product-2.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/product-3.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/product-3.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/product-3.png",
       "AssetKind": "All",
@@ -644,10 +606,10 @@
       "OriginalItemSpec": "wwwroot/images/product-3.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/return.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/return.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/return.svg",
       "AssetKind": "All",
@@ -663,10 +625,10 @@
       "OriginalItemSpec": "wwwroot/images/return.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/sofa.png",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/sofa.png",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/sofa.png",
       "AssetKind": "All",
@@ -682,10 +644,10 @@
       "OriginalItemSpec": "wwwroot/images/sofa.png"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/support.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/support.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/support.svg",
       "AssetKind": "All",
@@ -701,10 +663,10 @@
       "OriginalItemSpec": "wwwroot/images/support.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/truck.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/truck.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/truck.svg",
       "AssetKind": "All",
@@ -720,10 +682,10 @@
       "OriginalItemSpec": "wwwroot/images/truck.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/user.svg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/user.svg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/user.svg",
       "AssetKind": "All",
@@ -739,10 +701,10 @@
       "OriginalItemSpec": "wwwroot/images/user.svg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/images/why-choose-us-img.jpg",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/images/why-choose-us-img.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "images/why-choose-us-img.jpg",
       "AssetKind": "All",
@@ -758,10 +720,10 @@
       "OriginalItemSpec": "wwwroot/images/why-choose-us-img.jpg"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/js/bootstrap.bundle.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/js/bootstrap.bundle.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -777,10 +739,10 @@
       "OriginalItemSpec": "wwwroot/js/bootstrap.bundle.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/js/custom.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/js/custom.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "js/custom.js",
       "AssetKind": "All",
@@ -796,10 +758,10 @@
       "OriginalItemSpec": "wwwroot/js/custom.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/js/site.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/js/site.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -815,10 +777,10 @@
       "OriginalItemSpec": "wwwroot/js/site.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/js/tiny-slider.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/js/tiny-slider.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "js/tiny-slider.js",
       "AssetKind": "All",
@@ -834,10 +796,10 @@
       "OriginalItemSpec": "wwwroot/js/tiny-slider.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -853,10 +815,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -872,10 +834,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -891,10 +853,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -910,10 +872,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -929,10 +891,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -948,10 +910,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -967,10 +929,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -986,10 +948,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -1005,10 +967,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -1024,10 +986,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -1043,10 +1005,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -1062,10 +1024,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1081,10 +1043,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1100,10 +1062,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1119,10 +1081,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1138,10 +1100,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1157,10 +1119,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1176,10 +1138,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1195,10 +1157,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1214,10 +1176,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1233,10 +1195,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1252,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1271,10 +1233,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1290,10 +1252,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1309,10 +1271,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1328,10 +1290,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1347,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1366,10 +1328,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -1385,10 +1347,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -1404,10 +1366,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -1423,10 +1385,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -1442,10 +1404,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1461,10 +1423,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1480,10 +1442,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1499,10 +1461,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1518,10 +1480,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1537,10 +1499,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1556,10 +1518,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1575,10 +1537,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1594,10 +1556,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1613,10 +1575,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1632,10 +1594,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.js.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1651,10 +1613,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1670,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/bootstrap/LICENSE",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/bootstrap/LICENSE",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1689,10 +1651,10 @@
       "OriginalItemSpec": "wwwroot/lib/bootstrap/LICENSE"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1708,10 +1670,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1727,10 +1689,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -1746,10 +1708,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/additional-methods.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1765,10 +1727,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/additional-methods.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1784,10 +1746,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/additional-methods.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1803,10 +1765,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/jquery.validate.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1822,10 +1784,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery-validation/LICENSE.md",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery-validation/LICENSE.md",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1841,10 +1803,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery-validation/LICENSE.md"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery/dist/jquery.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery/dist/jquery.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1860,10 +1822,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery/dist/jquery.min.js",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery/dist/jquery.min.js",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1879,10 +1841,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.js"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery/dist/jquery.min.map",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery/dist/jquery.min.map",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1898,10 +1860,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/lib/jquery/LICENSE.txt",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/lib/jquery/LICENSE.txt",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1917,10 +1879,10 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
     },
     {
-      "Identity": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/scss/style.scss",
+      "Identity": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/scss/style.scss",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
-      "ContentRoot": "/home/irfanusuf/coding/shiny-GIT-004/P10_EfCoreMVc/wwwroot/",
+      "ContentRoot": "/home/irfan_usuf/coding/GIT04/P10_EfCoreMVc/wwwroot/",
       "BasePath": "_content/WebApplication1",
       "RelativePath": "scss/style.scss",
       "AssetKind": "All",

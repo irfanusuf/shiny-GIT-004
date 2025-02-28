@@ -14,14 +14,9 @@ namespace WebApplication1.Models.JunctionModels;
         public Cart? Cart { get; set; }
 
 
-
-
         public Guid ProductId { get; set; }
         [ForeignKey("ProductId")]
         public Product? Product { get; set; }
-
-
-
 
         public int Quantity { get; set; }  // Quantity of the product in the cart    // i changed this specifically
     }

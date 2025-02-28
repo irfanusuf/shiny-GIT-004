@@ -16,8 +16,6 @@ namespace WebApplication1.Controllers
         private readonly ILogger<HomeController> logger;
         private readonly HybridViewModel viewModel;
 
-
-
         public HomeController(SqlDbContext dbContext, ITokenService tokenService, ILogger<HomeController> logger)
         {
             this.dbContext = dbContext;
@@ -27,7 +25,7 @@ namespace WebApplication1.Controllers
             {
                 Navbar = new NavbarModel { IsLoggedin = false },    // hardcoded values 
                 Products = [],
-                // Error =  new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier }
+    
             };
         }
 
@@ -36,15 +34,6 @@ namespace WebApplication1.Controllers
         {
             return View(viewModel);
         }
-
-        // public IActionResult Error()
-        // {
-   
-        //     return View(viewModel);
-        // }
-
-
-
 
         [HttpGet]
         public async Task<IActionResult> Shop()
@@ -58,21 +47,16 @@ namespace WebApplication1.Controllers
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error in HomeController Index method.");
-                return View("Error");
+                return View("Error" , viewModel);
             }
         }
 
 
-
-
         [HttpGet]
-
         public IActionResult About()
         {
             return View(viewModel);
         }
-
-
 
         [HttpGet]
         public IActionResult Services()
@@ -80,20 +64,11 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-
-
-
-
         [HttpGet]
-
         public IActionResult Blog()
         {
             return View(viewModel);
         }
-
-
-
-
 
         [HttpGet]
 
@@ -102,9 +77,7 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-
-
-
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View(viewModel);

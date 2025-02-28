@@ -39,14 +39,14 @@ namespace WebApplication1.Controllers
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
             {
-                return RedirectToAction("SellerDashboard");
+                return RedirectToAction("Dashboard" , "Seller");
             }
             else if (user.Role == Role.Buyer)
             {
-                return RedirectToAction("BuyerDashboard");
+                return RedirectToAction("Dashboard" , "Buyer");
             }
              else if(user.Role == Role.Admin){
-                return RedirectToAction("AdminDashboard");
+                return RedirectToAction("Dashboard" , "Admin");
             }
             else
             {
@@ -68,15 +68,16 @@ namespace WebApplication1.Controllers
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
             {
-                return RedirectToAction("SellerDashboard");
+                return RedirectToAction("Dashboard" , "Seller");
             }
             else if (user.Role == Role.Buyer)
             {
-                return RedirectToAction("BuyerDashboard");
+                return RedirectToAction("Dashboard" , "Buyer");
             }
-            else if(user.Role == Role.Admin){
-                return RedirectToAction("AdminDashboard");
+             else if(user.Role == Role.Admin){
+                return RedirectToAction("Dashboard" , "Admin");
             }
+            else
             {
                 return View(viewModel);
             }
@@ -124,13 +125,6 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                //  if (!ModelState.IsValid)
-                // {
-                //     ViewData["ErrorMessage"] = "All feilds are required!";
-                //     return View(viewModel);
-                // }
-
-
                 var findUser = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
 
                 if (findUser == null || !BCrypt.Net.BCrypt.Verify(user.Password, findUser.Password))
@@ -157,15 +151,15 @@ namespace WebApplication1.Controllers
 
                 if (findUser.Role == Role.Admin)
                 {
-                    return RedirectToAction("AdminDashboard");
+                    return RedirectToAction("Dashboard" , "Admin");
                 }
                 else if (findUser.Role == Role.Seller)
                 {
-                    return RedirectToAction("SellerDashboard");
+                    return RedirectToAction("Dashboard" , "Seller");
                 }
                 else
                 {
-                    return RedirectToAction("BuyerDashboard");
+                    return RedirectToAction("Dashboard" ,"Buyer");
                 }
 
 
@@ -177,108 +171,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // authorizing the dashborads so that respective users can acces it 
-        [HttpGet]
-        public async Task<IActionResult> AdminDashboard()
-        {
-
-            try
-            {
-                var token = Request.Cookies["AuthToken"];
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-
-                var userId = tokenService.VerifyTokenAndGetId(token);
-
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
-                if (user.Role == Role.Admin)
-                {
-                    viewModel.Navbar.UserRole = Role.Admin;
-                    viewModel.Navbar.IsLoggedin = true;
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-
-
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> BuyerDashboard()
-        {
-            try
-            {
-                var token = Request.Cookies["AuthToken"];
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-
-                var userId = tokenService.VerifyTokenAndGetId(token);
-
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
-                if (user.Role == Role.Buyer)
-                {
-                    viewModel.Navbar.UserRole = Role.Buyer;
-                    viewModel.Navbar.IsLoggedin = true;
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> SellerDashboard()
-        {
-            try
-            {
-                var token = Request.Cookies["AuthToken"];
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-                var userId = tokenService.VerifyTokenAndGetId(token);
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-                if (user.Role == Role.Seller)
-                {
-                    viewModel.Navbar.UserRole = Role.Seller;
-                    viewModel.Navbar.IsLoggedin = true;
-
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-                return View();
-            }
-        }
-
+      
         [HttpGet]
         public async Task<IActionResult> ChangeRoleToSeller()
         {
@@ -300,7 +193,7 @@ namespace WebApplication1.Controllers
             {
                 user.Role = Role.Seller;
                 await dbContext.SaveChangesAsync();
-                return RedirectToAction("SellerDashboard");
+                return RedirectToAction("Dashboard" , "Seller");
             }
 
             return RedirectToAction("login");
@@ -328,7 +221,7 @@ namespace WebApplication1.Controllers
             {
                 user.Role = Role.Buyer;
                 await dbContext.SaveChangesAsync();
-                return RedirectToAction("BuyerDashboard");
+                return RedirectToAction("Dashboard" , "Buyer");
             }
 
             return RedirectToAction("login");

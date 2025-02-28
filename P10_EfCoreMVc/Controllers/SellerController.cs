@@ -27,6 +27,37 @@ namespace WebApplication1.Controllers
             };
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Dashboard()
+        {
+            try
+            {
+                var token = Request.Cookies["AuthToken"];
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("login");
+                }
+                var userId = tokenService.VerifyTokenAndGetId(token);
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+                if (user.Role == Role.Seller)
+                {
+                    viewModel.Navbar.UserRole = Role.Seller;
+                    viewModel.Navbar.IsLoggedin = true;
+
+                    return View(viewModel);
+                }
+                else
+                {
+                    return RedirectToAction("login");
+                }
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+        }
+
         [HttpGet]
         public IActionResult CreateProduct()
         {

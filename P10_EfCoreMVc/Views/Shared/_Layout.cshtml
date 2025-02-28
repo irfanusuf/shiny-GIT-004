@@ -56,17 +56,17 @@
 
                  @if (Model?.Navbar.UserRole == Role.Seller && Model?.Navbar.IsLoggedin == true )
                 {
-                   <li><a class="nav-link" href="/user/SellerDashboard"><img src="~/images/user.svg"></a></li> 
+                   <li><a class="nav-link" href="/seller/dashboard"><img src="~/images/user.svg"></a></li> 
                 }
 
                    @if (Model?.Navbar.UserRole == Role.Buyer && Model?.Navbar.IsLoggedin == true )
                 {
-                   <li><a class="nav-link" href="/user/BuyerDashboard"><img src="~/images/user.svg"></a></li> 
+                   <li><a class="nav-link" href="/buyer/dashboard"><img src="~/images/user.svg"></a></li> 
                 }
 
                     @if (Model?.Navbar.UserRole == Role.Admin && Model?.Navbar.IsLoggedin == true )
                 {
-                   <li><a class="nav-link" href="/user/AdminDashboard"><img src="~/images/user.svg"></a></li> 
+                   <li><a class="nav-link" href="/admin/dashboard"><img src="~/images/user.svg"></a></li> 
                 }
 
 
@@ -75,12 +75,15 @@
                    <li><a class="nav-link" href="/user/login"><img src="~/images/user.svg"></a></li> 
                 }   
 
-                    <li><a class="nav-link" href="/"><img src="~/images/cart.svg"></a></li>
+                    <li><a class="nav-link" href="/buyer/cart"><img src="~/images/cart.svg"></a></li>
                 </ul>
             </div>
 
         </div>
     </nav>
+
+
+    
 
 
 
