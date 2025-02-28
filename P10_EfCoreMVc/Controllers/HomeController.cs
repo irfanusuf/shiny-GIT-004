@@ -51,7 +51,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                var products = await dbContext.Products.Where(p => p.IsDeleted == false).ToListAsync();
+                var products = await dbContext.Products.Where(p => p.IsDeleted == false).ToListAsync();   // array conversion 
                 viewModel.Products = products;
                 return View(viewModel);
             }
