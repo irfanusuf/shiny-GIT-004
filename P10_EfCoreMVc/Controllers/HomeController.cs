@@ -51,7 +51,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-
         [HttpGet]
         public IActionResult About()
         {
@@ -71,7 +70,6 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-
         public IActionResult Contact()
         {
             return View(viewModel);

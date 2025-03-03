@@ -14,6 +14,7 @@ builder.Services.AddSingleton<IMailService, EmailService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 var app = builder.Build();
+
 if (app.Environment.IsProduction()) 
 {
     app.UseExceptionHandler("/Shared/Error");

@@ -171,7 +171,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-      
         [HttpGet]
         public async Task<IActionResult> ChangeRoleToSeller()
         {

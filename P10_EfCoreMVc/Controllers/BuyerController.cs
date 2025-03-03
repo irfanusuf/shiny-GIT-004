@@ -15,19 +15,17 @@ namespace WebApplication1.Controllers
         private readonly ITokenService tokenService;
         private readonly HybridViewModel viewModel;
 
-
         public BuyerController(SqlDbContext dbContext, ITokenService tokenService)
         {
             this.dbContext = dbContext;
             this.tokenService = tokenService;
             this.viewModel = new HybridViewModel
             {
-                Navbar = new NavbarModel {UserRole = Role.Buyer , IsLoggedin = false },    // hardcoded values 
-                Products = []
+                Navbar = new NavbarModel { UserRole = Role.Buyer, IsLoggedin = true },    // hardcoded values 
+                Products = [],
+                CartProducts = []
             };
         }
-
-
 
         [HttpGet]
         public async Task<IActionResult> Dashboard()
@@ -63,9 +61,8 @@ namespace WebApplication1.Controllers
             }
         }
 
-
         [HttpGet]
-        public ActionResult Cart()
+        public async Task<ActionResult> Cart()
         {
             var token = Request.Cookies["AuthToken"];
 
@@ -73,9 +70,42 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("Login", "User");
             }
+
             var userId = tokenService.VerifyTokenAndGetId(token);
+        
+            var cart = await dbContext.Carts.Include(c => c.Products).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
+
+            if (cart == null)
+            {
+                ViewBag.cartEmpty = "Cart is Empty";
+                return View(viewModel);
+            }
+
+            var cartproducts = await dbContext.CartProducts
+            .Include(cp => cp.Product)
+            .Where(cp => cp.CartId == cart.CartId)
+            .ToListAsync();
+
+            viewModel.CartProducts = cartproducts;
+            viewModel.Cart = cart;
+
+            return View(viewModel);
+        }   
+    
+
+
+        [HttpGet]
+        public async Task <IActionResult> CheckOut (){
 
             return View(viewModel);
         }
+
+        [HttpGet]
+        public async Task <IActionResult> CreateOrder (){
+
+            return View(viewModel);
+        }
+
     }
+
 }

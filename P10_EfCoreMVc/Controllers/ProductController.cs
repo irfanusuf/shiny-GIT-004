@@ -23,7 +23,7 @@ namespace WebApplication1.Controllers
             this.tokenService = tokenService;
             this.viewModel = new HybridViewModel
             {
-                Navbar = new NavbarModel { IsLoggedin = false },    // hardcoded values 
+                Navbar = new NavbarModel { IsLoggedin = false  },   // hardcoded values 
                 Products = []
             };
         }
@@ -51,7 +51,8 @@ namespace WebApplication1.Controllers
                 {
                     return RedirectToAction("Login", "User");
                 }
-                var userId = tokenService.VerifyTokenAndGetId(token);
+
+                var userId = tokenService.VerifyTokenAndGetId(token);    // LOGGED IN USERID
                 var product = await dbContext.Products.FindAsync(ProductId);
 
                 if (userId == product.SellerId)
@@ -62,7 +63,7 @@ namespace WebApplication1.Controllers
 
                 var cart = await dbContext.Carts
                 .Include(c => c.Products)
-                .FirstOrDefaultAsync(c => c.BuyerId == userId);
+                .FirstOrDefaultAsync(c => c.BuyerId == userId);    // cart ko find kerhay hai 
 
                 if (cart == null)
                 {
@@ -76,7 +77,7 @@ namespace WebApplication1.Controllers
                 }
 
                 var existingCartProduct = await dbContext
-                .CartProducts.FirstOrDefaultAsync(cp => cp.CartId == cart.CartId && cp.ProductId == ProductId);
+                .CartProducts.FirstOrDefaultAsync(cp => cp.CartId == cart.CartId && cp.ProductId == ProductId);   // finding cartProduct 
 
                 if (existingCartProduct == null)
                 {
@@ -87,7 +88,7 @@ namespace WebApplication1.Controllers
                         Quantity = 1
                     };
 
-                    await dbContext.CartProducts.AddAsync(cartProduct);
+                    await dbContext.CartProducts.AddAsync(cartProduct);    
                     cart.CartValue += product.Price ;
                     await dbContext.SaveChangesAsync();
                 }
