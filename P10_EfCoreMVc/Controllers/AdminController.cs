@@ -30,7 +30,6 @@ namespace WebApplication1.Controllers
           [HttpGet]
         public async Task<IActionResult> Dashboard()
         {
-
             try
             {
                 var token = Request.Cookies["AuthToken"];
@@ -41,9 +40,7 @@ namespace WebApplication1.Controllers
                 }
 
                 var userId = tokenService.VerifyTokenAndGetId(token);
-
                 var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
                 if (user.Role == Role.Admin)
                 {
                     viewModel.Navbar.UserRole = Role.Admin;

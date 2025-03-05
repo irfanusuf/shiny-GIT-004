@@ -10,5 +10,7 @@ public class HybridViewModel
     public Product? Product {get; set;}
     public  List<CartProduct> CartProducts {get; set;} =[];
     public Cart? Cart {get; set;}
+
+    public Address? Address {get; set;}
    
 }

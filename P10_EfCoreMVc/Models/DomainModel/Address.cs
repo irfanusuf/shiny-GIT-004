@@ -7,11 +7,16 @@ namespace WebApplication1.Models;
 public class Address
 {
     [Key]
-    public Guid AddressId { get; set; }  = Guid.NewGuid();
+    public Guid AddressId { get; set; } = Guid.NewGuid();
+
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+
     public required string Street1 { get; set; }
     public required string Street2 { get; set; }
     public required string District { get; set; }
     public required string State { get; set; }
+    public required string Country { get; set; }
     public required string Pincode { get; set; }
     public required string Phone { get; set; }
     public required string Landmark { get; set; }
