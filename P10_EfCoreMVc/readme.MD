@@ -9,9 +9,6 @@
         dotnet add package BCrypt.Net-Next --version 4.0.3
 
 
-
-
-
 # Installing EfCore tools globally 
 
 	dotnet tool install --global dotnet-ef

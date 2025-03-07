@@ -26,6 +26,7 @@ namespace WebApplication1.Controllers
                 Products = [],
                 CartProducts = []
             };
+
         }
 
         [HttpGet]
@@ -63,7 +64,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Cart()  
+        public async Task<ActionResult> Cart()
         {
             var token = Request.Cookies["AuthToken"];
 
@@ -73,7 +74,7 @@ namespace WebApplication1.Controllers
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
-        
+
             var cart = await dbContext.Carts.Include(c => c.Products).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
             if (cart == null)
@@ -91,21 +92,11 @@ namespace WebApplication1.Controllers
             viewModel.Cart = cart;
 
             return View(viewModel);
-        }   
-    
-
-        [HttpPost]
-        public async Task <IActionResult> CreateAddress(Address address){
-
-
-
-            // add address logic 
-            return RedirectToAction("CheckOut");
         }
 
-
         [HttpGet]
-        public async Task <IActionResult> CheckOut (){
+        public async Task<IActionResult> CheckOut()
+        {
 
             var token = Request.Cookies["AuthToken"];
 
@@ -115,7 +106,7 @@ namespace WebApplication1.Controllers
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
-        
+
             var cart = await dbContext.Carts.Include(c => c.Products).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
             if (cart == null)
@@ -124,16 +115,14 @@ namespace WebApplication1.Controllers
                 return View(viewModel);
             }
 
-            var address =  await dbContext.Addresses.FirstOrDefaultAsync(a => a.BuyerId == userId);
-
-    
+            var address = await dbContext.Addresses.FirstOrDefaultAsync(a => a.BuyerId == userId);
 
             var cartproducts = await dbContext.CartProducts
             .Include(cp => cp.Product)
             .Where(cp => cp.CartId == cart.CartId)
             .ToListAsync();
 
-       
+
             viewModel.CartProducts = cartproducts;
             viewModel.Cart = cart;
             viewModel.Address = address;
@@ -141,8 +130,41 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAddress(Address address)
+        {
+            var token = Request.Cookies["AuthToken"];
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var userId = tokenService.VerifyTokenAndGetId(token);
+            var availableAdderess = await dbContext.Addresses.FirstOrDefaultAsync(a => a.BuyerId == userId);
+
+
+            if (ModelState.IsValid)
+            {
+                address.BuyerId = userId;
+                await dbContext.Addresses.AddAsync(address);
+                await dbContext.SaveChangesAsync();
+                return RedirectToAction("CheckOut");
+            }
+
+            ViewBag.ErrorMessage = "Address updation un-successfull !";
+            return View("CheckOut", viewModel);
+        }
+
+
         [HttpGet]
-        public async Task <IActionResult> CreateOrder (){
+        public async Task<IActionResult> CreateOrder(Guid CartId)
+        {
+
+            
+
+        //   var createOrder = await dbContext.Orders.AddAsync()
+          // logic of  create order
 
             return View(viewModel);
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/irfan_usuf/coding /dotnet/razorpages/cluster/cluster.csproj": {}
+    "/home/irfan_usuf/ILS/GIT003&4/P1_Razorpages/cluster.csproj": {}
   },
   "projects": {
-    "/home/irfan_usuf/coding /dotnet/razorpages/cluster/cluster.csproj": {
+    "/home/irfan_usuf/ILS/GIT003&4/P1_Razorpages/cluster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/irfan_usuf/coding /dotnet/razorpages/cluster/cluster.csproj",
+        "projectUniqueName": "/home/irfan_usuf/ILS/GIT003&4/P1_Razorpages/cluster.csproj",
         "projectName": "cluster",
-        "projectPath": "/home/irfan_usuf/coding /dotnet/razorpages/cluster/cluster.csproj",
+        "projectPath": "/home/irfan_usuf/ILS/GIT003&4/P1_Razorpages/cluster.csproj",
         "packagesPath": "/home/irfan_usuf/.nuget/packages/",
-        "outputPath": "/home/irfan_usuf/coding /dotnet/razorpages/cluster/obj/",
+        "outputPath": "/home/irfan_usuf/ILS/GIT003&4/P1_Razorpages/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/irfan_usuf/.nuget/NuGet/NuGet.Config"
@@ -56,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.111/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -11,7 +11,6 @@ public class Address
 
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
-
     public required string Street1 { get; set; }
     public required string Street2 { get; set; }
     public required string District { get; set; }
