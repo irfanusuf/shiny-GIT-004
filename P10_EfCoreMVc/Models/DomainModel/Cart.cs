@@ -14,5 +14,5 @@ public class Cart
     [ForeignKey("BuyerId")]
     public User? Buyer { get; set; }  
     public int CartValue { get; set; }
-    public ICollection<CartProduct> Products { get; set; } = [];
+    public ICollection<CartProduct> CartProducts { get; set; } = [];
 }   

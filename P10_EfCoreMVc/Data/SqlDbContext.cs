@@ -62,7 +62,7 @@ namespace WebApplication1.Data
                .HasForeignKey(r => r.ProductId);
 
 
-            //    many to many relationShip 
+            //    many to many relationShip between cart and products
 
             modelBuilder.Entity<CartProduct>()
                 .HasKey(cp => cp.CartProductId);
@@ -70,13 +70,27 @@ namespace WebApplication1.Data
 
             modelBuilder.Entity<CartProduct>()
                 .HasOne(cp => cp.Cart)
-                .WithMany(c => c.Products)     // cart have many products
+                .WithMany(c => c.CartProducts)     // cart have many products
                 .HasForeignKey(cp => cp.CartId);
 
             modelBuilder.Entity<CartProduct>()
                 .HasOne(cp => cp.Product)
                 .WithMany(p => p.Carts)         //product belongs to many carts
                 .HasForeignKey(cp => cp.ProductId);
+
+
+             //    many to many relationShip between cart and products
+
+             modelBuilder.Entity<OrderProduct>()
+                .HasKey(op => op.OrderProductId);
+
+            // modelBuilder.Entity<CartProduct>()
+            //     .HasOne()
+        
+
+
+
+
 
         }
     }

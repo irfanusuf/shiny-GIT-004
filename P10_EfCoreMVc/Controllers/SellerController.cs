@@ -96,8 +96,6 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> MyArchive()
         {
-
-
             var token = Request.Cookies["AuthToken"];
 
             if (string.IsNullOrEmpty(token))

@@ -27,6 +27,8 @@ public class Product
         public User? Seller { get; set; }
 
         public ICollection<CartProduct> Carts { get; set; } = [];
+        public ICollection<OrderProduct> Orders { get; set; } = [];
+
         public ICollection<Review> Reviews { get; set; } = [];
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;

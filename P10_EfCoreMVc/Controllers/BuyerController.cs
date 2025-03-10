@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
 
             var userId = tokenService.VerifyTokenAndGetId(token);
 
-            var cart = await dbContext.Carts.Include(c => c.Products).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
+            var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
             if (cart == null)
             {
@@ -107,7 +107,7 @@ namespace WebApplication1.Controllers
 
             var userId = tokenService.VerifyTokenAndGetId(token);
 
-            var cart = await dbContext.Carts.Include(c => c.Products).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
+            var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
             if (cart == null)
             {
@@ -141,6 +141,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Login", "User");
             }
             var userId = tokenService.VerifyTokenAndGetId(token);
+
             var availableAdderess = await dbContext.Addresses.FirstOrDefaultAsync(a => a.BuyerId == userId);
 
 
@@ -160,11 +161,35 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateOrder(Guid CartId)
         {
+            var token = Request.Cookies["AuthToken"];
 
-            
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var userId = tokenService.VerifyTokenAndGetId(token);
 
-        //   var createOrder = await dbContext.Orders.AddAsync()
-          // logic of  create order
+            var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
+
+
+            // var products =  cart.CartProducts.ToList();
+
+            var cartproducts = await dbContext.CartProducts
+            .Include(cp => cp.Product)
+            .Where(cp => cp.CartId == cart.CartId)
+            .ToListAsync();
+
+
+            var order = new Order
+            {
+                OrderStatus = Status.Pending,
+                OrderPrice = cart.CartValue,
+                BuyerId = userId,
+                OrderProducts = (ICollection<Models.JunctionModels.OrderProduct>)cartproducts
+
+            };
+
+            var createOrder = await dbContext.Orders.AddAsync(order);
 
             return View(viewModel);
         }

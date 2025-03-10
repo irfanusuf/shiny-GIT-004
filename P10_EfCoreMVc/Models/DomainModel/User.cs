@@ -19,8 +19,7 @@ namespace WebApplication1.Models
         public string? ProfilePictureUrl { get; set; } = "dummy Url";
 
         // public bool IsSellerReqAccepted  {get; set;} = false;
-        
-
+    
         // One-to-one relationship with Cart
         public Cart? Cart { get; set; }
 
@@ -29,7 +28,7 @@ namespace WebApplication1.Models
         // one to many 
  
         public ICollection<Order> Orders { get; set; } = [];
-        
+  
         public ICollection<Product> Products { get; set; } = [];
           // many Addrese like for office or home for  proper business management
         public ICollection<Address> Addresses { get; set; } = [];
@@ -37,11 +36,6 @@ namespace WebApplication1.Models
         public ICollection<Review> Reviews { get; set; } = [];
 
         // Instead of Icollections We can also use list which handles dynamic data well 
-
-
-
-
-        
 
         public DateTime DateCreated { get; set; }  = DateTime.UtcNow;
         public DateTime? DateModified { get; set; } = DateTime.UtcNow;
