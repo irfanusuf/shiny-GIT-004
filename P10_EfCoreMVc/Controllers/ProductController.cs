@@ -62,7 +62,7 @@ namespace WebApplication1.Controllers
                 }
 
                 var cart = await dbContext.Carts
-                .Include(c => c.Products)
+                .Include(c => c.CartProducts)
                 .FirstOrDefaultAsync(c => c.BuyerId == userId);    // cart ko find kerhay hai 
 
                 if (cart == null)

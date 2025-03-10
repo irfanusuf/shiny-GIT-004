@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
+using WebApplication1.Models.JunctionModels;
 using WebApplication1.Models.ViewModel;
 using WebApplication1.Types;
 
@@ -169,27 +170,42 @@ namespace WebApplication1.Controllers
             }
             var userId = tokenService.VerifyTokenAndGetId(token);
 
-            var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
 
-            // var products =  cart.CartProducts.ToList();
+            var cart = await dbContext.Carts
+            .Include(c => c.CartProducts)
+            .ThenInclude(cp => cp.Product)
+            .FirstOrDefaultAsync(c => c.BuyerId == userId);
 
-            var cartproducts = await dbContext.CartProducts
-            .Include(cp => cp.Product)
-            .Where(cp => cp.CartId == cart.CartId)
-            .ToListAsync();
 
+
+            //  var products =  cart.CartProducts.ToList();
+
+            // var cartproducts = await dbContext.CartProducts
+            // .Include(cp => cp.Product)
+            // .Where(cp => cp.CartId == cart.CartId)
+            // .ToListAsync();
+
+
+            // Convert CartProducts to OrderProducts
+            var orderProducts = cart.CartProducts.Select(cp => new OrderProduct
+            {
+                ProductId = cp.ProductId,
+                // OrderId = Guid.NewGuid(), 
+                Quantity = cp.Quantity
+            }).ToList();
 
             var order = new Order
             {
                 OrderStatus = Status.Pending,
                 OrderPrice = cart.CartValue,
                 BuyerId = userId,
-                OrderProducts = (ICollection<Models.JunctionModels.OrderProduct>)cartproducts
+                OrderProducts = orderProducts
 
             };
 
             var createOrder = await dbContext.Orders.AddAsync(order);
+            await dbContext.SaveChangesAsync();
 
             return View(viewModel);
         }

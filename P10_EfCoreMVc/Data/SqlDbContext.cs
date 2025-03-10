@@ -15,8 +15,9 @@ namespace WebApplication1.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Review> Reviews {get ; set;}
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -67,7 +68,6 @@ namespace WebApplication1.Data
             modelBuilder.Entity<CartProduct>()
                 .HasKey(cp => cp.CartProductId);
 
-
             modelBuilder.Entity<CartProduct>()
                 .HasOne(cp => cp.Cart)
                 .WithMany(c => c.CartProducts)     // cart have many products
@@ -79,14 +79,21 @@ namespace WebApplication1.Data
                 .HasForeignKey(cp => cp.ProductId);
 
 
-             //    many to many relationShip between cart and products
+            //    many to many relationShip between order and products
 
-             modelBuilder.Entity<OrderProduct>()
-                .HasKey(op => op.OrderProductId);
+            modelBuilder.Entity<OrderProduct>()
+               .HasKey(op => op.OrderProductId);
 
-            // modelBuilder.Entity<CartProduct>()
-            //     .HasOne()
-        
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Order)                   
+                .WithMany(o => o.OrderProducts)      //  order can have multiple products 
+                .HasForeignKey(op => op.OrderId);
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.Orders)             //same product can be in many orders
+                .HasForeignKey(op => op.ProductId);
+
 
 
 
