@@ -78,13 +78,13 @@ namespace WebApplication1.Controllers
 
             var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
-            if (cart == null)
+            if (cart == null || cart.CartProducts.Count == 0)
             {
                 ViewBag.cartEmpty = "Cart is Empty";
                 return View(viewModel);
             }
 
-            var cartproducts = await dbContext.CartProducts
+            var cartproducts = await dbContext.CartProducts 
             .Include(cp => cp.Product)
             .Where(cp => cp.CartId == cart.CartId)
             .ToListAsync();
@@ -171,27 +171,17 @@ namespace WebApplication1.Controllers
             var userId = tokenService.VerifyTokenAndGetId(token);
 
 
-
             var cart = await dbContext.Carts
             .Include(c => c.CartProducts)
             .ThenInclude(cp => cp.Product)
             .FirstOrDefaultAsync(c => c.BuyerId == userId);
 
 
-
-            //  var products =  cart.CartProducts.ToList();
-
-            // var cartproducts = await dbContext.CartProducts
-            // .Include(cp => cp.Product)
-            // .Where(cp => cp.CartId == cart.CartId)
-            // .ToListAsync();
-
-
             // Convert CartProducts to OrderProducts
+
             var orderProducts = cart.CartProducts.Select(cp => new OrderProduct
             {
                 ProductId = cp.ProductId,
-                // OrderId = Guid.NewGuid(), 
                 Quantity = cp.Quantity
             }).ToList();
 
@@ -205,6 +195,9 @@ namespace WebApplication1.Controllers
             };
 
             var createOrder = await dbContext.Orders.AddAsync(order);
+
+            dbContext.CartProducts.RemoveRange(cart.CartProducts);
+            cart.CartValue = 0;
             await dbContext.SaveChangesAsync();
 
             return View(viewModel);
