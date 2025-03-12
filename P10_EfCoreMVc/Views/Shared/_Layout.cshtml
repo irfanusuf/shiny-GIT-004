@@ -56,12 +56,12 @@
 
                  @if (Model?.Navbar.UserRole == Role.Seller && Model?.Navbar.IsLoggedin == true )
                 {
-                   <li><a class="nav-link" href="/seller/dashboard"><img src="~/images/user.svg"></a></li> 
+                   <li><a class="nav-link" href="/user/ChangeRoleToSeller"><img src="~/images/user.svg"></a></li> 
                 }
 
                    @if (Model?.Navbar.UserRole == Role.Buyer && Model?.Navbar.IsLoggedin == true )
                 {
-                   <li><a class="nav-link" href="/buyer/dashboard"><img src="~/images/user.svg"></a></li> 
+                   <li><a class="nav-link" href="/user/ChangeRoleToBuyer"><img src="~/images/user.svg"></a></li> 
                 }
 
                     @if (Model?.Navbar.UserRole == Role.Admin && Model?.Navbar.IsLoggedin == true )

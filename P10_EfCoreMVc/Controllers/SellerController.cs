@@ -23,7 +23,6 @@ namespace WebApplication1.Controllers
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { UserRole = Role.Seller, IsLoggedin = true },    // hardcoded values 
-                Products = []
             };
         }
 
@@ -31,31 +30,15 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> Dashboard()
         {
-            try
-            {
+           
                 var token = Request.Cookies["AuthToken"];
                 if (string.IsNullOrEmpty(token))
                 {
                     return RedirectToAction("login");
                 }
-                var userId = tokenService.VerifyTokenAndGetId(token);
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-                if (user.Role == Role.Seller)
-                {
-                    viewModel.Navbar.UserRole = Role.Seller;
-                    viewModel.Navbar.IsLoggedin = true;
-
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-                return View();
-            }
+                // var userId = tokenService.VerifyTokenAndGetId(token);
+                // var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+                return View(viewModel);    
         }
 
         [HttpGet]
@@ -70,6 +53,45 @@ namespace WebApplication1.Controllers
 
             return View(viewModel);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(Product product)
+        {
+            try
+            {
+                var token = Request.Cookies["AuthToken"];
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("login", "User");
+                }
+
+                 if (!ModelState.IsValid)
+                {
+                    ViewBag.errorMessage = "All Details having * are required";
+                    return View(viewModel);    
+                }
+                var userId = tokenService.VerifyTokenAndGetId(token);
+
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
+                if (user.Role == Role.Seller)
+                {
+                    product.SellerId = user.UserId;
+                    await dbContext.Products.AddAsync(product);
+                    await dbContext.SaveChangesAsync();
+                    return RedirectToAction("MyProducts");
+                }
+                return RedirectToAction("login", "User");
+            }
+            catch (Exception error)
+            {
+                ViewBag.errorMessage = error.Message;
+                return View("error"  , viewModel);
+            }
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> MyProducts()
@@ -191,39 +213,6 @@ namespace WebApplication1.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateProduct(Product product)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View(viewModel);
-                    // throw new Exception("meowowowowowo");
-                }
-                var token = Request.Cookies["AuthToken"];
 
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login", "User");
-                }
-                var userId = tokenService.VerifyTokenAndGetId(token);
-
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
-                if (user.Role == Role.Seller)
-                {
-                    product.SellerId = user.UserId;
-                    await dbContext.Products.AddAsync(product);
-                    await dbContext.SaveChangesAsync();
-                    return RedirectToAction("MyProducts");
-                }
-                return RedirectToAction("login", "User");
-            }
-            catch (Exception error)
-            {
-                throw new Exception(error.Message);
-            }
-        }
     }
 }

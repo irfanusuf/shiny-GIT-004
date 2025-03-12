@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Models;
@@ -22,7 +23,6 @@ namespace WebApplication1.Controllers
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { IsLoggedin = false },
-                Products = []
             };
         }
 
@@ -39,18 +39,20 @@ namespace WebApplication1.Controllers
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
             {
-                return RedirectToAction("Dashboard" , "Seller");
+                return RedirectToAction("Dashboard", "Seller");
             }
             else if (user.Role == Role.Buyer)
             {
-                return RedirectToAction("Dashboard" , "Buyer");
+                return RedirectToAction("Dashboard", "Buyer");
             }
-             else if(user.Role == Role.Admin){
-                return RedirectToAction("Dashboard" , "Admin");
+            else if (user.Role == Role.Admin)
+            {
+                return RedirectToAction("Dashboard", "Admin");
             }
             else
             {
-                return View(viewModel);
+                ViewBag.errorMessage = "Something Went Wrong! Try To refresh the page or wait for sometime!";
+                return View("error", viewModel);
             }
 
         }
@@ -68,18 +70,20 @@ namespace WebApplication1.Controllers
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user.Role == Role.Seller)
             {
-                return RedirectToAction("Dashboard" , "Seller");
+                return RedirectToAction("Dashboard", "Seller");
             }
             else if (user.Role == Role.Buyer)
             {
-                return RedirectToAction("Dashboard" , "Buyer");
+                return RedirectToAction("Dashboard", "Buyer");
             }
-             else if(user.Role == Role.Admin){
-                return RedirectToAction("Dashboard" , "Admin");
+            else if (user.Role == Role.Admin)
+            {
+                return RedirectToAction("Dashboard", "Admin");
             }
             else
             {
-                return View(viewModel);
+                ViewBag.errorMessage = "Something Went Wrong! Try To refresh the page or wait for sometime!";
+                return View("error", viewModel);
             }
         }
 
@@ -151,15 +155,15 @@ namespace WebApplication1.Controllers
 
                 if (findUser.Role == Role.Admin)
                 {
-                    return RedirectToAction("Dashboard" , "Admin");
+                    return RedirectToAction("Dashboard", "Admin");
                 }
                 else if (findUser.Role == Role.Seller)
                 {
-                    return RedirectToAction("Dashboard" , "Seller");
+                    return RedirectToAction("Dashboard", "Seller");
                 }
                 else
                 {
-                    return RedirectToAction("Dashboard" ,"Buyer");
+                    return RedirectToAction("Dashboard", "Buyer");
                 }
 
 
@@ -179,23 +183,29 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("login");
             }
-
             var userId = tokenService.VerifyTokenAndGetId(token);
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
             if (user == null)
             {
                 return RedirectToAction("login");
             }
-
             if (user.Role == Role.Buyer)
             {
                 user.Role = Role.Seller;
                 await dbContext.SaveChangesAsync();
-                return RedirectToAction("Dashboard" , "Seller");
+                return RedirectToAction("Dashboard", "Seller");
+            }
+            else if (user.Role == Role.Seller)
+            {
+                return RedirectToAction("Dashboard", "Seller");
+
+            }
+            else{
+                ViewBag.errorMessage = "Something Went Wrong! Try To refresh the page or login again";
+                return View("error" , viewModel);
             }
 
-            return RedirectToAction("login");
+
         }
 
         [HttpGet]
@@ -220,10 +230,21 @@ namespace WebApplication1.Controllers
             {
                 user.Role = Role.Buyer;
                 await dbContext.SaveChangesAsync();
-                return RedirectToAction("Dashboard" , "Buyer");
+                return RedirectToAction("Dashboard", "Buyer");
+            }
+            else if (user.Role == Role.Buyer)
+            {
+
+                return RedirectToAction("Dashboard", "Buyer");
+            }
+            else
+            {
+                ViewBag.errorMessage = "Something Went Wrong! Try To refresh the page or login again";
+                return View("error", viewModel);
             }
 
-            return RedirectToAction("login");
+
+
         }
 
         [HttpGet]

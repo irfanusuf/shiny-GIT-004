@@ -72,9 +72,14 @@
 
                 </div>
 
-                   <div class="mt-4">
+                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary w-25">Create Product</button>
-                    </div>
+                    </div> 
+
+                      @if (ViewBag.errorMessage != null)
+                    {
+                        <p class="text-danger pt-3 ps-3"> @ViewBag.errorMessage </p>
+                    }
             </div>
         </form>
     </div>

@@ -15,7 +15,7 @@ builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsProduction()) 
+if (app.Environment.IsDevelopment()) 
 {
     app.UseExceptionHandler("/Shared/Error");
     app.UseHsts();

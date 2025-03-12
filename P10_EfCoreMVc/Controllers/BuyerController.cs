@@ -24,17 +24,15 @@ namespace WebApplication1.Controllers
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { UserRole = Role.Buyer, IsLoggedin = true },    // hardcoded values 
-                Products = [],
-                CartProducts = []
+           
             };
 
         }
-
+    
         [HttpGet]
         public async Task<IActionResult> Dashboard()
         {
-            try
-            {
+           
                 var token = Request.Cookies["AuthToken"];
 
                 if (string.IsNullOrEmpty(token))
@@ -42,26 +40,13 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("login");
                 }
 
-                var userId = tokenService.VerifyTokenAndGetId(token);
+                // var userId = tokenService.VerifyTokenAndGetId(token);
 
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+                // var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
-                if (user.Role == Role.Buyer)
-                {
-                    viewModel.Navbar.UserRole = Role.Buyer;
-                    viewModel.Navbar.IsLoggedin = true;
-                    return View(viewModel);
-                }
-                else
-                {
-                    return RedirectToAction("login");
-                }
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
+                 return View(viewModel);
+               
+             
         }
 
         [HttpGet]
@@ -71,7 +56,7 @@ namespace WebApplication1.Controllers
 
             if (string.IsNullOrEmpty(token))
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "User"); 
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
@@ -95,43 +80,7 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CheckOut()
-        {
-
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);
-
-            var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
-
-            if (cart == null)
-            {
-                ViewBag.cartEmpty = "Cart is Empty";
-                return View(viewModel);
-            }
-
-            var address = await dbContext.Addresses.FirstOrDefaultAsync(a => a.BuyerId == userId);
-
-            var cartproducts = await dbContext.CartProducts
-            .Include(cp => cp.Product)
-            .Where(cp => cp.CartId == cart.CartId)
-            .ToListAsync();
-
-
-            viewModel.CartProducts = cartproducts;
-            viewModel.Cart = cart;
-            viewModel.Address = address;
-
-            return View(viewModel);
-        }
-
-
+    
         [HttpPost]
         public async Task<IActionResult> CreateAddress(Address address)
         {
@@ -158,51 +107,8 @@ namespace WebApplication1.Controllers
             return View("CheckOut", viewModel);
         }
 
-
-        [HttpGet]
-        public async Task<IActionResult> CreateOrder(Guid CartId)
-        {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User");
-            }
-            var userId = tokenService.VerifyTokenAndGetId(token);
-
-
-            var cart = await dbContext.Carts
-            .Include(c => c.CartProducts)
-            .ThenInclude(cp => cp.Product)
-            .FirstOrDefaultAsync(c => c.BuyerId == userId);
-
-
-            // Convert CartProducts to OrderProducts
-
-            var orderProducts = cart.CartProducts.Select(cp => new OrderProduct
-            {
-                ProductId = cp.ProductId,
-                Quantity = cp.Quantity
-            }).ToList();
-
-            var order = new Order
-            {
-                OrderStatus = Status.Pending,
-                OrderPrice = cart.CartValue,
-                BuyerId = userId,
-                OrderProducts = orderProducts
-
-            };
-
-            var createOrder = await dbContext.Orders.AddAsync(order);
-
-            dbContext.CartProducts.RemoveRange(cart.CartProducts);
-            cart.CartValue = 0;
-            await dbContext.SaveChangesAsync();
-
-            return View(viewModel);
-        }
-
+       
+    
     }
 
 }

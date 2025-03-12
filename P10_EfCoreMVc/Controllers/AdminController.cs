@@ -22,7 +22,6 @@ namespace WebApplication1.Controllers
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel {UserRole = Role.Admin ,  IsLoggedin = false },
-                Products = []
             };
         }
 

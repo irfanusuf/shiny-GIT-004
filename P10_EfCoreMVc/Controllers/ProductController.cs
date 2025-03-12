@@ -24,7 +24,6 @@ namespace WebApplication1.Controllers
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { IsLoggedin = false  },   // hardcoded values 
-                Products = []
             };
         }
 
