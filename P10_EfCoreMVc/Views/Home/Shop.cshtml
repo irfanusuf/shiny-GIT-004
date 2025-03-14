@@ -28,7 +28,7 @@
             @foreach (var product in Model.Products)
             {
                 <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">
+                    <a class="product-item" asp-controller="Product" asp-action="Details" asp-route-ProductId="@product.ProductId">
                         <img src="~/images/product-3.png" class="img-fluid product-thumbnail">
                         <h3 class="product-title">@product.ProductTitle</h3>
 

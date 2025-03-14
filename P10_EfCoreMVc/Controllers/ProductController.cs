@@ -28,9 +28,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Details(Guid id)
+        public async Task<ActionResult> Details(Guid ProductId)
         {
-            var product = await dbContext.Products.FindAsync(id);
+            var product = await dbContext.Products.FindAsync(ProductId);
             var products = await dbContext.Products
             .Where(p => p.Category == product.Category && p.SubCategory == product.SubCategory)
             .ToListAsync();

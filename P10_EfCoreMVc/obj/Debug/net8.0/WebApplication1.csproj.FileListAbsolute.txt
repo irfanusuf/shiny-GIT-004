@@ -690,3 +690,5 @@
 /home/irfan_usuf/ILS/GIT003&4/P10_EfCoreMVc/obj/Debug/net8.0/WebApplication1.pdb
 /home/irfan_usuf/ILS/GIT003&4/P10_EfCoreMVc/obj/Debug/net8.0/WebApplication1.genruntimeconfig.cache
 /home/irfan_usuf/ILS/GIT003&4/P10_EfCoreMVc/obj/Debug/net8.0/ref/WebApplication1.dll
+/home/irfan_usuf/ILS/GIT003&4/P10_EfCoreMVc/bin/Debug/net8.0/BouncyCastle.Crypto.dll
+/home/irfan_usuf/ILS/GIT003&4/P10_EfCoreMVc/bin/Debug/net8.0/Razorpay.dll
