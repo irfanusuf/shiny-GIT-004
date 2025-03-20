@@ -80,7 +80,7 @@
         name: 'Sahib',
         description: 'Test Transaction',
         order_id: order.orderId,
-        callback_url: 'http://localhost:5046/Order/Payment-success',
+     //   callback_url: 'http://localhost:5046/Order/Payment-success',
         prefill: {
             name: 'Sahib Khan',
             email: 'sahib@gmail.com',
@@ -92,6 +92,7 @@
     };
 
     const rzp = new Razorpay(options);
+    
     rzp.open();
 }
 

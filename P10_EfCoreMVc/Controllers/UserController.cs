@@ -133,27 +133,36 @@ namespace WebApplication1.Controllers
 
                 if (findUser == null || !BCrypt.Net.BCrypt.Verify(user.Password, findUser.Password))
                 {
-
                     ViewData["ErrorMessage"] = "Invalid email or password.";
-                    return View(viewModel);
+                    return View();
                 }
 
                 var token = tokenService.CreateToken(findUser.UserId.ToString(), findUser.Email, findUser.Username);
 
                 HttpContext.Response.Cookies.Append(
-                   "AuthToken",
-                   token,
-                   new CookieOptions
-                   {
-                       HttpOnly = true,
-                       Secure = false,
-                       SameSite = SameSiteMode.Lax,
-                       Expires = DateTimeOffset.UtcNow.AddHours(24)
-                   }
-               );
+                    "AuthToken",
+                    token,
+                    new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = false,
+                        SameSite = SameSiteMode.Lax,
+                        Expires = DateTimeOffset.UtcNow.AddHours(24)
+                    }
+                );
 
+              
+                var returnUrl = HttpContext.Session.GetString("ReturnUrl");
 
-                if (findUser.Role == Role.Admin)
+              
+                HttpContext.Session.Remove("ReturnUrl");
+
+            
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else if (findUser.Role == Role.Admin)
                 {
                     return RedirectToAction("Dashboard", "Admin");
                 }
@@ -165,8 +174,6 @@ namespace WebApplication1.Controllers
                 {
                     return RedirectToAction("Dashboard", "Buyer");
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -175,15 +182,12 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> ChangeRoleToSeller()
-        {
-            var token = Request.Cookies["AuthToken"];
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login");
-            }
-            var userId = tokenService.VerifyTokenAndGetId(token);
+        { 
+            Guid? userId = HttpContext.Items["UserId"] as Guid?;
+
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
             if (user == null)
             {
@@ -200,25 +204,21 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Dashboard", "Seller");
 
             }
-            else{
+            else
+            {
                 ViewBag.errorMessage = "Something Went Wrong! Try To refresh the page or login again";
-                return View("error" , viewModel);
+                return View("error", viewModel);
             }
 
 
         }
 
+
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> ChangeRoleToBuyer()
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login");
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);
+             Guid? userId = HttpContext.Items["UserId"] as Guid?;
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (user == null)

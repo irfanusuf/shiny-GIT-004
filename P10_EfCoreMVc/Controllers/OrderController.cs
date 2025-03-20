@@ -32,10 +32,8 @@ namespace WebApplication1.Controllers
             viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { UserRole = Role.Buyer, IsLoggedin = true },    // hardcoded values 
-                // RazorPayOrder = new RazorOrder()
             };
         }
-
 
 
         [HttpGet]
@@ -144,6 +142,7 @@ namespace WebApplication1.Controllers
                 return View(viewModel);
             }
 
+            // redundant query // will have performnace issues
             var orderproducts = await dbContext.OrderProducts
             .Include(op => op.Product)
             .Where(op => op.OrderId == order.OrderId)
@@ -157,8 +156,5 @@ namespace WebApplication1.Controllers
 
             return View(viewModel);
         }
-
-
-      
     }
 }

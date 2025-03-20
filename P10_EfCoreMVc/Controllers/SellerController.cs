@@ -8,13 +8,13 @@ using WebApplication1.Types;
 
 namespace WebApplication1.Controllers
 {
+
+    [Authorize]
     public class SellerController : Controller
     {
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
         private readonly HybridViewModel viewModel;
-
-
 
         public SellerController(SqlDbContext dbContext, ITokenService tokenService)
         {
@@ -26,53 +26,31 @@ namespace WebApplication1.Controllers
             };
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> Dashboard()
+        public IActionResult Dashboard()
         {
-           
-                var token = Request.Cookies["AuthToken"];
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-                // var userId = tokenService.VerifyTokenAndGetId(token);
-                // var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-                return View(viewModel);    
+            return View(viewModel);
         }
 
         [HttpGet]
         public IActionResult CreateProduct()
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login", "User");
-            }
-
             return View(viewModel);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> CreateProduct(Product product)
         {
             try
             {
-                var token = Request.Cookies["AuthToken"];
 
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login", "User");
-                }
-
-                 if (!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     ViewBag.errorMessage = "All Details having * are required";
-                    return View(viewModel);    
+                    return View(viewModel);
                 }
-                var userId = tokenService.VerifyTokenAndGetId(token);
+
+                Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
                 var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
@@ -88,23 +66,15 @@ namespace WebApplication1.Controllers
             catch (Exception error)
             {
                 ViewBag.errorMessage = error.Message;
-                return View("error"  , viewModel);
+                return View("error", viewModel);
             }
         }
-
 
         [HttpGet]
         public async Task<IActionResult> MyProducts()
         {
-            var token = Request.Cookies["AuthToken"];
 
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login", "User");
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);   // logged in userId
-
+            Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var myProducts = await dbContext.Products
             .Where(p => p.SellerId == userId && p.IsArchived == false && p.IsDeleted == false)
@@ -118,17 +88,10 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> MyArchive()
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login", "User");
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);   // logged in userId
+            Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var myProducts = await dbContext.Products
-            .Where(p => p.SellerId == userId && p.IsArchived == true && p.IsDeleted == false) .ToListAsync();
+            .Where(p => p.SellerId == userId && p.IsArchived == true && p.IsDeleted == false).ToListAsync();
 
             viewModel.Products = myProducts;
             return View(viewModel);
@@ -138,17 +101,11 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> DeletedProducts()
         {
 
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("login", "User");
-            }
-            var userId = tokenService.VerifyTokenAndGetId(token);   // logged in userId
+            Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var myProducts = await dbContext.Products
-            .Where(p => p.SellerId == userId  && p.IsDeleted == true && p.IsArchived == true)
-            .ToListAsync();   
+            .Where(p => p.SellerId == userId && p.IsDeleted == true && p.IsArchived == true)
+            .ToListAsync();
 
             viewModel.Products = myProducts;
             return View(viewModel);
@@ -183,11 +140,11 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SendToRecycle(Guid id )
+        public async Task<IActionResult> SendToRecycle(Guid id)
         {
             var product = await dbContext.Products.FindAsync(id);
 
-                if (product != null)
+            if (product != null)
             {
                 product.IsDeleted = true;
                 await dbContext.SaveChangesAsync();
@@ -201,12 +158,13 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> RestoreFromRecycle(Guid id)
         {
 
-              var product = await dbContext.Products.FindAsync(id);
+            var product = await dbContext.Products.FindAsync(id);
 
-                if (product != null){
-                    product.IsDeleted = false;
-                    await dbContext.SaveChangesAsync();
-                }
+            if (product != null)
+            {
+                product.IsDeleted = false;
+                await dbContext.SaveChangesAsync();
+            }
 
 
             return RedirectToAction("DeletedProducts");
