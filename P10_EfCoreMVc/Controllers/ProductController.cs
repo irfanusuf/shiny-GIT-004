@@ -5,7 +5,7 @@ using WebApplication1.Interfaces;
 using WebApplication1.Models;
 using WebApplication1.Models.JunctionModels;
 using WebApplication1.Models.ViewModel;
-using WebApplication1.Types;
+
 
 namespace WebApplication1.Controllers
 {
@@ -39,19 +39,13 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> AddToCart(Guid ProductId)
         {
             try
             {
-                var token = Request.Cookies["AuthToken"];
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("Login", "User");
-                }
-
-                var userId = tokenService.VerifyTokenAndGetId(token);    // LOGGED IN USERID
+                Guid? userId = HttpContext.Items["UserId"] as Guid?;
                 var product = await dbContext.Products.FindAsync(ProductId);
 
                 if (userId == product.SellerId)
@@ -68,7 +62,7 @@ namespace WebApplication1.Controllers
                 {
                     cart = new Cart
                     {
-                        BuyerId = userId,
+                        BuyerId = (Guid)userId,
                         CartValue = 0
                     };
                     await dbContext.Carts.AddAsync(cart);

@@ -17,6 +17,8 @@ namespace WebApplication1.Controllers
         private readonly ITokenService tokenService;
         private readonly HybridViewModel viewModel;
 
+
+        [Authorize]
         public BuyerController(SqlDbContext dbContext, ITokenService tokenService)
         {
             this.dbContext = dbContext;
@@ -30,36 +32,16 @@ namespace WebApplication1.Controllers
         }
     
         [HttpGet]
-        public async Task<IActionResult> Dashboard()
+        public IActionResult Dashboard()
         {
-           
-                var token = Request.Cookies["AuthToken"];
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    return RedirectToAction("login");
-                }
-
-                // var userId = tokenService.VerifyTokenAndGetId(token);
-
-                // var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
-
-                 return View(viewModel);
-               
-             
+         return View(viewModel);
+    
         }
 
         [HttpGet]
         public async Task<ActionResult> Cart()
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User"); 
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);
+            Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.BuyerId == userId); // finding cart of user 
 
@@ -84,20 +66,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAddress(Address address)
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User");
-            }
-            var userId = tokenService.VerifyTokenAndGetId(token);
+             Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var availableAdderess = await dbContext.Addresses.FirstOrDefaultAsync(a => a.BuyerId == userId);
 
 
             if (ModelState.IsValid)
             {
-                address.BuyerId = userId;
+                address.BuyerId = (Guid)userId;
                 await dbContext.Addresses.AddAsync(address);
                 await dbContext.SaveChangesAsync();
                 return RedirectToAction("CheckOut");

@@ -23,6 +23,9 @@ namespace WebApplication1.Controllers
         private readonly RazorpayService razorpayService;
         private readonly HybridViewModel viewModel;
 
+
+        [Authorize]
+
         public OrderController(SqlDbContext dbContext, ITokenService tokenService, ILogger<OrderController> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -39,15 +42,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> CheckOut(Guid CartId)
         {
-
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            var userId = tokenService.VerifyTokenAndGetId(token);
+            Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var cart = await dbContext.Carts.Include(c => c.CartProducts).FirstOrDefaultAsync(c => c.CartId == CartId); // finding cart of user 
 
@@ -76,13 +71,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User");
-            }
-            var userId = tokenService.VerifyTokenAndGetId(token);
+             Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var cart = await dbContext.Carts
             .Include(c => c.CartProducts)
@@ -109,7 +98,7 @@ namespace WebApplication1.Controllers
             {
                 OrderStatus = Status.Pending,
                 OrderPrice = cart.CartValue,
-                BuyerId = userId,
+                BuyerId = (Guid)userId,
                 OrderProducts = orderProducts
             };
 
@@ -126,13 +115,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> Payment(Guid OrderId)
         {
-            var token = Request.Cookies["AuthToken"];
-
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login", "User");
-            }
-            var userId = tokenService.VerifyTokenAndGetId(token);
+             Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
             var order = await dbContext.Orders.Include(o => o.OrderProducts).FirstOrDefaultAsync(o => o.OrderId == OrderId); // finding order using orderId
 
