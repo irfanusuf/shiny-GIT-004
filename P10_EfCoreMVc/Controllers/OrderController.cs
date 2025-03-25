@@ -12,25 +12,26 @@ using WebApplication1.Types;
 
 
 namespace WebApplication1.Controllers
+
 {
+    [Authorize]
     public class OrderController : Controller
     {
 
 
         private readonly ILogger<OrderController> _logger;
         private readonly SqlDbContext dbContext;
-        private readonly ITokenService tokenService;
+
         private readonly RazorpayService razorpayService;
         private readonly HybridViewModel viewModel;
 
 
-        [Authorize]
+       
 
-        public OrderController(SqlDbContext dbContext, ITokenService tokenService, ILogger<OrderController> logger)
+        public OrderController(SqlDbContext dbContext, ILogger<OrderController> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.dbContext = dbContext;
-            this.tokenService = tokenService;
             razorpayService = new RazorpayService();
             viewModel = new HybridViewModel
             {
@@ -59,7 +60,6 @@ namespace WebApplication1.Controllers
             .Where(cp => cp.CartId == cart.CartId)
             .ToListAsync();
 
-
             viewModel.CartProducts = cartproducts;
             viewModel.Cart = cart;
             viewModel.Address = address;
@@ -84,10 +84,7 @@ namespace WebApplication1.Controllers
                 return View("error", viewModel);
             }
 
-
-
             // Convert CartProducts to OrderProducts
-
             var orderProducts = cart.CartProducts.Select(cp => new OrderProduct
             {
                 ProductId = cp.ProductId,
@@ -117,15 +114,16 @@ namespace WebApplication1.Controllers
         {
              Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
-            var order = await dbContext.Orders.Include(o => o.OrderProducts).FirstOrDefaultAsync(o => o.OrderId == OrderId); // finding order using orderId
+            var order = await dbContext.Orders.FirstOrDefaultAsync(o => o.OrderId == OrderId); // finding order using orderId
 
-            if (order == null || order.OrderProducts.Count == 0)
+            if (order == null )
             {
                 ViewBag.cartEmpty = "No recent Orders";
                 return View(viewModel);
             }
 
-            // redundant query // will have performnace issues
+            // for efficnecy used two queries // or maybe we can call a single query // will watch in future 
+
             var orderproducts = await dbContext.OrderProducts
             .Include(op => op.Product)
             .Where(op => op.OrderId == order.OrderId)
@@ -139,5 +137,9 @@ namespace WebApplication1.Controllers
 
             return View(viewModel);
         }
+   
+        //action methods for cancel and trackings goes here 
+   
+   
     }
 }

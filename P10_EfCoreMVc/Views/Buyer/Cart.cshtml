@@ -3,7 +3,7 @@
 
 @model WebApplication1.Models.ViewModel.HybridViewModel;
 
- 
+
 
 <div class="hero">
   <div class="container">
@@ -84,6 +84,14 @@
           else
           {
             <h2>@ViewBag.cartEmpty</h2>
+
+           <div class="d-flex flex-column">
+            <a href="/home/shop"> Go to shop to buy our latest products </a>
+            <a href="/buyer/orders"> CheckOut your Orders</a>
+
+           </div>
+            
+
           }
         </div>
       </form>
@@ -91,14 +99,16 @@
 
 
 
-  
+
     <div class="row">
+
+
       <div class="col-md-6">
         <div class="row">
 
           <div class="col-md-12">
-            <label class="text-black h4" for="coupon">Coupon</label>
-            <p>Enter your coupon code if you have one.</p>
+            <label class="text-black h4" for="coupon">Reward Coupon</label>
+            <p>Enter your coupon code if you have one to see our latest offers just for you </p>
           </div>
 
           <div class="col-md-8 mb-3 mb-md-0">
@@ -106,7 +116,7 @@
           </div>
 
           <div class="col-md-4">
-            <button class="btn btn-black">Apply Coupon</button>
+            <button class="btn btn-black">Check Offers</button>
           </div>
 
         </div>
@@ -114,9 +124,10 @@
 
 
 
-      <div class="col-md-6 pl-5">
+      <div class="col-md-6">
         <div class="row justify-content-end">
 
+          @if(Model.Cart != null){
           <div class="col-md-7">
 
             <div class="row">
@@ -130,7 +141,7 @@
                 <span class="text-black">Subtotal</span>
               </div>
               <div class="col-6 text-right">
-                <strong class="text-black">$ @Model?.Cart?.CartValue</strong>
+                <strong class="text-black">Rs @Model?.Cart?.CartValue</strong>
               </div>
             </div>
 
@@ -139,7 +150,7 @@
                 <span class="text-black">Discount</span>
               </div>
               <div class="col-6 text-right">
-                <strong class="text-black"> - $ 0</strong>
+                <strong class="text-black">Rs -0</strong>
               </div>
             </div>
 
@@ -148,19 +159,22 @@
                 <span class="text-black">Total</span>
               </div>
               <div class="col-6 text-right">
-                <strong class="text-black">$ @Model?.Cart?.CartValue</strong>
+                <strong class="text-black">Rs @Model?.Cart?.CartValue</strong>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-12">
-                <a class="btn btn-black btn-lg py-3 btn-block" asp-controller="Order" asp-action="CheckOut" asp-route-CartId ="@Model?.Cart?.CartId">
+                <a class="btn btn-black btn-sm py-3 btn-block" asp-controller="Order" asp-action="CheckOut"
+                  asp-route-CartId="@Model?.Cart?.CartId">
                   Proceed To Checkout
                 </a>
               </div>
             </div>
 
           </div>
+        }
+
         </div>
       </div>
     </div>

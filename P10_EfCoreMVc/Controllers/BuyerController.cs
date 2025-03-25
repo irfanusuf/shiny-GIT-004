@@ -9,6 +9,9 @@ using WebApplication1.Types;
 
 namespace WebApplication1.Controllers
 {
+
+
+    [Authorize]
     public class BuyerController : Controller
     {
 
@@ -18,7 +21,6 @@ namespace WebApplication1.Controllers
         private readonly HybridViewModel viewModel;
 
 
-        [Authorize]
         public BuyerController(SqlDbContext dbContext, ITokenService tokenService)
         {
             this.dbContext = dbContext;
@@ -26,16 +28,14 @@ namespace WebApplication1.Controllers
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { UserRole = Role.Buyer, IsLoggedin = true },    // hardcoded values 
-           
             };
-
         }
     
+
         [HttpGet]
         public IActionResult Dashboard()
         {
          return View(viewModel);
-    
         }
 
         [HttpGet]
@@ -51,6 +51,7 @@ namespace WebApplication1.Controllers
                 return View(viewModel);
             }
 
+            // for efficency there is serperated cart profucts db query
             var cartproducts = await dbContext.CartProducts 
             .Include(cp => cp.Product)
             .Where(cp => cp.CartId == cart.CartId)
@@ -62,7 +63,39 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-    
+
+        [HttpGet]
+        public async Task <IActionResult> Orders (){
+
+        Guid? userId = HttpContext.Items["UserId"] as Guid?;
+
+        // var orders = await dbContext.Orders.Where(o => o.BuyerId == userId).ToListAsync();// finding order using orderId
+
+        var orders = await dbContext.Orders
+         .Include(o => o.OrderProducts)  // Include OrderProducts
+         .ThenInclude(op => op.Product)  // Include related Product
+         .Where(o => o.BuyerId == userId)
+         .ToListAsync();
+
+
+        if(orders.Count == 0){
+            ViewBag.errorMessage = "No Orders Found";
+            return View(viewModel);
+        }
+
+            //  var orderproducts = await dbContext.OrderProducts
+            // .Include(op => op.Product)
+            // .Where(op => orders.Select(o=>o.OrderId).Contains(op.OrderId))
+            // .ToListAsync();
+            
+            // viewModel.OrderProducts = orderproducts;
+
+            viewModel.Orders = orders;
+        
+            return View(viewModel);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> CreateAddress(Address address)
         {
@@ -82,9 +115,10 @@ namespace WebApplication1.Controllers
             ViewBag.ErrorMessage = "Address updation un-successfull !";
             return View("CheckOut", viewModel);
         }
-
-       
+    
+    
+    
+    
     
     }
-
 }

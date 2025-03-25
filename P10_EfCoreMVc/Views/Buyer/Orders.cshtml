@@ -1,0 +1,96 @@
+﻿@using WebApplication1.Types
+@model WebApplication1.Models.ViewModel.HybridViewModel
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="container my-5 pb-5">
+    <h2 class="fw-bold">
+        <i class="bi bi-bag"></i> My Orders
+    </h2>
+    <p>Displaying @Model.Orders.Count orders</p>
+
+    @if (!Model.Orders.Any())
+    {
+        <div class="alert alert-secondary text-center">
+            <i class="bi bi-exclamation-triangle"></i> No Orders Found
+        </div>
+    }
+    else
+    {
+        @foreach (var order in Model.Orders)
+        {
+            <div class="card shadow-lg mb-4 p-3">
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <img src="@order.OrderProducts.FirstOrDefault()?.Product.ProductPicURl" 
+                             class="img-fluid rounded" style="max-width: 100px;">
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="fw-bold text-uppercase text-secondary">ORDER STATUS:</p>
+
+                        <h5 class="fw-bold @(order.OrderStatus == Status.Completed ? "text-success" : "text-primary")">
+                            IT'S @order.OrderStatus!
+                        </h5>   
+
+                        @if (order.OrderStatus == Status.Pending)
+                        {
+                            <p class="text-success">Estimated delivery @order.DateCreated.AddHours(168).ToString("dddd MMMM yyyy")</p>
+                             <div class="progress" style="height: 15px;">
+                             
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;"> <p class="text-primary m-0"> Pending</p></div>
+
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 20%;"> In transit</div>
+
+                                @* have to work further  *@
+                                
+                            </div>
+                        }
+                        else if (order.OrderStatus == Status.Completed)
+                        {
+                            <p class="text-success">Delivered on @order.DateCreated.ToString("dddd d MMMM yyyy")</p>
+                            <div class="progress" style="height: 15px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;"> Delivered </div>
+                            </div>
+                        }
+
+                        @* Order products details *@
+                        <p class="fw-bold mt-2">Products in Order:</p>
+                        <ul>
+                            @foreach (var product in order.OrderProducts)
+                            {
+                                <li>@product.Product.ProductTitle (Qty: @product.Quantity)</li>
+                            }
+                        </ul>
+
+                        @* Order price *@
+                        <p class="fw-bold text-dark">Total Price: ₹@order.OrderPrice</p>
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <p><strong>Order No.:</strong> @order.OrderId</p>
+                        <p><strong>Order Date:</strong> @order.DateCreated.ToString("dd MMM, yyyy")</p>
+                        <div class="d-grid gap-2">
+                            <a href="@Url.Action("OrderDetails", new { id = order.OrderId })" class="btn btn-primary ">View Order</a>
+                            
+                            @if (order.OrderStatus == Status.Pending)
+                            {
+
+                                // create controller action for this in order Controller 
+                                <a href="@Url.Action("CancelOrder", new { id = order.OrderId })" class="btn btn-danger">Cancel Order</a>
+
+                            }
+                            else if (order.OrderStatus == Status.Intransit)
+                            {
+                                 // create controller action for this in order Controller 
+                                <a href="@Url.Action("TrackOrder", new { id = order.OrderId })" class="btn btn-success">Track Parcel</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

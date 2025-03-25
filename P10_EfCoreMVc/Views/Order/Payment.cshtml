@@ -78,13 +78,13 @@
         amount: order.amount,
         currency: order.currency,
         name: 'Sahib',
-        description: 'Test Transaction',
+        description: 'Payment Transaction',
         order_id: order.orderId,
      //   callback_url: 'http://localhost:5046/Order/Payment-success',
         prefill: {
             name: 'Sahib Khan',
             email: 'sahib@gmail.com',
-            contact: '9906520959'
+            contact: '@Model?.Address?.Phone'
         },
         theme: {
             color: '#F37254'
