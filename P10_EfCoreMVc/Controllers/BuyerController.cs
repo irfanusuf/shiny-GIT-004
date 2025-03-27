@@ -15,7 +15,6 @@ namespace WebApplication1.Controllers
     public class BuyerController : Controller
     {
 
-
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
         private readonly HybridViewModel viewModel;
@@ -30,7 +29,6 @@ namespace WebApplication1.Controllers
                 Navbar = new NavbarModel { UserRole = Role.Buyer, IsLoggedin = true },    // hardcoded values 
             };
         }
-    
 
         [HttpGet]
         public IActionResult Dashboard()
@@ -63,7 +61,6 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-
         [HttpGet]
         public async Task <IActionResult> Orders (){
 
@@ -95,7 +92,6 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> CreateAddress(Address address)
         {
@@ -115,10 +111,5 @@ namespace WebApplication1.Controllers
             ViewBag.ErrorMessage = "Address updation un-successfull !";
             return View("CheckOut", viewModel);
         }
-    
-    
-    
-    
-    
     }
 }

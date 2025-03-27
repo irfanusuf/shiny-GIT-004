@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
+using WebApplication1.Middlewares;
 using WebApplication1.Models;
 using WebApplication1.Models.JunctionModels;
 using WebApplication1.Models.ViewModel;
+
 
 
 namespace WebApplication1.Controllers
@@ -97,7 +99,8 @@ namespace WebApplication1.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.errorMessage = $"Server Error:  {ex.Message}" ;
+                console.log( ex.Message , "Error in Product/AddtoCart.");
+                ViewBag.errorMessage = "Oops some Error.Kindly try again after some time !" ;
                 return View("Error", viewModel);
             }
         }

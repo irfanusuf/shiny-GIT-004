@@ -18,19 +18,14 @@ namespace WebApplication1.Controllers
     public class OrderController : Controller
     {
 
-
-        private readonly ILogger<OrderController> _logger;
         private readonly SqlDbContext dbContext;
-
         private readonly RazorpayService razorpayService;
         private readonly HybridViewModel viewModel;
 
 
-       
-
-        public OrderController(SqlDbContext dbContext, ILogger<OrderController> logger)
+        public OrderController(SqlDbContext dbContext)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+           
             this.dbContext = dbContext;
             razorpayService = new RazorpayService();
             viewModel = new HybridViewModel

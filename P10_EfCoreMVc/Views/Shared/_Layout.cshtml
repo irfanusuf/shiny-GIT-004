@@ -20,6 +20,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/tiny-slider.css" rel="stylesheet" asp-append-version="true">
     <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
+   
 
 
     <title>@ViewData["Title"] - Spruce</title>
@@ -40,12 +41,10 @@
             <div class="collapse navbar-collapse" id="navbarsFurni">
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 
-
-
                     <li class="nav-item active">
                         <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li><a class="nav-link" asp-controller="Home" asp-action="Shop">Shop</a></li>
+                    <li><a class="nav-link active" asp-controller="Home" asp-action="Shop">Shop</a></li>
                     <li><a class="nav-link" asp-controller="Home" asp-action="About">About us</a></li>
                     <li><a class="nav-link" asp-controller="Home" asp-action="Services">Services</a></li>
                     <li><a class="nav-link" asp-controller="Home" asp-action="Blog"> Blog</a></li>
@@ -69,7 +68,6 @@
                    <li><a class="nav-link" href="/admin/dashboard"><img src="~/images/user.svg"></a></li> 
                 }
 
-
                 @if ( Model?.Navbar.IsLoggedin == false )
                 {
                    <li><a class="nav-link" href="/user/login"><img src="~/images/user.svg"></a></li> 
@@ -84,17 +82,9 @@
         </div>
     </nav>
 
-
-    
-
-
-
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-
-    
-
 
     <footer class="footer-section">
         <div class="container relative">
@@ -218,6 +208,7 @@
     <script src="~/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/tiny-slider.js" asp-append-version="true"></script>
     <script src="~/js/custom.js" asp-append-version="true"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

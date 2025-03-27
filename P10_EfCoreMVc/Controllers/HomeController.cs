@@ -1,11 +1,12 @@
-using System.Diagnostics;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
-using WebApplication1.Models;
+using WebApplication1.Middlewares;
 using WebApplication1.Models.ViewModel;
-using WebApplication1.Types;
+
+
 
 namespace WebApplication1.Controllers
 {
@@ -14,13 +15,15 @@ namespace WebApplication1.Controllers
         private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
         private readonly ILogger<HomeController> logger;
+          // logger.LogError(ex, "Error in HomeController Index method.");
         private readonly HybridViewModel viewModel;
 
-        public HomeController(SqlDbContext dbContext, ITokenService tokenService, ILogger<HomeController> logger)
+
+        public HomeController(SqlDbContext dbContext, ITokenService tokenService, ILogger<HomeController> logger )
         {
             this.dbContext = dbContext;
             this.tokenService = tokenService;
-            this.logger = logger;
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.viewModel = new HybridViewModel
             {
                 Navbar = new NavbarModel { IsLoggedin = false },    // hardcoded values 
@@ -44,7 +47,8 @@ namespace WebApplication1.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Error in HomeController Index method.");
+                console.log(ex.Message , "Error in HomeController Shop method" );
+                ViewBag.errorMessage = "Oops Some Error kindly try after Some time !";
                 return View("Error" , viewModel);
             }
         }
@@ -79,4 +83,6 @@ namespace WebApplication1.Controllers
             return View(viewModel);
         }
     }
+
+ 
 }

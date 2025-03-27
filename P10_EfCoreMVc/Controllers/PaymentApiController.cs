@@ -3,22 +3,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
+using WebApplication1.Middlewares;
 
 
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class PaymentController(SqlDbContext dbContext, ITokenService tokenService, ILogger<OrderController> logger) : ControllerBase
+    public class PaymentApiController(SqlDbContext dbContext, ITokenService tokenService) : ControllerBase
     {
-        private readonly ILogger<OrderController> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        // private readonly ILogger<OrderController> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         private readonly SqlDbContext dbContext = dbContext;
         private readonly ITokenService tokenService = tokenService;
         private readonly RazorpayService razorpayService = new RazorpayService();
        
-        [HttpPost("create-intent")]
-        public IActionResult CreateIntent([FromBody] CreatePaymentIntentModel model)
+        [HttpPost("create/paymentIntent")]
+        public IActionResult CreatePaymentIntent([FromBody] CreatePaymentIntentModel model)
         {
             if (model == null || model.Amount <= 0 || string.IsNullOrEmpty(model.Currency))
             {
@@ -49,7 +50,7 @@ namespace WebApplication1.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error while creating payment intent.");
+                console.log(ex.Message, "Error while creating payment intent.");
                 return StatusCode(500, "Internal Server Error");
             }
         }
