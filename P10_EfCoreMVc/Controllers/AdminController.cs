@@ -11,9 +11,10 @@ namespace WebApplication1.Controllers
     {
 
 
-       private readonly SqlDbContext dbContext;
+        private readonly SqlDbContext dbContext;
         private readonly ITokenService tokenService;
         private readonly HybridViewModel viewModel;
+
 
         public AdminController(SqlDbContext dbContext, ITokenService tokenService)
         {
@@ -21,12 +22,12 @@ namespace WebApplication1.Controllers
             this.tokenService = tokenService;
             this.viewModel = new HybridViewModel
             {
-                Navbar = new NavbarModel {UserRole = Role.Admin ,  IsLoggedin = false },
+                Navbar = new NavbarModel { UserRole = Role.Admin, IsLoggedin = false },
             };
         }
 
 
-          [HttpGet]
+        [HttpGet]
         public async Task<IActionResult> Dashboard()
         {
             try
@@ -60,7 +61,7 @@ namespace WebApplication1.Controllers
 
         }
 
-    
+
 
         [HttpGet]
         public ActionResult Index()

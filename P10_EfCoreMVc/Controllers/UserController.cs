@@ -30,13 +30,16 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Register()
         {
             var token = Request.Cookies["AuthToken"];
+
             if (string.IsNullOrEmpty(token))
             {
                 return View(viewModel);
             }
 
             var userId = tokenService.VerifyTokenAndGetId(token);
+
             var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+
             if (user.Role == Role.Seller)
             {
                 return RedirectToAction("Dashboard", "Seller");
@@ -181,6 +184,8 @@ namespace WebApplication1.Controllers
                 return View();
             }
         }
+
+
 
         [Authorize]
         [HttpGet]
