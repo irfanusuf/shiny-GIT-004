@@ -49,9 +49,11 @@ namespace WebApplication1.Controllers
                     ViewBag.errorMessage = "All Details having * are required";
                     return View(viewModel);
                 }
+
+
                 Guid? userId = HttpContext.Items["UserId"] as Guid?;
 
-                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
+                var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);   // efcore tracking 
 
                 if (user.Role == Role.Seller)
                 {

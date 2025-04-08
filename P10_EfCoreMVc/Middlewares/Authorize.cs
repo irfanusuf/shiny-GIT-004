@@ -14,6 +14,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         {
             
             var returnUrl = context.HttpContext.Request.Path + context.HttpContext.Request.QueryString;
+            
             context.HttpContext.Session.SetString("ReturnUrl", returnUrl);
 
  
