@@ -30,7 +30,7 @@ const Register = () => {
       setForm({
         username : "",
         email: "",
-        password: "",
+        password: "",    
       });
     } catch (error) {
 
