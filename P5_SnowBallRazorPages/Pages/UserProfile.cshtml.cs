@@ -36,10 +36,10 @@ namespace WebApplication1.Pages
             var user = await _dbService.Users.Find(u => u.Id == userId).FirstOrDefaultAsync();   // 
 
             if(user != null ){
-
-                 user.Username = "kjsdfkj";  
+              
+                username =  user.Username ;
             }
-
+    
 
 
             // verify using method from token service
