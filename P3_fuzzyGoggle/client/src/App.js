@@ -9,6 +9,8 @@ import "./global.css";
 import Gallery from "./components/Gallery";
 import Register from "./components/Register";
 import { ToastContainer } from "react-toastify";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -39,13 +41,17 @@ const App = () => {
         <div className={darkMode ? "body-dark" : "body-light"}>
           <Routes>
             {/* Mount and unmouut */}
+
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="*" element={<h1 style={{textAlign : "center"}}> No page Found </h1>} />
           </Routes>
-        </div>
+        </div> 
 
         <Footer />
       </BrowserRouter>

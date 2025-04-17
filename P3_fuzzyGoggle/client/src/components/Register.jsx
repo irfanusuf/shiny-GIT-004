@@ -3,6 +3,7 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const Register = () => {
+
   const [form, setForm] = React.useState({
     username : "",
     email: "",
@@ -17,9 +18,9 @@ const Register = () => {
     e.preventDefault();
 
     try {
-        const baseUrl = "http://localhost:5157"
+        
       
-      const res = await axios.post(`${baseUrl}/api/user/register`, form);
+      const res = await axios.post(`http://localhost:5157/api/user/register`, form);
 
       console.log(res.data);
 
