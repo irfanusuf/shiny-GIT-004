@@ -14,7 +14,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -23,7 +22,7 @@ const Login = () => {
       if (res.status === 200) {
         toast.success(res.data.message);
 
-        // api result save 
+        // api result save
         localStorage.setItem("token", res.data.payload);
         localStorage.setItem("userId", res.data.userId);
         // form sanitization
@@ -35,7 +34,10 @@ const Login = () => {
       }
     } catch (error) {
       if ([400, 401, 403, 404, 500].includes(error.response.status)) {
-        toast.error(error.response.data.message || "Something went wrong");
+        
+        toast.error(error.response.data.message );
+        // toast.error( error.response.data.errors.Email[0]);
+        // toast.error( error.response.data.errors.Password[0]);
       }
       console.log(error);
     }

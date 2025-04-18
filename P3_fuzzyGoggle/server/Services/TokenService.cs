@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Bson;
 using WebApplication1.Interfaces;
 
 
@@ -30,7 +31,7 @@ public class TokenService : ITokenService   // inheritance
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Name, username)
             ]),
-            Expires = DateTime.UtcNow.AddHours(1),
+            Expires = DateTime.UtcNow.AddHours(72),  // token expiration time
 
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
@@ -38,4 +39,44 @@ public class TokenService : ITokenService   // inheritance
          
         return tokenHandler.WriteToken(token);
     }
+
+
+
+    public ObjectId VerifyTokenAndGetId(string token)
+    {
+        try
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            var key = Encoding.ASCII.GetBytes(_secretKey);
+
+
+            var validationParameters = new TokenValidationParameters   // 
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key)
+            };
+
+            var validate = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+
+
+            var userId = validate.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userId != null)
+            {
+                return  ObjectId.Parse(userId.Value);
+            }
+            else
+            {
+                throw new Exception("User ID not found in token.");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Token validation failed: " + ex.Message);
+        }
+    }
+
 }

@@ -1,6 +1,13 @@
 import React from 'react'
+import IsAuthorised from '../utils/IsAuthorised'
 
 const Dashboard = () => {
+
+
+ IsAuthorised();
+
+
+
   return (
     <div className='container mt-5 '>
 

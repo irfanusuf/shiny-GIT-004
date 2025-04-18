@@ -9,29 +9,30 @@ using MongoDB.Bson;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
 
 
-    public class UserController(MongoDbService dbService, ICloudinaryService cloudinary , IMailService mailService) : ControllerBase    // inheritance with controller base 
+    public class UserController(MongoDbService dbService, ICloudinaryService cloudinary, IMailService mailService) : ControllerBase    // inheritance with controller base 
     {
 
         private readonly MongoDbService _dbservice = dbService;
         private readonly ICloudinaryService _cloudinary = cloudinary;
         private readonly IMailService _mailService = mailService;
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
             try
             {
 
-                 if(string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username)){
+                if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
+                {
                     return BadRequest(new
                     {
                         message = "(*)are required fields"
-                   });
-                 } 
+                    });
+                }
 
                 var existingUser = await _dbservice.Users.Find(u => u.Email == user.Email).FirstOrDefaultAsync();
 
@@ -72,14 +73,19 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] Login request, ITokenService tokenService)
         {
-
             try
             {
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+                {
+                    return BadRequest(new
+                    {
+                        message = "Feilds with * are required"
+                    });
+                }
                 var user = await _dbservice.Users.Find(u => u.Email == request.Email).FirstOrDefaultAsync();
-
                 if (user == null)
                 {
                     return BadRequest(new      //400
@@ -93,10 +99,8 @@ namespace WebApplication1.Controllers
 
                 if (verify)
                 {
-                    // json tokeen create kerna hai 
+                    // json token create kerna hai 
                     var token = tokenService.CreateToken(user.Id.ToString(), user.Email, user.Username);
-
-
                     return Ok(new      //200
                     {
                         message = "Logged In succesFully!",
@@ -106,30 +110,65 @@ namespace WebApplication1.Controllers
                 }
                 else
                 {
-                    return BadRequest(new      //200
+                    return BadRequest(new      //400
                     {
                         message = "Incorrect PassWord! "
                     });
                 }
-
-
-
-
             }
             catch (Exception error)
             {
-
                 Console.WriteLine(error.Message);
                 return StatusCode(500, new
                 {
                     message = "Server Error , Try Again after Sometime ",
 
                 });
-
             }
         }
 
-        [HttpPost("forgot/password")]
+
+
+        [HttpGet("Verify/{token}")]
+
+        public async Task<IActionResult> Verify(string token ,ITokenService tokenService)
+        {
+            try
+            {
+                var VerifyTokenAndGetId = tokenService.VerifyTokenAndGetId(token);
+
+                if(ObjectId.Empty == VerifyTokenAndGetId)
+                {
+                    return StatusCode(401 , new
+                    {
+                        message = "Unauthorized!"
+                    });
+                }
+
+                var user = await _dbservice.Users.Find(u => u.Id == VerifyTokenAndGetId).FirstOrDefaultAsync();
+                
+                return Ok(new
+                {   
+                    user = user,
+                    success = true,
+                    message = "User Verified Successfully!"
+                });
+            }
+            catch (Exception error)
+            {
+                return StatusCode(500, new
+                {
+                    message = $"Server Error : {error.Message}"
+                });
+            }
+        }
+
+
+
+
+
+
+        [HttpPost("Forgot/Password")]
         public async Task<IActionResult> Forgot([FromBody] Email request)
         {
             try
@@ -144,16 +183,16 @@ namespace WebApplication1.Controllers
                     });
                 }
 
-                 var otp = "3456";     // automaticall generate 
+                var otp = "3456";     // automaticall generate 
                                       // save that otp on datanase
-              
-               // await _dbservice.Otps.InsertOneAsync(otp);   // check this errror
-                 await _mailService.SendEmailAsync(request.UserEmail, "OTP", otp, false);
+
+                // await _dbservice.Otps.InsertOneAsync(otp);   // check this errror
+                await _mailService.SendEmailAsync(request.UserEmail, "OTP", otp, false);
 
                 return Ok(new
                 {
                     message = "OTP has been to your registered Email!"
-                    
+
                 });
 
             }
@@ -167,8 +206,8 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPost("otp/verify/{userId}/{otpId}")]
-        public async Task<IActionResult> Verify(string userId, string otpId , [FromBody] OTP request)
+        [HttpPost("Otp/Verify/{userId}/{otpId}")]
+        public async Task<IActionResult> Verify(string userId, string otpId, [FromBody] OTP request)
         {
             try
             {
@@ -196,7 +235,6 @@ namespace WebApplication1.Controllers
 
                 if (request.Otp == otp)
                 {
-
                     // first u have to encrypt incomingh pass
                     user.Password = request.ConfirmPass;
                     user.DateModified = DateTime.UtcNow;
@@ -231,7 +269,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPut("edit/{id}")]
+        [HttpPut("Edit/{id}")]
         public async Task<IActionResult> EditUser(string id, [FromBody] User user)
         {
             try
@@ -246,12 +284,9 @@ namespace WebApplication1.Controllers
                         message = "User not found."
                     });
                 }
-
-
                 findUser.Email = user.Email ?? findUser.Email;
                 findUser.Username = user.Username ?? findUser.Username;
                 findUser.Phone = user.Phone ?? findUser.Phone;
-
 
                 await _dbservice.Users.ReplaceOneAsync(u => u.Id.ToString() == id, findUser);
 
@@ -272,7 +307,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             try
@@ -309,7 +344,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPost("upload/profile/{id}")]
+        [HttpPost("Upload/profile/{id}")]
         public async Task<IActionResult> Upload(string id, IFormFile file)
         {
             try

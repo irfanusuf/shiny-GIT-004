@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class BlogController : ControllerBase
     {
 
-        [HttpPost("create")]
+        [HttpPost("Create")]
 
         public IActionResult Blog(){
 
