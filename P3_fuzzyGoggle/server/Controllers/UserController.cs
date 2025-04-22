@@ -1,10 +1,11 @@
 
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Services;
 using MongoDB.Driver;
 using WebApplication1.Interfaces;
 using MongoDB.Bson;
+using WebApplication1.Data;
+
 
 
 namespace WebApplication1.Controllers
@@ -13,20 +14,23 @@ namespace WebApplication1.Controllers
     [ApiController]
 
 
-    public class UserController(MongoDbService dbService, ICloudinaryService cloudinary, IMailService mailService) : ControllerBase    // inheritance with controller base 
+    public class UserController(MongoDbContext dbContext, ICloudinaryService cloudinary, IMailService mailService) : ControllerBase    // inheritance with controller base 
     {
 
-        private readonly MongoDbService _dbservice = dbService;
-        private readonly ICloudinaryService _cloudinary = cloudinary;
-        private readonly IMailService _mailService = mailService;
+        private readonly MongoDbContext dbContext = dbContext;
+        private readonly ICloudinaryService cloudinary = cloudinary;
+        private readonly IMailService mailService = mailService;
+
+
+        
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] User user)
+        public async Task<IActionResult> Register([FromBody] User req)
         {
             try
             {
 
-                if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
+                if (string.IsNullOrEmpty(req.Email) || string.IsNullOrEmpty(req.Password) || string.IsNullOrEmpty(req.Username))
                 {
                     return BadRequest(new
                     {
@@ -34,7 +38,7 @@ namespace WebApplication1.Controllers
                     });
                 }
 
-                var existingUser = await _dbservice.Users.Find(u => u.Email == user.Email).FirstOrDefaultAsync();
+                var existingUser = await dbContext.Users.Find(u => u.Email == req.Email).FirstOrDefaultAsync();
 
                 if (existingUser != null)
                 {
@@ -44,21 +48,21 @@ namespace WebApplication1.Controllers
                     });
                 }
 
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);    // encryption 
+                req.Password = BCrypt.Net.BCrypt.HashPassword(req.Password);    // encryption 
 
-                user.DateCreated = DateTime.UtcNow;     // universal time code 
+                req.DateCreated = DateTime.UtcNow;     // universal time code 
 
 
-                await _dbservice.Users.InsertOneAsync(user);
+                await dbContext.Users.InsertOneAsync(req);
 
-                // await _mailService.SendEmailAsync(user.Email, "Welcome Email", "Welcome to our Website Stay tuned for upcoming offers", false);
+                // await mailService.SendEmailAsync(user.Email, "Welcome Email", "Welcome to our Website Stay tuned for upcoming offers", false);
 
                 return Ok(new
                 {
                     message = "User created successfully! , Kindly Check ur mail for verification",
                     payload = new
                     {
-                        id = user.Id.ToString()
+                        id = req.Id.ToString()
                     }
                 });
             }
@@ -73,6 +77,7 @@ namespace WebApplication1.Controllers
             }
         }
 
+
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] Login request, ITokenService tokenService)
         {
@@ -85,7 +90,7 @@ namespace WebApplication1.Controllers
                         message = "Feilds with * are required"
                     });
                 }
-                var user = await _dbservice.Users.Find(u => u.Email == request.Email).FirstOrDefaultAsync();
+                var user = await dbContext.Users.Find(u => u.Email == request.Email).FirstOrDefaultAsync();
                 if (user == null)
                 {
                     return BadRequest(new      //400
@@ -127,10 +132,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-
-
         [HttpGet("Verify/{token}")]
-
         public async Task<IActionResult> Verify(string token ,ITokenService tokenService)
         {
             try
@@ -145,7 +147,7 @@ namespace WebApplication1.Controllers
                     });
                 }
 
-                var user = await _dbservice.Users.Find(u => u.Id == VerifyTokenAndGetId).FirstOrDefaultAsync();
+                var user = await dbContext.Users.Find(u => u.Id == VerifyTokenAndGetId).FirstOrDefaultAsync();
                 
                 return Ok(new
                 {   
@@ -163,17 +165,12 @@ namespace WebApplication1.Controllers
             }
         }
 
-
-
-
-
-
         [HttpPost("Forgot/Password")]
         public async Task<IActionResult> Forgot([FromBody] Email request)
         {
             try
             {
-                var user = await _dbservice.Users.Find(u => u.Email == request.UserEmail).FirstOrDefaultAsync();
+                var user = await dbContext.Users.Find(u => u.Email == request.UserEmail).FirstOrDefaultAsync();
 
                 if (user == null)
                 {
@@ -186,8 +183,8 @@ namespace WebApplication1.Controllers
                 var otp = "3456";     // automaticall generate 
                                       // save that otp on datanase
 
-                // await _dbservice.Otps.InsertOneAsync(otp);   // check this errror
-                await _mailService.SendEmailAsync(request.UserEmail, "OTP", otp, false);
+                // await dbContext.Otps.InsertOneAsync(otp);   // check this errror
+                await mailService.SendEmailAsync(request.UserEmail, "OTP", otp, false);
 
                 return Ok(new
                 {
@@ -211,7 +208,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                var user = await _dbservice.Users.Find(u => u.Id.ToString() == userId).FirstOrDefaultAsync();
+                var user = await dbContext.Users.Find(u => u.Id.ToString() == userId).FirstOrDefaultAsync();
 
                 if (user == null)
                 {
@@ -239,7 +236,7 @@ namespace WebApplication1.Controllers
                     user.Password = request.ConfirmPass;
                     user.DateModified = DateTime.UtcNow;
 
-                    await _dbservice.Users.ReplaceOneAsync(u => u.Id.ToString() == userId, user);
+                    await dbContext.Users.ReplaceOneAsync(u => u.Id.ToString() == userId, user);
                     // delete the otp database
 
                     return Ok(new
@@ -275,7 +272,7 @@ namespace WebApplication1.Controllers
             try
             {
 
-                var findUser = await _dbservice.Users.Find(u => u.Id.ToString() == id).FirstOrDefaultAsync();
+                var findUser = await dbContext.Users.Find(u => u.Id.ToString() == id).FirstOrDefaultAsync();
 
                 if (findUser == null)
                 {
@@ -288,7 +285,7 @@ namespace WebApplication1.Controllers
                 findUser.Username = user.Username ?? findUser.Username;
                 findUser.Phone = user.Phone ?? findUser.Phone;
 
-                await _dbservice.Users.ReplaceOneAsync(u => u.Id.ToString() == id, findUser);
+                await dbContext.Users.ReplaceOneAsync(u => u.Id.ToString() == id, findUser);
 
                 return Ok(new
                 {
@@ -313,7 +310,7 @@ namespace WebApplication1.Controllers
             try
             {
 
-                var delete = await _dbservice.Users.DeleteOneAsync(user => user.Id.ToString() == id);
+                var delete = await dbContext.Users.DeleteOneAsync(user => user.Id.ToString() == id);
 
                 if (delete.DeletedCount == 0)
                 {
@@ -350,17 +347,17 @@ namespace WebApplication1.Controllers
             try
             {
 
-                var findUser = await _dbservice.Users.Find(u => u.Id.ToString() == id).FirstOrDefaultAsync();
+                var findUser = await dbContext.Users.Find(u => u.Id.ToString() == id).FirstOrDefaultAsync();
                 if (findUser == null)
                 {
                     return NotFound(new { message = "User not found." });
                 }
 
-                var uploadURL = _cloudinary.UploadImageAsync(file);
+                var uploadURL = cloudinary.UploadImageAsync(file);
 
                 findUser.ProfilePictureUrl = uploadURL.Result.ToString();
 
-                await _dbservice.Users.ReplaceOneAsync(u => u.Id.ToString() == id, findUser);
+                await dbContext.Users.ReplaceOneAsync(u => u.Id.ToString() == id, findUser);
 
                 return Ok(new
                 {

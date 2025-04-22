@@ -1,4 +1,5 @@
 
+using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Services;
 
@@ -17,7 +18,7 @@ builder.Services.AddCors(Options =>
 });
 
 // dependency injection 
-builder.Services.AddSingleton<MongoDbService>();
+builder.Services.AddSingleton<MongoDbContext>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddSingleton<IMailService , EmailService>();
