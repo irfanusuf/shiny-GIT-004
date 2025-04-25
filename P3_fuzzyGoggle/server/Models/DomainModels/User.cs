@@ -18,6 +18,7 @@ namespace WebApplication1.Models
         public string? ProfilePictureUrl { get; set; }
         public string? Phone { get; set; }
 
+        public List<ObjectId> Posts {get;set;} =[];
         public List<ObjectId> Followers {get;set;} =[];
         public List<ObjectId> Following {get;set;} =[];
 

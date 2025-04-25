@@ -1,47 +1,82 @@
-
 using WebApplication1.Data;
 using WebApplication1.Interfaces;
 using WebApplication1.Services;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Add services to the container
 builder.Services.AddControllers();
-builder.Services.AddCors(Options =>
+builder.Services.AddEndpointsApiExplorer();
+
+
+
+
+
+// only for testing in swaagger 
+builder.Services.AddSwaggerGen(c =>
 {
-    Options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter 'Bearer {your token}'"
+    });
 
-
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
 
-// dependency injection 
+
+// cors policy for allowing frontend to send request on this server 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") 
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); 
+    });
+});
+
+// Dependency Injection
 builder.Services.AddSingleton<MongoDbContext>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
-builder.Services.AddSingleton<IMailService , EmailService>();
-
-
+builder.Services.AddSingleton<IMailService, EmailService>();
 
 var app = builder.Build();
 
-
+// Swagger UI in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// middle wares 
-
-
+// Middleware order matters
 app.UseHttpsRedirection();
-app.UseCors("AllowAll");
+
+app.UseCors("AllowAll"); 
+
+app.UseAuthorization(); 
+
 app.MapControllers();
 
-
-
 app.Run();
-

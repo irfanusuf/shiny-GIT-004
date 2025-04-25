@@ -3,7 +3,7 @@ using CloudinaryDotNet.Actions;
 using dotenv.net;
 using WebApplication1.Interfaces;
 
-public class CloudinaryService  : ICloudinaryService
+public class CloudinaryService : ICloudinaryService
 {
     private readonly Cloudinary _cloudinary;
 
@@ -21,9 +21,9 @@ public class CloudinaryService  : ICloudinaryService
 
 
         // connect to cloudinary 
-      
+
         var cloudinaryUrl = Environment.GetEnvironmentVariable("CLOUDINARY_URL");
-        
+
         if (string.IsNullOrEmpty(cloudinaryUrl))
         {
             throw new InvalidOperationException("CLOUDINARY_URL environment variable is not set.");
@@ -33,18 +33,18 @@ public class CloudinaryService  : ICloudinaryService
         _cloudinary = new Cloudinary(cloudinaryUrl) { Api = { Secure = true } };
     }
 
-    public async Task<string> UploadImageAsync(IFormFile file)
+    public async Task<string> UploadImageAsync(IFormFile image)
     {
-        if (file == null || file.Length == 0)
+        if (image == null || image.Length == 0)
         {
             throw new ArgumentException("File is invalid.");
         }
 
-        using var stream = file.OpenReadStream();
+        using var stream = image.OpenReadStream();
 
         var uploadParams = new ImageUploadParams
         {
-            File = new FileDescription(file.FileName, stream),
+            File = new FileDescription(image.FileName, stream),
             UseFilename = true,
             UniqueFilename = false,
             Overwrite = true,
@@ -61,4 +61,44 @@ public class CloudinaryService  : ICloudinaryService
 
         return uploadResult.SecureUrl.ToString();
     }
+
+
+
+    public async Task<string> UploadVideoAsync(IFormFile video)
+    {
+        if (video == null || video.Length == 0)
+        {
+            throw new ArgumentException("Video file is invalid.");
+        }
+
+        var allowedVideoTypes = new[] { "video/mp4", "video/avi", "video/webm", "video/quicktime" };
+        if (!allowedVideoTypes.Contains(video.ContentType))
+        {
+            throw new ArgumentException("Unsupported video format.");
+        }
+
+        using var stream = video.OpenReadStream();
+
+        var uploadParams = new VideoUploadParams
+        {
+            File = new FileDescription(video.FileName, stream),
+            UseFilename = true,
+            UniqueFilename = false,
+            Overwrite = true,
+            Folder = "Fuzzy Goggles"
+        };
+
+        var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+
+        if (uploadResult.Error != null)
+        {
+            throw new InvalidOperationException($"Cloudinary video upload failed: {uploadResult.Error.Message}");
+        }
+
+        return uploadResult.SecureUrl.ToString();
+    }
+
 }
+
+
+
