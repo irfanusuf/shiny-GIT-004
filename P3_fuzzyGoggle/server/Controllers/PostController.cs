@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
 
 
         [HttpPost("Create")]
-        public async Task<IActionResult> Post( [FromForm] Post req, IFormFile? image , IFormFile? video)
+        public async Task<IActionResult> Post([FromForm] Post req, IFormFile? image, IFormFile? video)
         {
 
             try
@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    return StatusCode(403 , new { message = "Token missing" });
+                    return StatusCode(403, new { message = "Token missing" });
                 }
 
                 // userId from  verified token
@@ -58,7 +58,7 @@ namespace WebApplication1.Controllers
 
                 // secure Url from clouidnary  if file is present 
                 string imageUrl = image != null ? await cloudinary.UploadImageAsync(image) : "no-image";
-                string vidUrl =  video !=null ? await cloudinary.UploadVideoAsync(video) : "no-video";
+                string vidUrl = video != null ? await cloudinary.UploadVideoAsync(video) : "no-video";
 
                 req.IsEdited = false;
                 req.PostPicUrl = imageUrl;
@@ -88,13 +88,27 @@ namespace WebApplication1.Controllers
         }
 
 
-        [HttpPut("Edit/{token}/{postId}")]
-        public async Task<IActionResult> Edit(string token, string postId, [FromBody] Post req)
+        [HttpPut("Edit/{postId}")]
+        public async Task<IActionResult> Edit(string postId, [FromBody] Post req)
         {
             try
             {
                 // token verification 
-                // userId from  verified token
+                // userId from  verified 
+
+                var token = Request.Cookies["token"];
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    token = Request.Headers.Authorization.FirstOrDefault()?.Replace("Bearer", "");
+                }
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return StatusCode(403, new { message = "Token missing" });
+                }
+
+
                 var userId = tokenService.VerifyTokenAndGetId(token);
 
                 if (MongoDB.Bson.ObjectId.Empty == userId)

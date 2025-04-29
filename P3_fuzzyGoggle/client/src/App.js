@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import { ToastContainer } from "react-toastify";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import PropTesting from "./components/PropTesting";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -18,6 +19,14 @@ const App = () => {
   const toggleMode = () => {
     setDarkMode(!darkMode);
   };
+
+
+ const btnName = "Register";
+
+
+ const clickHandler = () => {
+   alert("Button Clicked");
+ }
 
   return (
     // jsx fragament
@@ -50,6 +59,8 @@ const App = () => {
             <Route path="/login" element={<Login/>} />
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="*" element={<h1 style={{textAlign : "center"}}> No page Found </h1>} />
+            <Route path="/Proptesting" element={<PropTesting  btnName={btnName} clickHandler={clickHandler} />} />
+
           </Routes>
         </div> 
 

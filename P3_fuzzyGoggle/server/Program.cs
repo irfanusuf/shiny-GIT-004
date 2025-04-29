@@ -44,16 +44,8 @@ builder.Services.AddSwaggerGen(c =>
 
 
 // cors policy for allowing frontend to send request on this server 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy.WithOrigins("http://localhost:3000") 
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials(); 
-    });
-});
+
+builder.Services.AddCors(Options => {Options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());});
 
 // Dependency Injection
 builder.Services.AddSingleton<MongoDbContext>();
