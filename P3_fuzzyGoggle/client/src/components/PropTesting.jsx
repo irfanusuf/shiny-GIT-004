@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from './molecules/Form'
 
-const PropTesting = ({btnName , clickHandler}) => {
+const PropTesting = () => {
   return (
     <div>
         
@@ -9,7 +9,7 @@ const PropTesting = ({btnName , clickHandler}) => {
         PropTesting
 
 
-        <Form btnName={btnName} clickHandler={ clickHandler}/>
+        <Form/>
 
 
 

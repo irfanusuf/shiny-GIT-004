@@ -1,6 +1,6 @@
-import axios from "axios";
+
 import React from "react";
-import { toast } from "react-toastify";
+import { Context } from "../context/Store";
 
 const Register = () => {
 
@@ -14,40 +14,15 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const { handleRegister } = React.useContext(Context);
 
-    try {
-        
-      
-      const res = await axios.post(`http://localhost:5157/api/user/register`, form);
 
-      console.log(res.data);
-
-        if (res.status === 200) { toast.success("User registered successfully")}
-        
-     
-      // form sanitization
-      setForm({
-        username : "",
-        email: "",
-        password: "",    
-      });
-    } catch (error) {
-
-        if([400, 401, 403, 404 , 500].includes(error.response.status) ) {
-            toast.error(error.response.data.message)
-          }
-
-          console.log(error);
-    }
-  };
 
   return (
     <div className="container mt-5 w-50">
       <h2 className="mb-3"> Register</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e)=>{handleRegister(e,form)}}>
 
       <div className="mb-3">
           <label for="exampleInputPassword1" className="form-label">

@@ -1,7 +1,5 @@
 import React from "react";
-import { axiosInstance } from "../utils/axiosInstance";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Context } from "../context/Store";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -12,36 +10,9 @@ const Login = () => {
     password,
   };
 
-  const navigate = useNavigate();
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axiosInstance.post("/user/login", formData);
-      console.log(res.data);
-      if (res.status === 200) {
-        toast.success(res.data.message);
+   const {handleLogin} = React.useContext(Context);
 
-        // api result save
-        localStorage.setItem("token", res.data.payload);
-        localStorage.setItem("userId", res.data.userId);
-        // form sanitization
-        setEmail("");
-        setPassword("");
-
-        // redirect to home page
-        navigate("/dashboard");
-      }
-    } catch (error) {
-      if ([400, 401, 403, 404, 500].includes(error.response.status)) {
-        
-        toast.error(error.response.data.message );
-        // toast.error( error.response.data.errors.Email[0]);
-        // toast.error( error.response.data.errors.Password[0]);
-      }
-      console.log(error);
-    }
-  };
 
   return (
     <div className="container mt-5 w-50">
@@ -93,7 +64,7 @@ const Login = () => {
           </label>
         </div>
 
-        <button onClick={handleClick} type="submit" className="btn btn-primary">
+        <button onClick={ (e)=>{handleLogin(e , formData)}  } type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>
