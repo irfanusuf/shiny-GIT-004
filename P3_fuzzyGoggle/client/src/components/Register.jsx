@@ -1,11 +1,9 @@
-
 import React from "react";
 import { Context } from "../context/Store";
 
 const Register = () => {
-
   const [form, setForm] = React.useState({
-    username : "",
+    username: "",
     email: "",
     password: "",
   });
@@ -14,17 +12,24 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
- const { handleRegister } = React.useContext(Context);
-
-
+  const { handleRegister } = React.useContext(Context);
 
   return (
     <div className="container mt-5 w-50">
       <h2 className="mb-3"> Register</h2>
 
-      <form onSubmit={(e)=>{handleRegister(e,form)}}>
-
-      <div className="mb-3">
+      <form
+        onSubmit={(e) => {
+          handleRegister(e, form);
+          // form sanitization
+          setForm({
+            username: "",
+            email: "",
+            password: "",
+          });
+        }}
+      >
+        <div className="mb-3">
           <label for="exampleInputPassword1" className="form-label">
             Username
           </label>
@@ -36,7 +41,6 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-
 
         <div className="mb-3">
           <label className="form-label">Email address</label>

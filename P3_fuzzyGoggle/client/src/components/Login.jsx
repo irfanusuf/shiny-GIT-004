@@ -10,9 +10,7 @@ const Login = () => {
     password,
   };
 
-
-   const {handleLogin} = React.useContext(Context);
-
+  const { handleLogin } = React.useContext(Context);
 
   return (
     <div className="container mt-5 w-50">
@@ -64,7 +62,16 @@ const Login = () => {
           </label>
         </div>
 
-        <button onClick={ (e)=>{handleLogin(e , formData)}  } type="submit" className="btn btn-primary">
+        <button
+          onClick={(e) => {
+            handleLogin(e, formData);
+            // form sanitization
+            setEmail("");
+            setPassword("");
+          }}
+          type="submit"
+          className="btn btn-primary"
+        >
           Submit
         </button>
       </form>
