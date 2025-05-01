@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useCallback, useEffect } from "react";
 import App from "../App";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -14,7 +14,9 @@ const Store = () => {
   const [store, setStore] = React.useState({
     btnName: "Something",
     darkMode: false,
-    username: "John Doe",
+    username: "",
+    loading: false,
+    posts: [],
   });
 
   const handleRegister = async (e, form) => {
@@ -48,8 +50,8 @@ const Store = () => {
     e.preventDefault();
     try {
       const res = await axiosInstance.post("/user/login", formData);
-      console.log(res.data);
-      if (res.data.message === 200) {
+      
+      if (res.status === 200) {
         toast.success(res.data.message);
 
         // api result save
@@ -72,8 +74,33 @@ const Store = () => {
     }
   };
 
+  const fetchData = useCallback(async () => {
+    try {
+      setStore((prevState) => ({...prevState,  loading: true, }));
+
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      //setStore(response.data);   // wrong way to set data
+      setStore((prevState) => ({...prevState,  posts: response.data, loading: false, }));
+
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+
+
+
+
+useEffect(()=>{
+  fetchData()
+
+}, [fetchData])
+
+
   return (
-    <Context.Provider value={{ ...store, handleRegister, handleLogin }}>
+    <Context.Provider value={{ ...store, handleRegister, handleLogin , fetchData }}>
       <App />
     </Context.Provider>
   );

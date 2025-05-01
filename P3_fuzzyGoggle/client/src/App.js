@@ -1,19 +1,17 @@
-import React, {useState } from "react";
+import React, {useContext, useEffect, useState } from "react";
 import Home from "./components/Home";
 import About from "./components/About";
 import Admin from "./components/Admin";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {  Route, Routes } from "react-router-dom";
 import "./global.css";
 import Gallery from "./components/Gallery";
 import Register from "./components/Register";
-import { ToastContainer } from "react-toastify";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import PropTesting from "./components/PropTesting";
-
-
+import Contact from "./components/Contact";
 
 
 
@@ -24,14 +22,6 @@ const App = () => {
     setDarkMode(!darkMode);
   };
 
-
-
- const btnName = "Register";
-
-
- const clickHandler = () => {
-   alert("Button Clicked");
- }
 
   return (
     // jsx fragament
@@ -44,6 +34,7 @@ const App = () => {
 
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/register" element={<Register />} />
