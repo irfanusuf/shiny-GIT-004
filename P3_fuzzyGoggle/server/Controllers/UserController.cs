@@ -60,6 +60,8 @@ namespace WebApplication1.Controllers
                 return Ok(new
                 {
                     message = "User created successfully! , Kindly Check ur mail for verification",
+                    username = req.Username,
+                    email = req.Email,
                     payload = new
                     {
                         id = req.Id.ToString()
@@ -110,7 +112,8 @@ namespace WebApplication1.Controllers
                     {
                         message = "Logged In succesFully!",
                         payload = token,
-                        userId = user.Id.ToString()
+                        email = request.Email,
+                        username = user.Username
                     });
                 }
                 else
@@ -151,8 +154,8 @@ namespace WebApplication1.Controllers
                 
                 return Ok(new
                 {   
-                    user = user,
-                    success = true,
+                    username = user.Username,
+                    email = user.Email,
                     message = "User Verified Successfully!"
                 });
             }

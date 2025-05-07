@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useEffect } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import App from "../App";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 export const Context = createContext();
 
 const Store = () => {
-
   const navigate = useNavigate();
 
   const [store, setStore] = React.useState({
@@ -18,6 +23,10 @@ const Store = () => {
     loading: false,
     posts: [],
   });
+
+
+
+  // state.map    // frontend will display three divs in whiich data of intial state will be rendered
 
   const handleRegister = async (e, form) => {
     e.preventDefault();
@@ -33,12 +42,13 @@ const Store = () => {
       if (res.status === 200) {
         toast.success("User registered successfully");
       }
-
-    
     } catch (error) {
-      if (error.response && [400, 401, 403, 404, 500].includes(error.response.status)) {
+      if (
+        error.response &&
+        [400, 401, 403, 404, 500].includes(error.response.status)
+      ) {
         toast.error(error.response.data.message);
-      }else{
+      } else {
         toast.error("Some Network Error!");
       }
 
@@ -50,14 +60,14 @@ const Store = () => {
     e.preventDefault();
     try {
       const res = await axiosInstance.post("/user/login", formData);
-      
+
       if (res.status === 200) {
         toast.success(res.data.message);
 
         // api result save
         localStorage.setItem("token", res.data.payload);
         localStorage.setItem("userId", res.data.userId);
-    
+
         navigate("/dashboard");
       }
     } catch (error) {
@@ -66,7 +76,6 @@ const Store = () => {
         [400, 401, 403, 404, 500].includes(error.response.status)
       ) {
         toast.error(error.response.data.message);
-      
       } else {
         toast.error("Some Network Error!");
       }
@@ -76,31 +85,30 @@ const Store = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      setStore((prevState) => ({...prevState,  loading: true, }));
+      setStore((prevState) => ({ ...prevState, loading: true }));
 
       const response = await axios.get(
         "https://jsonplaceholder.typicode.com/posts"
       );
       //setStore(response.data);   // wrong way to set data
-      setStore((prevState) => ({...prevState,  posts: response.data, loading: false, }));
-
+      setStore((prevState) => ({
+        ...prevState,
+        posts: response.data,
+        loading: false,
+      }));
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-
-
-
-
-useEffect(()=>{
-  fetchData()
-
-}, [fetchData])
-
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
-    <Context.Provider value={{ ...store, handleRegister, handleLogin , fetchData }}>
+    <Context.Provider
+      value={{ ...store, handleRegister, handleLogin, fetchData }}
+    >
       <App />
     </Context.Provider>
   );
