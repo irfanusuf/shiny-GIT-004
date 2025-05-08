@@ -1,87 +1,18 @@
-import { axiosInstance } from "../../utils/axiosInstance";
 
-export const handleRegister = (e, formData) => async (action) => {
-  try {
-    e.preventDefault();
-    action({ type: "API_REQUEST" }); // state.loading :true
-
-    const res = await axiosInstance.post("/user/register", formData);
-
-    if (res.status === 200) {
-      action({
-        type: "API_SUCCESS",
-        payload: res.data.payload,
-        message: res.data.message,
-        username : res.data.username,
-        email : res.data.email
-      });
-    }
-  } catch (err) {
-    console.log(err);
-    action({
-      type: "API_FAILURE",
-      error: err,
-      message: err.message,
-    });
-  }
-};
+import { apiCall } from "../../utils/apiCall";
 
 
-export const handleLogin = (e, formData) => async (action) => {
-  try {
-    e.preventDefault();
-    action({ type: "API_REQUEST" }); // state.loading :true
 
-    const res = await axiosInstance.post("/user/login", formData);
+// post methods 
 
-    if (res.status === 200) {
-      action({
-        type: "API_SUCCESS",
-        payload: res.data.payload,
-        message: res.data.message,
-        username : res.data.username,
-        email : res.data.email
-      });
+export const handleRegister = (e,formData) => (apiCall("/user/register",  e , formData ))
 
+export const handleLogin =  (e,formData) => (apiCall("/user/login", e , formData )) 
 
-      localStorage.setItem("token" , res.data.payload)
-    }
-  } catch (err) {
-    console.log(err);
-    action({
-      type: "API_FAILURE",
-      error: err,
-      message: err.message,
-    });
-  }
-};
+export const forgotpassword =  (e,formData) => (apiCall("/user/forgot/password", e , formData )) 
 
+// delete method 
+export const deleteUser =  (userId) => (apiCall(`/user/delete/${userId}` )) 
 
-export const verifyUser = (token) => async (action) => {
-  try {
-   
-    action({ type: "API_REQUEST" }); // state.loading :true
-
-    const res = await axiosInstance.get(`/user/verify/${token}`);
-
-    if (res.status === 200) {
-      action({
-        type: "API_SUCCESS",
-        payload: res.data.payload,
-        message: res.data.message,
-        username : res.data.username,
-        email : res.data.email
-      });
-
-    }
-  } catch (err) {
-    console.log(err);
-    action({
-      type: "API_FAILURE",
-      error: err,
-      message: err.message,
-    });
-  }
-};
-
-
+// get method 
+export const verifyUser =  (token)=>(apiCall(`/user/verify/${token}` ))

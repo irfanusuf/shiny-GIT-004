@@ -45,6 +45,7 @@ const App = () => {
           <Routes>
             {/* Mount and unmouut */}
 
+   
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
@@ -52,7 +53,7 @@ const App = () => {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={ <Dashboard />} />
             <Route
               path="*"
               element={<h1 style={{ textAlign: "center" }}> No page Found </h1>}

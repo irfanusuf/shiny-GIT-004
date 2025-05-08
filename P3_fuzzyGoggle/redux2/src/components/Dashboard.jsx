@@ -1,28 +1,25 @@
-import React, { useEffect } from "react";
-// import IsAuthorised from '../utils/IsAuthorised'
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { verifyUser } from "../redux/actions/userActions";
+import React from "react";
+import IsAuthorised from "../utils/IsAuthorised";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  //  IsAuthorised();
+  IsAuthorised();
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const username = "irfan usuf"
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token === null) {
-      navigate("/login");
-    } else {
-      dispatch(verifyUser(token));
-    }
-  }, [dispatch, navigate]);
+  const { username, loading } = useSelector((state) => state.user);
 
   return (
-    <div className="container mt-5 ">
-      <h1> Welcome to the Dashboard </h1>
-    </div>
+    <>
+      {!loading ? (
+        <div className="container mt-5 ">
+          <h1> Welcome to the Dashboard </h1>
+          how are u Admin {username}
+        </div>
+      ) : (
+        <div style={{textAlign: "center"}}> Loading..... </div>
+      )}
+    </>
   );
 };
 

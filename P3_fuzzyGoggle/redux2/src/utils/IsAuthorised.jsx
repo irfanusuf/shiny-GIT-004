@@ -1,10 +1,12 @@
 import { useEffect } from "react";
-import { axiosInstance } from "./axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { verifyUser } from "../redux/actions/userActions";
 
 const IsAuthorised = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
@@ -13,28 +15,13 @@ const IsAuthorised = () => {
         return;
       }
 
-      const verifyToken = async () => {
-        try {
-          const res = await axiosInstance.get(`user/verify/${token}`);
-
-          if (res.status === 200) {
-            return true;
-          } else {
-            return false;
-          }
-        } catch (error) {
-          console.error("Error verifying token:", error);
-          return false;
-        }
-      };
-
-      const verify = await verifyToken();
+      const verify = dispatch(verifyUser(token));
 
       if (!verify) {
         navigate("/login");
       }
     })();
-  }, [token, navigate]);
+  }, [token, navigate , dispatch]);
 };
 
 export default IsAuthorised;
