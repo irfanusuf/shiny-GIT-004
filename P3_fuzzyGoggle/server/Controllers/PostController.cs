@@ -36,11 +36,11 @@ namespace WebApplication1.Controllers
                 // var imageUrl = (string?)null;
 
                 // accepting token from cookies 
-                var token = Request.Cookies["token"];
+                var token = Request.Cookies["authorization_token"];   /// ager yaha token nahi hai 
 
                 if (string.IsNullOrEmpty(token))
                 {
-                    token = Request.Headers.Authorization.FirstOrDefault()?.Replace("Bearer", "");
+                    token = Request.Headers.Authorization.FirstOrDefault()?.Replace("Bearer", "");  /// token 
                 }
 
                 if (string.IsNullOrEmpty(token))

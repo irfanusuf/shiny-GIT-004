@@ -14,15 +14,17 @@ namespace WebApplication1.Controllers
     [ApiController]
 
 
-    public class UserController(MongoDbContext dbContext, ICloudinaryService cloudinary, IMailService mailService) : ControllerBase    // inheritance with controller base 
+    public class UserController(MongoDbContext dbContext, ICloudinaryService cloudinary, IMailService mailService, ITokenService tokenService) : ControllerBase    // inheritance with controller base 
     {
 
         private readonly MongoDbContext dbContext = dbContext;
         private readonly ICloudinaryService cloudinary = cloudinary;
         private readonly IMailService mailService = mailService;
 
+        private readonly ITokenService tokenService = tokenService;
 
-        
+
+
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] User req)
@@ -79,7 +81,6 @@ namespace WebApplication1.Controllers
             }
         }
 
-
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] Login request, ITokenService tokenService)
         {
@@ -89,38 +90,46 @@ namespace WebApplication1.Controllers
                 {
                     return BadRequest(new
                     {
-                        message = "Feilds with * are required"
+                        message = "Fields with * are required"
                     });
                 }
+
                 var user = await dbContext.Users.Find(u => u.Email == request.Email).FirstOrDefaultAsync();
                 if (user == null)
                 {
-                    return BadRequest(new      //400
+                    return BadRequest(new
                     {
                         message = "No User Found with this Email!"
                     });
                 }
 
                 var verify = BCrypt.Net.BCrypt.Verify(request.Password, user.Password);
-
-
                 if (verify)
                 {
-                    // json token create kerna hai 
                     var token = tokenService.CreateToken(user.Id.ToString(), user.Email, user.Username);
-                    return Ok(new      //200
+
+                    // Set token in cookie
+                    Response.Cookies.Append("authorization_token", token, new CookieOptions
                     {
-                        message = "Logged In succesFully!",
-                        payload = token,
+                        HttpOnly = true,
+                        Secure = true,           // set to true in production (HTTPS)
+                        SameSite = SameSiteMode.Strict,
+                        Expires = DateTimeOffset.UtcNow.AddHours(1)
+                    });
+
+                    return Ok(new
+                    {
+                        message = "Logged in successfully!",
                         email = request.Email,
                         username = user.Username
+                        // No token in payload now
                     });
                 }
                 else
                 {
-                    return BadRequest(new      //400
+                    return BadRequest(new
                     {
-                        message = "Incorrect PassWord! "
+                        message = "Incorrect Password!"
                     });
                 }
             }
@@ -129,31 +138,46 @@ namespace WebApplication1.Controllers
                 Console.WriteLine(error.Message);
                 return StatusCode(500, new
                 {
-                    message = "Server Error , Try Again after Sometime ",
-
+                    message = "Server Error, try again after some time"
                 });
             }
         }
 
-        [HttpGet("Verify/{token}")]
-        public async Task<IActionResult> Verify(string token ,ITokenService tokenService)
+
+        [HttpGet("Token/Verify")]   // token mechanism will be shifted to headers or cookies 
+        public async Task<IActionResult> Verify()
         {
             try
             {
-                var VerifyTokenAndGetId = tokenService.VerifyTokenAndGetId(token);
 
-                if(ObjectId.Empty == VerifyTokenAndGetId)
+                var token = Request.Cookies["authorization_token"];   /// ager yaha token nahi hai 
+
+                if (string.IsNullOrEmpty(token))
                 {
-                    return StatusCode(401 , new
+                    token = Request.Headers.Authorization.FirstOrDefault()?.Replace("Bearer", "");  /// token 
+                }
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return StatusCode(403, new { message = "Token missing" });
+                }
+
+                // userId from  verified token
+                var userId = tokenService.VerifyTokenAndGetId(token);
+
+
+                if (ObjectId.Empty == userId)
+                {
+                    return StatusCode(401, new
                     {
                         message = "Unauthorized!"
                     });
                 }
 
-                var user = await dbContext.Users.Find(u => u.Id == VerifyTokenAndGetId).FirstOrDefaultAsync();
-                
+                var user = await dbContext.Users.Find(u => u.Id == userId).FirstOrDefaultAsync();
+
                 return Ok(new
-                {   
+                {
                     username = user.Username,
                     email = user.Email,
                     message = "User Verified Successfully!"
@@ -206,12 +230,23 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPost("Otp/Verify/{userId}/{otpId}")]
-        public async Task<IActionResult> Verify(string userId, string otpId, [FromBody] OTP request)
+        [HttpPost("Otp/Verify/{otpToken}")]
+        public async Task<IActionResult> Verify(string otpToken, [FromBody] OTP request)
         {
             try
             {
-                var user = await dbContext.Users.Find(u => u.Id.ToString() == userId).FirstOrDefaultAsync();
+
+                var userId = tokenService.VerifyTokenAndGetId(otpToken);
+
+                if (ObjectId.Empty == userId)
+                {
+                    return StatusCode(401, new
+                    {
+                        message = "Unauthorized!"
+                    });
+                }
+
+                var user = await dbContext.Users.Find(u => u.Id == userId).FirstOrDefaultAsync();
 
                 if (user == null)
                 {
@@ -239,7 +274,7 @@ namespace WebApplication1.Controllers
                     user.Password = request.ConfirmPass;
                     user.DateModified = DateTime.UtcNow;
 
-                    await dbContext.Users.ReplaceOneAsync(u => u.Id.ToString() == userId, user);
+                    await dbContext.Users.ReplaceOneAsync(u => u.Id == userId, user);
                     // delete the otp database
 
                     return Ok(new
@@ -344,7 +379,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPost("Upload/profile/{id}")]
+        [HttpPut("Upload/profile/{id}")]
         public async Task<IActionResult> Upload(string id, IFormFile file)
         {
             try

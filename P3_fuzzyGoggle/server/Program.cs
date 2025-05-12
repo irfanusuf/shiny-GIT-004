@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer",
         BearerFormat = "JWT",
-        In = ParameterLocation.Header,
+        In  = ParameterLocation.Header,
         Description = "Enter 'Bearer {your token}'"
     });
 
@@ -45,7 +45,8 @@ builder.Services.AddSwaggerGen(c =>
 
 // cors policy for allowing frontend to send request on this server 
 
-builder.Services.AddCors(Options => {Options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());});
+builder.Services.AddCors(Options => {Options.AddPolicy("AllowFrontend", policy => 
+policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());});
 
 // Dependency Injection
 builder.Services.AddSingleton<MongoDbContext>();
@@ -65,7 +66,7 @@ if (app.Environment.IsDevelopment())
 // Middleware order matters
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll"); 
+app.UseCors("AllowFrontend"); 
 
 app.UseAuthorization(); 
 
