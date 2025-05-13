@@ -1,6 +1,7 @@
 import React from "react";
 import IsAuthorised from "../utils/IsAuthorised";
 import { useSelector } from "react-redux";
+import loadingGif from "../assets/loading.gif";
 
 const Dashboard = () => {
   IsAuthorised();
@@ -17,7 +18,9 @@ const Dashboard = () => {
           how are u Admin {username}
         </div>
       ) : (
-        <div style={{textAlign: "center"}}> Loading..... </div>
+        <div className="loading">
+        <img src={loadingGif} alt="not available" />
+      </div>
       )}
     </>
   );

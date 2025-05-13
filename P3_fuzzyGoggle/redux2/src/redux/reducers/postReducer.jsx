@@ -7,7 +7,7 @@ const intialState ={
  loading : false,
  error : null,
  message : "",
- payload : []
+ postArr : []
 
 }
 
@@ -24,7 +24,7 @@ builder.addCase("POST_API_SUCCESS" , (state , action)=>{
 state.error = null
 state.loading = false
 state.message = action.message
-state.payload = action.payload
+state.postArr = action.postArr
 
 })
 

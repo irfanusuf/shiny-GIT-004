@@ -1,7 +1,7 @@
 import React from "react";
 import { handleLogin } from "../redux/actions/userActions";
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -12,7 +12,8 @@ const Login = () => {
     password,
   };
 
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="container mt-5 w-50">
@@ -65,12 +66,14 @@ const Login = () => {
         </div>
 
         <button
-          onClick={(e) => {
-            dispatch( handleLogin(e, formData))
-           
-            // form sanitization
-            setEmail("");
-            setPassword("");
+          onClick={async (e) => {
+            const success = await dispatch(handleLogin(e, formData));
+            if (success) {
+              // Form sanitization
+              setEmail("");
+              setPassword("");
+              navigate("/dashboard");
+            }
           }}
           type="submit"
           className="btn btn-primary"

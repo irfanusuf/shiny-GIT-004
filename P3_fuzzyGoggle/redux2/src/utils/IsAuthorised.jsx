@@ -4,24 +4,24 @@ import { useDispatch } from "react-redux";
 import { verifyUser } from "../redux/actions/userActions";
 
 const IsAuthorised = () => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      if (!token || token === "undefined" || token === "null") {
-        navigate("/login");
-        return;
-      }
+      // if (!token || token === "undefined" || token === "null") {
+      //   navigate("/login");
+      //   return;
+      // }
 
-      const verify = dispatch(verifyUser(token));
+      const verify = await dispatch(verifyUser());
 
       if (!verify) {
         navigate("/login");
       }
     })();
-  }, [token, navigate , dispatch]);
+  }, [ navigate , dispatch]);
 };
 
 export default IsAuthorised;

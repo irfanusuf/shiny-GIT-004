@@ -16,12 +16,12 @@ const intialState ={
 
 export const userReducer = createReducer(intialState , (builder)=>{
 
-builder.addCase("API_REQUEST" , (state) =>{
+builder.addCase("USER_API_REQUEST" , (state) =>{
 state.loading = true
 })
 
 
-builder.addCase("API_SUCCESS" , (state , action)=>{
+builder.addCase("USER_API_SUCCESS" , (state , action)=>{
 
 state.error = null
 state.loading = false
@@ -32,7 +32,7 @@ state.email = action.email
 })
 
 
-builder.addCase("API_FAILURE" , (state , action)=>{
+builder.addCase("USER_API_FAILURE" , (state , action)=>{
 
 state.loading = false
 state.error = action.error
