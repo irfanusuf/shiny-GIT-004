@@ -6,6 +6,11 @@
 
 import React, { useState } from "react";
 import "./styles.css";
+import { toast } from "react-toastify";
+
+// // import { useRouter } from "next/router";  // page router
+import { useRouter } from "next/navigation"; // new one
+import mongoose from "mongoose";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -14,23 +19,33 @@ const Register = () => {
 
   const formData = { username, email, password };
 
-  const handleRegister = async () => {
-    try {
+  const router = useRouter();
 
-      const url = "/api/user/register"
-      const api = await fetch(url, {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "/api/user/register";
+
+      const res = await fetch(url, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
 
-      const { res } = await api.json();
+      const data = await res.json();
 
-      // if(res.status == 200 ){
-
-      console.log(res);
-      // }
+      if (res.ok) {
+        toast.success(data.message);
+        setTimeout(() => {
+          router.push("/user/dashboard");
+        }, [2000]);
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Error during registration:", error);
     }
   };
 
