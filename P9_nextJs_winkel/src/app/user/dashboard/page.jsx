@@ -1,24 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import IsAuthorised from "../../../../utils/IsAuthorised";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import loadingGIF from "./loading.gif"
-
-
+import loadingGIF from "./loading.gif";
+import Image from "next/image";
 
 const Dashboard = () => {
-  const [Loading, setLaoding] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState("");
   const router = useRouter();
 
-  // IsAuthorised();   // verify token
-
   useEffect(() => {
-    (async () => {
+    const fetchUserData = async () => {
       try {
-        setLaoding(true);
+        setLoading(true);
         const url = "/api/user/getUser";
         const res = await fetch(url, {
           method: "GET",
@@ -28,37 +24,43 @@ const Dashboard = () => {
           credentials: "include",
         });
 
-        const data = await res.json();
-        if (res.ok) {
-          setUsername(data.payload.username);
-          setLaoding(false);
-        } else {
-          toast.error("UnAuthorised!");
-          router.push("/user/login");
+        if (!res.ok) {
+          throw new Error("Unauthorized");
         }
+
+        const data = await res.json();
+        setUsername(data.payload.username);
       } catch (error) {
-        console.error(error);
-        toast.error(error.message);
+        console.error("Dashboard error:", error);
+        toast.error(error.message || "Unauthorized access");
         router.push("/user/login");
+      } finally {
+        setLoading(false);
       }
-    })();
+    };
+
+    fetchUserData();
   }, [router]);
 
+  if (loading) {
+    return (
+      <div className="loading_container ">
+        <Image 
+          src={loadingGIF} 
+          alt="Loading..." 
+          width={200}
+          height={200}
+          unoptimized 
+        />
+      </div>
+    );
+  }
+
   return (
-    <>
-      {Loading ? (
-        <div className="loading_container">
-
-        <h3> Loading...... </h3>
-
-        </div>
-      ) : (
-        <div>
-          <h1> Welcome to the dashboard</h1>
-          <h1> Welcome {username}</h1>
-        </div>
-      )}
-    </>
+    <div className="loading_container"  >
+      <h1 >Welcome to the dashboard</h1>
+      <h2 >Welcome {username}</h2>
+    </div>
   );
 };
 
