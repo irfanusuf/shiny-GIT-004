@@ -9,7 +9,7 @@ const getUser = async (req, res) => {
   }
 
   try {
-     connectDb()
+    await connectDb();
 
     const { token } = req.cookies;
 
@@ -20,9 +20,7 @@ const getUser = async (req, res) => {
     const verify = await jwt.verify(token, "secretKeyanyRandomString");
 
     if (verify) {
-  
-      const user = await User.findById(verify.userId)
-
+      const user = await User.findById(verify.userId);
 
       if (user) {
         resHandler(res, 200, undefined, user);
