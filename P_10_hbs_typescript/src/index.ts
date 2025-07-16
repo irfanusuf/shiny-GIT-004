@@ -3,6 +3,8 @@ import express from "express";
 import { Request, Response } from "express";
 import path from "path"
 import { fileURLToPath } from "url";
+import handleLogin from "./controllers/userController"
+import bodyParser from "body-parser";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,19 +19,36 @@ const app = express()
 
 
 
-app.get("/", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "views", "index.html"));
-});
+/// by default iska html rendering engine HTML   
+
+app.set("view engine" , "hbs")     
+
+// now we can render hbs files 
 
 
-app.get("/login", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "views", "login.html"));
-});
+
+//middlewares
+// app.use(express.json())
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended :true}))
 
 
-app.get("/register", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, "views", "register.html"));
-});
+app.get("/", (req: Request, res: Response) => {res.render("index" , {pageTitle : "Home" , username : "javeed"})});
+
+
+
+
+
+app.get("/login", (req: Request, res: Response) => {res.render("login") , {pageTitle : "Login"}});
+app.post("/login" , handleLogin )   
+
+
+
+
+
+
+app.get("/register", (req: Request, res: Response) => {res.render("register")});
 
 
 
