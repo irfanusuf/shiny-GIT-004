@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,25 @@
     <link rel="stylesheet" href="/css/global.css">
 
 </head>
+
 <body>
 
     {{> navbar}}
 
 
-        {{{body}}}
+    {{#if message}}
 
+    <div class="notification_bar">
+        <p> {{message}} </p>
+    </div>
+
+    {{/if}}
+
+
+    {{{body}}}
 
     {{> footer}}
 
 </body>
+
 </html>
