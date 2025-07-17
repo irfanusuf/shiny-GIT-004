@@ -3,7 +3,7 @@ import express from "express";
 import { Request, Response } from "express";
 import path from "path"
 import { fileURLToPath } from "url";
-import handleLogin from "./controllers/userController"
+import * as userController from "./controllers/userController"
 import bodyParser from "body-parser";
 
 
@@ -19,7 +19,7 @@ const app = express()
 
 
 
-/// by default iska html rendering engine HTML   
+/// by default view engine is  HTML   
 
 app.set("view engine" , "hbs")     
 
@@ -37,21 +37,11 @@ app.use(bodyParser.urlencoded({extended :true}))
 app.get("/", (req: Request, res: Response) => {res.render("index" , {pageTitle : "Home" , username : "javeed"})});
 
 
-
-
-
 app.get("/login", (req: Request, res: Response) => {res.render("login") , {pageTitle : "Login"}});
-app.post("/login" , handleLogin )   
 
-
-
-
-
+app.post("/login" , userController.handleLogin )   
 
 app.get("/register", (req: Request, res: Response) => {res.render("register")});
-
-
-
 
 
 app.listen(port, () => { console.log(`Server listening on port ${port}`) })

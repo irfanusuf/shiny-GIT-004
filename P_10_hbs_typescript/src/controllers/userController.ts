@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 
 
-export default function handleLogin  (req : Request,res : Response){
+export async function handleLogin  (req : Request,res : Response){
 
 
 try {
@@ -21,5 +21,15 @@ console.log(password)
     console.error(error)
     res.status(500).json({ error: "Internal server error" });
 }
+
+}
+
+
+
+export  async function handleRegister (req :Request , res : Response){
+
+
+
+
 
 }
