@@ -1,0 +1,23 @@
+<h1> This is login </h1>
+
+
+<form method="post">
+
+    <input placeholder="Email here" type="email" name="email" />
+    <input placeholder="Password here" type="password" name="password" />
+
+
+    <button type="submit"> Login </button>
+
+    {{#if message}}
+
+
+    <div class="notification_bar">
+        <p> {{message}} </p>
+
+    </div>
+
+    {{/if}}
+
+
+</form>
