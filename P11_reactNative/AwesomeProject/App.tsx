@@ -1,28 +1,53 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import HomeScreen from './screens/HomeScreen';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import ProfileScreen from './screens/ProfileScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import LoginScreen from './screens/LoginScreen';
+import ProductsScreen from './screens/ProductsScreen';
+import ProductDetails from './screens/ProductDetails';
+import { Camera } from 'react-native-vision-camera';
+import CameraCapture from './screens/Camera';
+
+
+
+
+export type ParamList = {
+  Home: undefined;
+  Profile: undefined;
+  Login: undefined;
+  Register: undefined;
+  Products: undefined;
+  ProductDetails: undefined
+  Camera : undefined
+};
+
+const Stack = createNativeStackNavigator<ParamList>();
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
+
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Products" component={ProductsScreen} />
+        <Stack.Screen name="ProductDetails" component={ProductDetails} />
+           <Stack.Screen name="Camera" component={CameraCapture} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+
 
 export default App;
