@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert, PermissionsAndroid, Platform } from 'react-native';
 import { Camera, useCameraDevices } from 'react-native-vision-camera';
 
+
+
 async function requestCameraPermission() {
   if (Platform.OS === 'android') {
     try {
@@ -30,10 +32,16 @@ async function requestCameraPermission() {
 }
 
 const CameraCapture = () => {
+
+
   const [hasPermission, setHasPermission] = useState(false);
+  const [cameraMode , setCameraMode] = useState("back")
+
   const camera = useRef<Camera>(null);
+
   const devices = useCameraDevices();
-  const device = devices.find((d) => d.position === 'back');
+
+  const device = devices.find((d) => d.position === cameraMode);
 
   const checkPermissions = async () => {
     // Use your custom permission function here
@@ -74,7 +82,11 @@ const CameraCapture = () => {
   }
 
   return (
+
+
+
     <View style={styles.container}>
+
       <Camera
         ref={camera}
         style={StyleSheet.absoluteFill}
@@ -82,10 +94,21 @@ const CameraCapture = () => {
         isActive={true}
         photo={true}
       />
+
+
       <TouchableOpacity style={styles.captureButton} onPress={takePhoto}>
         <Text style={styles.buttonText}>📷</Text>
       </TouchableOpacity>
+
+{/* 
+      <TouchableOpacity style={styles.flipButton} onPress={()=>{setCameraMode("front")}}>
+        <Text style={styles.buttonText}>Flip</Text>
+      </TouchableOpacity> */}
+
     </View>
+
+
+
   );
 };
 
@@ -125,6 +148,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff90',
     padding: 20,
     borderRadius: 40,
+  },
+
+  flipButton :{
+    position: 'absolute',
+    bottom: 40,
+    alignSelf : "flex-start",
+    backgroundColor: '#ffffff90',
+    padding: 20,
+    borderRadius: 40,
+
   },
   buttonText: {
     fontSize: 28,

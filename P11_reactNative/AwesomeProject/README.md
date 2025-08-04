@@ -59,15 +59,26 @@ android.enableJetifier=true
 
 guide for connecting on wifi and installing app using usb
 
-adb tcpip 5555 // when phone is connected to the usb
+adb tcpip 5555          // when phone is connected to the usb
 
-adb shell ip route // get phone ip
+adb shell ip route      // get phone ip
 
-adb connect 192.168.29.224:5555 connect to the ip which u got from above command
+adb connect phoneIP:5555 connect to the ip which u got from above command
 
 Shake your device (or use adb shell input keyevent 82)
 
-ip addr | grep inet or hostname -I
+
+
+ip addr | grep inet 
+
+or
+
+hostname -I    // system ip 
+
+
+192.168.1.39:8081    pass this in mobile app 
+
+
 
 use these ccommannds to get your system ip and then go to the mobile app u installed using usb
 and put into the ip and port number on which the dev server is working like 8081

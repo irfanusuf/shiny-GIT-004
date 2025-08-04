@@ -9,7 +9,6 @@ import RegisterScreen from './screens/RegisterScreen';
 import LoginScreen from './screens/LoginScreen';
 import ProductsScreen from './screens/ProductsScreen';
 import ProductDetails from './screens/ProductDetails';
-import { Camera } from 'react-native-vision-camera';
 import CameraCapture from './screens/Camera';
 
 
@@ -41,7 +40,7 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Products" component={ProductsScreen} />
         <Stack.Screen name="ProductDetails" component={ProductDetails} />
-           <Stack.Screen name="Camera" component={CameraCapture} />
+        <Stack.Screen name="Camera" component={CameraCapture} />
       </Stack.Navigator>
     </NavigationContainer>
 

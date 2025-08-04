@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                           // Modern JS features
+    "module": "ES2022",                           // Use ES module system
+    "moduleResolution": "Node",                   // Resolve like Node.js
+    "outDir": "./build",                           // Output directory
+    "rootDir": "./src",                           // Source files location
+    "esModuleInterop": true,                      // Allow default imports from CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,         // Helps with default import support
+    "noImplicitAny": false
+  },
+  "include": ["src/**/*", "src/test/blockchain.ts", "src/test/test.ts", "src/test/testWallet.ts", "src/test/server.ts"],
+  "exclude": ["node_modules"]
+}

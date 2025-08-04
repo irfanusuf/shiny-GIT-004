@@ -6,14 +6,16 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "react-native start --host 0.0.0.0 --port 8081",
     "test": "jest",
     "clean": "cd android && ./gradlew clean",
     "build": "npm run clean && npx react-native run-android",
     "i-apk": "adb install android/app/build/outputs/apk/debug/app-debug.apk",
     "force-i-apk": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk",
     "wifi" : "adb tcpip 5555",
-    "connect" : "adb connect 192.168.29.224:5555"
+    "usb" : "adb usb",
+    "conn" : "adb connect 192.168.1.10:5555",
+    "disconn" : "adb disconnect 192.168.1.10:5555"
 
 
   },

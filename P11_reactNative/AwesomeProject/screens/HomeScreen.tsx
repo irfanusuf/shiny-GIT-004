@@ -12,7 +12,7 @@ export default function HomeScreen({ navigation }: Props) {
 
       <View style={styles.header}>
         <Icon name="bitcoin" size={32} color="#F7931A" />
-        <Text style={styles.headerText}>Crypto Wallet</Text>
+        <Text style={styles.headerText}>Crypto Wallet </Text>
       </View>
 
 
