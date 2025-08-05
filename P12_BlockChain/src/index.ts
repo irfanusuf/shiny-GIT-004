@@ -75,7 +75,7 @@ class Block {
 // Blockchain class
 class Blockchain {
 
-  chain  : Block[];
+  chain: Block[];
   difficulty: number;
 
   constructor(difficulty: number = 2) {
@@ -137,3 +137,61 @@ class Blockchain {
 
 // console.log("Is chain Valid : " + valid)
 
+
+// wallet
+
+class Wallet {
+
+  public publicKey: string;
+  public privateKey: string;
+
+  constructor() {
+
+    const { publicKey, privateKey } = crypto.generateKeyPairSync("ec", {
+
+      namedCurve: "secp256k1",
+      publicKeyEncoding: { type: "spki", format: "der" },
+      privateKeyEncoding: { type: "pkcs8", format: "der" },
+    })
+
+    this.publicKey = publicKey.toString("base64")
+    this.privateKey = privateKey.toString("base64")
+  }
+}
+
+
+// const wallet = new Wallet()
+
+
+// console.log("public Key : "  + wallet.publicKey)
+// console.log("private Key : "  + wallet.privateKey)
+
+
+
+
+
+
+class Ledger {
+
+  public balanceSheet: Map<string, number> = new Map();
+  public genesisWallet: Wallet;
+  public TOTAL_SUPPLY: number = 10000000.00   // by rule  
+
+
+  constructor() {
+    this.genesisWallet = new Wallet()
+    this.balanceSheet.set(this.genesisWallet.publicKey, this.TOTAL_SUPPLY);
+
+  }
+
+   getAllBalances(): Map<string, number> {
+   return this.balanceSheet;
+  }
+
+}
+
+
+const myledger = new Ledger() 
+
+
+console.log(myledger)
