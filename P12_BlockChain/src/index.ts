@@ -2,29 +2,111 @@
 import crypto from "crypto";
 
 
-type Transaction = string | object;
+class Transaction {
 
+  constructor(public fromAddress: string, public toAddress: string, public amount: number, public signature: string = '') { }
+
+
+  calculateHash(): string {
+    const str = this.fromAddress + this.toAddress + this.amount
+    return crypto.createHash("sha256").update(str).digest("hex");   // this is generated hash with nonce  =0 
+  }
+
+  signTransaction(privateKey: string)  {
+
+    const sign = crypto.createSign('SHA256');
+
+    sign.update(this.calculateHash()).end()
+
+    const privateKeyBuffer = Buffer.from(privateKey, "base64")
+
+     this.signature =   sign.sign({
+      key: privateKeyBuffer,
+      format: 'der',
+      type: 'pkcs8',
+    }, "base64")
+
+  }
+
+  verifyTranscation(): boolean {
+    return true
+  }
+
+}
+
+class Wallet {
+
+  public publicKey: string;
+  public privateKey: string;
+
+  constructor() {
+
+    const { publicKey, privateKey } = crypto.generateKeyPairSync("ec", {
+
+      namedCurve: "secp256k1",
+      publicKeyEncoding: { type: "spki", format: "der" },
+      privateKeyEncoding: { type: "pkcs8", format: "der" },
+    })
+
+    this.publicKey = publicKey.toString("base64")
+    this.privateKey = privateKey.toString("base64")
+  }
+}
+
+class Ledger {
+
+  public balanceSheet: Map<string, number> = new Map();
+  public genesisWallet: Wallet;
+  public TOTAL_SUPPLY: number = 10000000.00   // by rule  
+
+  constructor() {
+    this.genesisWallet = new Wallet()
+    this.balanceSheet.set(this.genesisWallet.publicKey, this.TOTAL_SUPPLY);
+  }
+
+  createWallet(): Wallet {
+    const wallet = new Wallet()  // waalte create
+    this.balanceSheet.set(wallet.publicKey, 0)
+    return wallet
+  }
+
+  getAllBalances(): Map<string, number> {
+    return this.balanceSheet;
+  }
+
+  getBalance(publicKey: string): number {
+    return this.balanceSheet.get(publicKey) || 0;
+  }
+
+
+  sendTokens(transaction: Transaction) {
+
+
+
+  }
+
+
+
+
+}
 
 class Block {
-
   index: number;
   timestamp: string;
   data: Transaction;
   previousHash: string;
   nonce: number;
+  balanceSheet : Map<string, number>;
   hash: string;
 
-  constructor(
-    index: number,
-    timestamp: string,
-    data: Transaction,
-    previousHash: string = ""
-  ) {
+  constructor(index: number,timestamp: string,data: Transaction, previousHash: string = "", balanceSheet : Map<string, number>) 
+  {
     this.index = index;
     this.timestamp = timestamp;
     this.data = data;
     this.previousHash = previousHash;
     this.nonce = 0;
+    this.balanceSheet = balanceSheet;
     this.hash = this.calculateHash();
   }
 
@@ -37,9 +119,6 @@ class Block {
       this.nonce;
     return crypto.createHash("sha256").update(str).digest("hex");   // this is generated hash with nonce  =0 
   }
-
-
-
 
 
   mineBlock(difficulty: number = 2): void {
@@ -77,14 +156,17 @@ class Blockchain {
 
   chain: Block[];
   difficulty: number;
-
+ 
   constructor(difficulty: number = 2) {
     this.chain = [this.createGenesisBlock()];
     this.difficulty = difficulty;
+
   }
 
   private createGenesisBlock(): Block {
-    return new Block(0, new Date().toISOString(), "Genesis Block", "0");
+    const ledger = new Ledger()
+
+    return new Block(0, new Date().toISOString(), "GenesisTx" , "0" ,ledger.balanceSheet);
   }
 
   getLatestBlock(): Block {
@@ -124,74 +206,40 @@ class Blockchain {
   }
 }
 
-// // Instantiate and test
-// const ironChain = new Blockchain(2)
-// ironChain.addBlock(new Block(1 , Date.now().toString() , "2nd Block"))
-// ironChain.addBlock(new Block(2 , Date.now().toString() , "3nd Block"))
-// ironChain.addBlock(new Block(3 , Date.now().toString() , "4nd Block"))
-// ironChain.addBlock(new Block(4 , Date.now().toString() , "5nd Block"))
+ // Instantiate and test
+const ironChain = new Blockchain(2)
+
+
+
+console.log(JSON.stringify(ironChain , null , 2));
+
+// console.log(ironChain.getLatestBlock())
 
 // const valid = ironChain.isChainValid()
 
-// console.log(JSON.stringify(ironChain, null, 2));
+
 
 // console.log("Is chain Valid : " + valid)
 
 
-// wallet
 
-class Wallet {
-
-  public publicKey: string;
-  public privateKey: string;
-
-  constructor() {
-
-    const { publicKey, privateKey } = crypto.generateKeyPairSync("ec", {
-
-      namedCurve: "secp256k1",
-      publicKeyEncoding: { type: "spki", format: "der" },
-      privateKeyEncoding: { type: "pkcs8", format: "der" },
-    })
-
-    this.publicKey = publicKey.toString("base64")
-    this.privateKey = privateKey.toString("base64")
-  }
-}
 
 
 // const wallet = new Wallet()
-
-
 // console.log("public Key : "  + wallet.publicKey)
 // console.log("private Key : "  + wallet.privateKey)
 
 
 
+// const myledger = new Ledger()
+
+// const walletB = myledger.createWallet()
+
+// const walletC = myledger.createWallet()
 
 
-
-class Ledger {
-
-  public balanceSheet: Map<string, number> = new Map();
-  public genesisWallet: Wallet;
-  public TOTAL_SUPPLY: number = 10000000.00   // by rule  
+// console.log(myledger)
+// console.log(walletB)
+// console.log(walletC)
 
 
-  constructor() {
-    this.genesisWallet = new Wallet()
-    this.balanceSheet.set(this.genesisWallet.publicKey, this.TOTAL_SUPPLY);
-
-  }
-
-   getAllBalances(): Map<string, number> {
-   return this.balanceSheet;
-  }
-
-}
-
-
-const myledger = new Ledger() 
-
-
-console.log(myledger)
