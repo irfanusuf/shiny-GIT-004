@@ -12,8 +12,10 @@ export  class Ledger {
     this.genesisWallet = new Wallet()
 
     console.log(this.genesisWallet)
+
     this.GenesisTx = new Transaction(this.genesisWallet.publicKey , this.genesisWallet.publicKey , this.TOTAL_SUPPLY)  // rule 
     this.GenesisTx.signTransaction(this.genesisWallet.privateKey)
+    
     this.balanceSheet.set(this.genesisWallet.publicKey, this.GenesisTx.amount);
   }
 

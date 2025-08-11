@@ -4,7 +4,7 @@ import crypto from "crypto";
 export class Block {
   index: number;
   timestamp: string;
-  data: Transaction;
+  transactionData: Transaction[];
   previousHash: string;
   nonce: number;
   balanceSheet: Map<string, number>; // developer decision
@@ -13,13 +13,13 @@ export class Block {
   constructor(
     index: number,
     timestamp: string,
-    data: Transaction,
+    transactionData: Transaction[],
     previousHash: string = "",
     balanceSheet: Map<string, number>
   ) {
     this.index = index;
     this.timestamp = timestamp;
-    this.data = data;
+    this.transactionData = transactionData;
     this.previousHash = previousHash;
     this.nonce = 0;
     this.balanceSheet = balanceSheet;
@@ -31,15 +31,21 @@ export class Block {
       this.index +
       this.previousHash +
       this.timestamp +
-      JSON.stringify(this.data) +
+      JSON.stringify(this.transactionData) +
       this.nonce;
     return crypto.createHash("sha256").update(str).digest("hex"); // this is generated hash with nonce  =0
   }
 
-  mineBlock(difficulty: number = 2): void {
+  mineBlock(difficulty: number =2): void {
     const targetPrefix = Array(difficulty + 1).join("0");
 
+
+    this.hash = this.calculateHash()
+
     const startTime = Date.now();
+
+
+    // preferaable hash generation which adds diffculty 
 
     while (!this.hash.startsWith(targetPrefix)) {
       this.nonce++;
