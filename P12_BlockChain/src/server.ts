@@ -17,8 +17,15 @@ const BLOCK_CHAIN = path.join('chain.json');
 
 // we  ccan either  Load chain from file or create new
 
-
 let chain = Blockchain.loadFromFile(BLOCK_CHAIN);
+
+
+function valid  () {
+if (chain.isChainValid())  return "Chain Validation Succesfull ✅ !"
+}  
+
+console.log("Vaidating..." + " " + valid() )
+
 let latestBlock = chain.getLatestBlock()
 
 
@@ -30,10 +37,17 @@ app.get("/", (req: Request, res: Response) => {
   res.json({ chain: chain.chain });
 });
 
+
+
+
+
 app.post("/create/wallet", (req: Request, res: Response) => {
   const wallet = new Wallet();
   res.status(200).json(wallet);
 });
+
+
+
 
 app.get("/BalanceSheet/:block", (req: Request, res: Response) => {
   const block: number = parseInt(req.params.block);
@@ -44,9 +58,15 @@ app.get("/BalanceSheet/:block", (req: Request, res: Response) => {
     });
 });
 
+
+
+
 app.get("/Latest/BalanceSheet", (req: Request, res: Response) => {
   res.status(200).json({ balanceSheet: Object.fromEntries(latestBlock.balanceSheet) })
 })
+
+
+
 
 app.get("/balance/:walletAddress", (req: Request, res: Response) => {
 
@@ -55,11 +75,15 @@ app.get("/balance/:walletAddress", (req: Request, res: Response) => {
 
 })
 
+
+
+
 app.post("/new/transaction", (req: Request, res: Response) => {
   const { fromAddress, toAddress, amount, privateKey } = req.body;
 
   const newTx = new Transaction(fromAddress, toAddress, amount);
   newTx.signTransaction(privateKey);
+
 
 
   const payerBalance = latestBlock.balanceSheet.get(fromAddress) || 0;
@@ -77,7 +101,10 @@ app.post("/new/transaction", (req: Request, res: Response) => {
       latestBlock.transactionData.push(newTx);
       // every time we will do a new tx new preferred hash will be generated  by using mineBlock function
       latestBlock.mineBlock(); // and a block will be mined
-    } else {
+      chain.saveToFile(BLOCK_CHAIN)
+
+      
+       } else {
 
   
       const newBlock = new Block(
@@ -89,6 +116,7 @@ app.post("/new/transaction", (req: Request, res: Response) => {
       );
 
       chain.addBlock(newBlock);
+      chain.saveToFile(BLOCK_CHAIN)
     }
 
     res

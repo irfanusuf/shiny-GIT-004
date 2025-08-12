@@ -12,19 +12,19 @@ export class Blockchain {
 
   chain: Block[];
   difficulty: number;
- 
+
   constructor(difficulty: number = 2) {
     this.chain = [this.createGenesisBlock()];
     this.difficulty = difficulty;
-     this.saveToFile(path.join('chain.json'))
+    this.saveToFile(path.join('chain.json'))
   }
 
   private createGenesisBlock(): Block {
-      const ledger = new Ledger()
-      const GenesisTx = ledger.GenesisTx
-      const genesisBlock = new Block(0, new Date().toISOString(), [GenesisTx] , "0" ,ledger.balanceSheet);
-      genesisBlock.mineBlock(2)  
-      return genesisBlock;
+    const ledger = new Ledger()
+    const GenesisTx = ledger.GenesisTx
+    const genesisBlock = new Block(0, new Date().toISOString(), [GenesisTx], "0", ledger.balanceSheet);
+    genesisBlock.mineBlock(2)
+    return genesisBlock;
   }
 
 
@@ -61,24 +61,32 @@ export class Blockchain {
   }
 
 
-
   // methoods for persistance     
 
   saveToFile(filePath: string): void {
-    fs.writeFileSync(filePath, JSON.stringify(this.chain, null, 2), "utf-8");
+    fs.writeFileSync(filePath, JSON.stringify(this, null, 2), "utf-8");
   }
 
+
+
   static loadFromFile(filePath: string): Blockchain {
+
     if (!fs.existsSync(filePath)) {
       console.log("⛏ No existing chain found, creating new one...");
       return new Blockchain();
     }
 
+
+    console.log(" 🔁 Synchronizing Block Chain from nearest node ..... 🔁 🔁 🔁 ")
+
     const data = fs.readFileSync(filePath, "utf-8");
+
     const parsed = JSON.parse(data);
 
     const blockchain = Object.create(Blockchain.prototype) as Blockchain;
+
     blockchain.difficulty = parsed.difficulty;
+
     blockchain.chain = parsed.chain.map((b: any) =>
       Blockchain.rehydrateBlock(b)
     );
@@ -86,18 +94,38 @@ export class Blockchain {
     return blockchain;
   }
 
+
+
+
   private static rehydrateBlock(blockData: any): Block {
+
+
     const block = Object.assign(Object.create(Block.prototype), blockData);
-    if (block.transactions) {
-      block.transactions = block.transactions.map((t: any) =>
-        Object.assign(Object.create(Transaction.prototype), t)
-      );
-    }
+
+
+      // restore balance sheet  object → Map form chain.json
+  if (block.balanceSheet && typeof block.balanceSheet === "object") {
+    block.balanceSheet = new Map(Object.entries(block.balanceSheet));
+  }
+
+ 
+
+    // if (block.transactionData) {
+    //   block.transactionsData = block.transactionData.map((t: any) =>
+    //     Object.assign(Object.create(Transaction.prototype), t)
+    //   );
+    // }
+
+
     return block;
   }
 }
 
- // Instantiate and test
+
+
+
+
+// Instantiate and test
 // const ironChain = new Blockchain(2)
 // console.log(JSON.stringify(ironChain , null , 2));
 // console.log(ironChain.getLatestBlock())

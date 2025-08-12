@@ -26,6 +26,14 @@ export class Block {
     this.hash = this.calculateHash();
   }
 
+   // 👇 This makes JSON.stringify() work properly with Map
+  toJSON() {
+    return {
+      ...this,
+      balanceSheet: Object.fromEntries(this.balanceSheet)
+    };
+  }
+
   calculateHash(): string {
     const str =
       this.index +

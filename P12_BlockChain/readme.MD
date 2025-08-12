@@ -7,6 +7,16 @@
 
 
 
+
+Wallet {
+  publicKey: 'MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEVD148NCP8+CyWPvoTwG2vgWXmXJoFYGCQAQCQIVXjqv/Lph1Q5BPS1Yj3WS8v+3stj+mOKvFKvaXkoBzXzsQ3A==',
+
+  
+  privateKey: 'MIGEAgEAMBAGByqGSM49AgEGBSuBBAAKBG0wawIBAQQgaB74cfdQM5531jfcuwIvTdvuj1sN+/UcxKx+ZDUXslGhRANCAARUPXjw0I/z4LJY++hPAba+BZeZcmgVgYJABAJAhVeOq/8umHVDkE9LViPdZLy/7ey2P6Y4q8Uq9peSgHNfOxDc'
+}
+
+
+
 Maroof's wallet 
 
 {
